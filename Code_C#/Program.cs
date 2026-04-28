@@ -2,8 +2,11 @@
 {
     static void Main()
     {
-        
-        Module testaffichage = new Module();
-        Console.Write(testaffichage);
-}
+        Jeux jeu = new Jeux();
+        jeu.LancerJeu();
+            // LieuDeVie test = new LieuDeVie();
+        // LieuDeVie test2 = new LieuDeVie();
+        // Console.WriteLine(test);
+        // Console.WriteLine(test2);
+    }
 }
