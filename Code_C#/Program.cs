@@ -2,8 +2,9 @@
 {
     static void Main()
     {
-
-        // LieuDeVie test = new LieuDeVie();
+        Jeux jeu = new Jeux();
+        jeu.LancerJeu();
+            // LieuDeVie test = new LieuDeVie();
         // LieuDeVie test2 = new LieuDeVie();
         // Console.WriteLine(test);
         // Console.WriteLine(test2);
