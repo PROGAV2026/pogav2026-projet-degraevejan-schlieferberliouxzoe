@@ -4,6 +4,7 @@ public abstract class Etage
     public string Nom{get;set;}
     public (string,int) ID{get;set;}
     public List<Module> ListeModules{get;set;}
+    public List<List<int>> MatriceEtage{get;set;}
     
 
     public Etage(string Nom)
