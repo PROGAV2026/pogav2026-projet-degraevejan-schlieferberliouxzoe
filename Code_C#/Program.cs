@@ -1,12 +1,16 @@
 ﻿public class Program
 {
     static void Main()
-    {
-        Jeux jeu = new Jeux();
-        jeu.LancerJeu();
-            // LieuDeVie test = new LieuDeVie();
-        // LieuDeVie test2 = new LieuDeVie();
-        // Console.WriteLine(test);
-        // Console.WriteLine(test2);
-    }
+    {   var test = new List<Module>{};
+        Module testModule = new Module();
+        Module testModule2 = new Module();
+        test.Add(testModule);
+        test.Add(testModule2);
+        Module testModule3 = new Module();
+        Module testModule4 = new Module();
+        test.Add(testModule3);
+        test.Add(testModule4);
+        Graphisme test0 = new Graphisme(test);
+        Console.Write(test0);
+}
 }

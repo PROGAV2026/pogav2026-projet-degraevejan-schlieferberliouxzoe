@@ -1,4 +1,4 @@
-public  class Module
+public   class Module
 {
     public string Nom{get;set;}
     public int Numero{get;set;}
@@ -14,7 +14,7 @@ public  class Module
         SpriteModule.Add(v1);
         for (int i = 0; i <=15;i++){
             
-        SpriteModule[0].Add("\n  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ");
+        SpriteModule[0].Add(".  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ");
     }
     }
 
