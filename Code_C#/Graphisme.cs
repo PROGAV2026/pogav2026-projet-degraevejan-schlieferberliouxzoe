@@ -22,10 +22,7 @@ public class Graphisme
         if(listeDesModules.Count > 1) Grille[1][0] =  listeDesModules[1];
         if(listeDesModules.Count > 2) Grille[1][2] =  listeDesModules[2];
         if(listeDesModules.Count > 3) Grille[2][1] =  listeDesModules[3];
-        
-        
-     
-        
+
         
 
     }
