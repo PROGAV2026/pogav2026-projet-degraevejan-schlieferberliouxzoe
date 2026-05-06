@@ -59,7 +59,7 @@ public  class Module
         }
         else
         {
-            return "  ";
+            return ". ";
         }
     }
     public List<List<string>> ConstructionSprite()
@@ -88,7 +88,7 @@ public  class Module
             }
            
         }
-        
+        this.SpriteModule = ConstructionSprite();
     }
     
 }
