@@ -1,19 +1,34 @@
-﻿public class Program
+﻿using System;
+using System.Diagnostics; // Nécessaire pour Process
+
+class Program
 {
-    static void Main()
-    {
-        var test = new List<Module> { };
-       
-        Module testModule2 = new Module();
-       
-        test.Add(testModule2);
-        Module testModule3 = new Module();
-        Module testModule4 = new Module();
-        test.Add(testModule3);
-        test.Add(testModule4);
-        var testEspace = new Espace();
-        Graphisme test0 = new Graphisme(test);
-        Console.Write(test0);
-      
-    }
+    static void Main(string[] args)
+    {
+        // PLUS SIMPLE POUR VOIR LES RENDUS 
+        if (args.Length == 0 || args[0] != "--fenetre-jeu")
+        {
+            string? currentPath = Process.GetCurrentProcess().MainModule?.FileName;
+
+            if (currentPath != null)
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = currentPath,
+                    Arguments = "--fenetre-jeu",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                };
+
+                Process.Start(startInfo);
+            }
+            return; 
+        }
+
+        // --- TON CODE DE JEU ICI ---
+        Console.Title = "Mon Jeu Isolé";
+        Jeux jeux = new Jeux();
+        jeux.LancerJeu();
+       
+    }
 }
