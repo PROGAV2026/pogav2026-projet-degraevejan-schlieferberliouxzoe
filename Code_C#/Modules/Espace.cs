@@ -5,7 +5,7 @@ public class Espace : Module
     Nom = "Espace";
     // On initialise la liste ET on ajoute la première sous-liste (index 0)
     this.RemplirTotalement(-1);
-    this.ConstructionSprite();
+    SpriteModule = ConstructionSprite();
     
 } 
 
