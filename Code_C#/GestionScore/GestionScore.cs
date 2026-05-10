@@ -7,11 +7,17 @@
 
 public class GestionScore
 {
+    public class EntreeScore
+    {
+        public string nom { get; set; }
+        public int temps { get; set; }
+    }
+
     public string CheminFichier = "resultat.csv";
 
     public GestionScore()
     {
-        CheminFichier = cheminFichier;
+        
     }
 
     public void EnregistrementScore(string nom, Chrono temps)
@@ -29,17 +35,17 @@ public class GestionScore
             Console.WriteLine($"Erreur lors de l'enregistrement du score : {ex.Message}");
         }
     }
-    public void lireScore()
-    {
-        // Code pour lire les scores depuis un fichier
-    }
-    public void AfficherClassement()
-    {
-        var scores = lireScore();
-        Console.WriteLine("MEILLEURS TEMPS ;) : ");
-        for (int i = 0; i < 10; i++)
-        {
-            Console.WriteLine($"{i + 1} - {scores[i].nom}-{scores[i].temps}");
-        }
-    }
+    // public List<EntreeScore> lireScore()
+    // {
+    //     // Code pour lire les scores depuis un fichier
+    // // }
+    // public void AfficherClassement()
+    // {
+    //     var scores = lireScore();
+    //     Console.WriteLine("MEILLEURS TEMPS ;) : ");
+    //     for (int i = 0; i < Math.Min(10, scores.Count); i++)
+    //     {
+    //         Console.WriteLine($"{i + 1} - {scores[i].nom}-{scores[i].temps}");
+    //     }
+    // }
 }

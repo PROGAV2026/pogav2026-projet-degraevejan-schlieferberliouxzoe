@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using Spectre.Console;
 public class Jeux
 {
     public Chrono chrono;
@@ -16,41 +18,31 @@ public class Jeux
         this.modeTest = false;
         this.victoire = false;
     }
+
     public void Test()
     {
         this.modeTest = true;
         // Metre truc qui correspond au mode test
     }
-    public void LancerJeu()//Menu du lancement du jeu 
+
+
+    public void LancerJeu() //Menu du lancement du jeu 
 
     {
-        Console.WriteLine("============================================" +
-                          "\n===========VAISSEAU DES ZINZINS=========== \n" +
-                          "============================================\n" +
-                            "But du jeu :\n" +
-                            "Après l'apocalypse nucléaire, à la suite d'une guerre déclencher apres un attentat sur Donald Trump," +
-                            "Vous decidez de fuire en vaisseau. Ainsi vous voici à la recherche de la clé du vaisseau. \n" +
-                            "10 MIN MAX pour trouver la clé ! \n\n" +
-                            "Veuillez choisir un numéro !! Vite VITTEE votre vie est en jeu !! \n" +
+        MenuPrincipal.AffichageMenuJeu();
+        var selection = MenuPrincipal.AffichageMenuSelection();
 
-                          "1. Lancer le jeu\n" +
-                          "2. Mode test\n" +
-                          "3. Quitter\n");
-        string choix = Console.ReadLine();
-        switch (choix)
+        switch (selection)
         {
-            case "1":
+            case "1. Lancer le jeu":
                 BoucleJeu();
                 break;
-            case "2":
+            case "2. Mode test":
                 Test();
                 break;
-            case "3":
+            case "3. Quitter":
                 Console.WriteLine("Et oui voici la clé du vaisseau pas besoin de faire 10 minutes de recherche :) !");
-                break;
-            default:
-                Console.WriteLine("Choix invalide, veuillez réessayer.");
-                LancerJeu();
+                Console.ReadKey();
                 break;
         }
     }
@@ -60,30 +52,33 @@ public class Jeux
     //         // Metre truc qui correspond a la fin du jeu
     //         console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
     //     }
-    public void AffichageAide()
-    {
-        Console.WriteLine($"Etage : {joueur.PositionEtage} Chrono : {chrono.AffichageChrono()} \n"+
-        $"Clé : {joueur.ALaCle}\n\n"+
-        "HELP\n\n"+
-        "Z -> Haut\nS -> Bas\nQ -> Gauche\nD -> Droite\n\n"+
-        "A -> Interaction\nEchap -> Quitter Jeu");
-    }
+    
     public void BoucleJeu()
     {
 
         this.joueur.DefinirJoueur();
         this.chrono.LancerChrono();
-        Console.Clear();
-        while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
-        {
-            AffichageAide();
-            System.Threading.Thread.Sleep(1000); // Attendre 1 seconde
-            Console.Clear();
-        }
-        while (!victoire && chrono.TempsRestant > 0)
-        {
+        var layout = InterfaceGraphique.InitialiserLayout();
+        layout["Aide"].Update(InterfaceGraphique.Aide());
 
-        }
+        AnsiConsole.Live(layout).Start(ctx =>
+        {
+            while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
+            {
+                layout["Header"].Update(InterfaceGraphique.Header(joueur,chrono));
+                // layout["EcranJeu"].Update(GenererAffichageLabyrinthe());
+                layout["Footer"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
+                ctx.Refresh();
+                if (Console.KeyAvailable)
+                {
+                    var touche = Console.ReadKey(true).Key;
+                    if(touche==ConsoleKey.Escape)break;
+                    //GererDeplacement(touche);
+                }
+                Thread.Sleep(50);
+            }
+        });
+
     }
 
     //     public void VerifierVictoire()
@@ -93,8 +88,8 @@ public class Jeux
     //             FinJeu(true);
     //         }
     //     }
-        public void EnregistrerScore()
-        {
-            // Metre truc qui correspond a l'enregistrement du score
-        }
+    public void EnregistrerScore()
+    {
+        // Metre truc qui correspond a l'enregistrement du score
+    }
 }

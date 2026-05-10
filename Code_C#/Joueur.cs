@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using Spectre.Console;
+
 /// <summary>
 /// CLASS QUI GERE : 
 ///                    Definission du joueur 
@@ -20,19 +23,35 @@ public class Joueur
     }
     public void DefinirJoueur()
     {
-        Console.WriteLine("Quel est votre nom \n");
+        AnsiConsole.Clear();
+        var panel = new Panel("RENSEIGNEMENT POUR LA MISSION")
+        .BorderColor(Color.Green)
+        .RoundedBorder();
+        panel.Border = BoxBorder.Double;
+        AnsiConsole.Write(panel);
+        Console.WriteLine("Quel est votre nom?  \n");
         Nom = Console.ReadLine();
-        Console.WriteLine("Quel étage voulait vous être ? \n");
-        try
+        PositionEtage = AnsiConsole.Prompt(
+        new SelectionPrompt<int>()
+            .Title("\nQuel étage voulait vous être ? \n")
+            .PageSize(10)
+            .AddChoices(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+            .HighlightStyle(new Style(Color.Green))
+    );
+        AnsiConsole.Clear();
+        AnsiConsole.Progress()
+        .Start(ctx =>
         {
-            PositionEtage = int.Parse(Console.ReadLine());
-        }
-        catch
-        {
-            Console.WriteLine(" Mauvaise entrée. L'étage sera défini à 0 pour le départ.");
-            PositionEtage = 0;
-        }
-        
+            var task = ctx.AddTask("LANCEMENT DE LA MISSION", maxValue: 125);
+
+            while (!ctx.IsFinished)
+            {
+                task.Increment(1);
+                Thread.Sleep(10);
+            }
+        });
+        Thread.Sleep(600);
+        AnsiConsole.Clear();
     }
     public void DeplacementModule()
     {
