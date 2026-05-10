@@ -8,5 +8,6 @@ public class Espace : Module
     SpriteModule = ConstructionSprite();
     
 } 
+}
 
-    }
+
