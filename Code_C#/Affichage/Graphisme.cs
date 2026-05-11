@@ -4,7 +4,6 @@ public class Graphisme
 
     public Graphisme(List<Module> listeDesModules)
     {
-
         Grille = new List<List<Module>> { };
         for (int i = 0; i < 3; i++)
         {
@@ -22,6 +21,25 @@ public class Graphisme
         if (listeDesModules.Count > 1) Grille[1][0] = listeDesModules[1];
         if (listeDesModules.Count > 2) Grille[1][2] = listeDesModules[2];
         if (listeDesModules.Count > 3) Grille[2][1] = listeDesModules[3];
+        if (listeDesModules.Count > 4) Grille[1][1] = listeDesModules[4];
+
+
+        //Creation des murs qui delimite le vaisseau.
+        Grille[0][0].MurHorizontal(9);
+        Grille[0][0].MurVertical(9);
+        Grille[0][0].SpriteModule = Grille[0][0].ConstructionSprite();
+
+        Grille[0][2].MurHorizontal(9);
+        Grille[0][2].MurVertical(0);
+        Grille[0][2].SpriteModule = Grille[0][2].ConstructionSprite();
+
+        Grille[2][0].MurHorizontal(0);
+        Grille[2][0].MurVertical(9);
+        Grille[2][0].SpriteModule = Grille[2][0].ConstructionSprite();
+
+        Grille[2][2].MurHorizontal(0);
+        Grille[2][2].MurVertical(0);
+        Grille[2][2].SpriteModule = Grille[2][2].ConstructionSprite();
 
 
 
