@@ -1,8 +1,9 @@
 public class LieuDeVie : Etage
 {
     static int Numero{get;set;} 
-    public LieuDeVie() : base("Lieu De Vie")
+    public LieuDeVie(List<Module> ListeModule) : base(ListeModule)
     {
+        
         Numero += 1;
         ID = (Nom, Numero);
         

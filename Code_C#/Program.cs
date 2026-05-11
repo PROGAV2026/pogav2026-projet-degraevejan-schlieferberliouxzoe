@@ -12,16 +12,20 @@ class Program
         test.Add(testModule2);
         ModulePilotage testModule3 = new ModulePilotage(true);
         ModuleMoteur testModule4 = new ModuleMoteur();
-        test.Add(testModule3);
+       
         test.Add(testModule4);
         ModuleTeleportationArrivee testArrivee = new ModuleTeleportationArrivee();
         ModuleCouchage testModule1 = new ModuleCouchage();
         test.Add(testModule1);
+        test.Add(testModule3);
         test.Add(testArrivee);
         var testEspace = new Espace();
 
-        Graphisme test0 = new Graphisme(test);
-        Console.Write(test0);
+        Etage TestEtage = new Etage(test);
+        TestEtage.AfficherMatriceBrute();
+        Console.WriteLine(TestEtage);
+        //Graphisme test0 = new Graphisme(test);
+        //Console.Write(test0);
       
     }
     static void Main(string[] args)
