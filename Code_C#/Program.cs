@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics; // Nécessaire pour Process pour ouvrir une  nouvelle fenetre
 class Program
 {
-    static void Main(string[] args)
+   
+    static void Main()
+    // static void Main(string[] args)
+
     {
         // PLUS SIMPLE POUR VOIR LES RENDUS 
         // if (args.Length == 0 || args[0] != "--fenetre-jeu")

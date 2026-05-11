@@ -1,7 +1,7 @@
 public class PosteDePilotage : Etage
 {
     static int Numero{get;set;} 
-    public PosteDePilotage() : base("Poste de pilotage")
+    public PosteDePilotage(List<Module> ListeModule) : base(ListeModule)
     {
         Numero += 1;
         ID = (Nom, Numero);
