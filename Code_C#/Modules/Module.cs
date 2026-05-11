@@ -49,18 +49,22 @@ public  class Module
 
     public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
     {
-        if (chiffre == 0)
-        {
-            return ". ";
-        }
-        if (chiffre == -1)
-        {
-            return "/ ";
-        }
-        else
-        {
-            return ". ";
-        }
+    if (chiffre == 0) return "  ";
+    if (chiffre == -1) return "  ";
+    if (chiffre == 1) return "| ";
+    if (chiffre == 2) return "――";
+    if (chiffre == 3) return "🔴";
+    if (chiffre == 4) return "🔵";
+    if (chiffre == 5) return "🖥️ ";
+    if (chiffre == 6) return "💺";
+    if (chiffre == 7) return "🕹️ ";
+    if (chiffre == 8) return "📦";
+    if (chiffre == 9) return "☢️ ";
+    if (chiffre == 10) return "⚙️ ";
+    if (chiffre == 11) return "🛏️ "; 
+    if (chiffre == 12) return "🛌"; 
+    if (chiffre == 13) return "💤";
+    return "";
     }
     public List<List<string>> ConstructionSprite()
     {
@@ -89,6 +93,24 @@ public  class Module
            
         }
         this.SpriteModule = ConstructionSprite();
+    }
+    public void Transpose()
+    {
+        
+    }
+    public void MurVertical(int colonne)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            MatriceModule[i][colonne] = 1;
+        }
+    }
+      public void MurHorizontal(int ligne)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            MatriceModule[ligne][i] = 2;
+        }
     }
     
 }
