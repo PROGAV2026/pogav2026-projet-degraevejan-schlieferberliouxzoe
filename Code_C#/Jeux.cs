@@ -5,7 +5,7 @@ public class Jeux
     // public vaisseau vaisseau;
     public Joueur joueur;
     public bool modeTest;
-    public bool victoire; 
+    public bool victoire;
 
     public Jeux()
     {
@@ -24,17 +24,17 @@ public class Jeux
     public void LancerJeu()//Menu du lancement du jeu 
 
     {
-        Console.WriteLine("============================================"+
-                          "\n===========VAISSEAU DES ZINZINS=========== \n"+
-                          "============================================\n"+
-                            "But du jeu :\n"+
-                            "Après l'apocalypse nucléaire, à la suite d'une guerre déclencher apres un attentat sur Donald Trump,"+
-                            "Vous decidez de fuire en vaisseau. Ainsi vous voici à la recherche de la clé du vaisseau. \n"+
-                            "10 MIN MAX pour trouver la clé ! \n\n"+
-                            "Veuillez choisir un numéro !! Vite VITTEE votre vie est en jeu !! \n"+
-                            
-                          "1. Lancer le jeu\n"+
-                          "2. Mode test\n"+
+        Console.WriteLine("============================================" +
+                          "\n===========VAISSEAU DES ZINZINS=========== \n" +
+                          "============================================\n" +
+                            "But du jeu :\n" +
+                            "Après l'apocalypse nucléaire, à la suite d'une guerre déclencher apres un attentat sur Donald Trump," +
+                            "Vous decidez de fuire en vaisseau. Ainsi vous voici à la recherche de la clé du vaisseau. \n" +
+                            "10 MIN MAX pour trouver la clé ! \n\n" +
+                            "Veuillez choisir un numéro !! Vite VITTEE votre vie est en jeu !! \n" +
+
+                          "1. Lancer le jeu\n" +
+                          "2. Mode test\n" +
                           "3. Quitter\n");
         string choix = Console.ReadLine();
         switch (choix)
@@ -54,31 +54,47 @@ public class Jeux
                 break;
         }
     }
-//     public void FinJeu(bool victoire)
-//     {
-//         this.chrono.ArreterChrono();
-//         // Metre truc qui correspond a la fin du jeu
-//         console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
-//     }
-    public void BoucleJeu(){
+    //     public void FinJeu(bool victoire)
+    //     {
+    //         this.chrono.ArreterChrono();
+    //         // Metre truc qui correspond a la fin du jeu
+    //         console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
+    //     }
+    public void AffichageAide()
+    {
+        Console.WriteLine($"Etage : {joueur.PositionEtage} Chrono : {chrono.AffichageChrono()} \n"+
+        $"Clé : {joueur.ALaCle}\n\n"+
+        "HELP\n\n"+
+        "Z -> Haut\nS -> Bas\nQ -> Gauche\nD -> Droite\n\n"+
+        "A -> Interaction\nEchap -> Quitter Jeu");
+    }
+    public void BoucleJeu()
+    {
 
         this.joueur.DefinirJoueur();
         this.chrono.LancerChrono();
+        Console.Clear();
+        while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
+        {
+            AffichageAide();
+            System.Threading.Thread.Sleep(1000); // Attendre 1 seconde
+            Console.Clear();
+        }
         while (!victoire && chrono.TempsRestant > 0)
         {
-            
+
         }
     }
 
-//     public void VerifierVictoire()
-//     {
-//         if (victoire)//si le joueur a mis la clé aux bonnes endroits
-//         {
-//             FinJeu(true);
-//         }
-//     }
-//     public void EnregistrerScore()
-//     {
-//         // Metre truc qui correspond a l'enregistrement du score
-//     }
+    //     public void VerifierVictoire()
+    //     {
+    //         if (victoire)//si le joueur a mis la clé aux bonnes endroits
+    //         {
+    //             FinJeu(true);
+    //         }
+    //     }
+        public void EnregistrerScore()
+        {
+            // Metre truc qui correspond a l'enregistrement du score
+        }
 }
