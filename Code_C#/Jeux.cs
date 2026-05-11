@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Spectre.Console;
 public class Jeux
 {
@@ -51,7 +50,7 @@ public class Jeux
     //         // Metre truc qui correspond a la fin du jeu
     //         console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
     //     }
-    
+
     public void BoucleJeu()
     {
 
@@ -65,14 +64,14 @@ public class Jeux
         {
             while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
             {
-                layout["Header"].Update(InterfaceGraphique.Header(joueur,chrono));
-                // layout["EcranJeu"].Update(GenererAffichageJeu());
-                layout["Footer"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
+layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
+                layout["EcranJeu"].Update(InterfaceGraphique.Jeu());
+                layout["Interaction"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
                 ctx.Refresh();
                 if (Console.KeyAvailable)
                 {
                     var touche = Console.ReadKey(true).Key;
-                    if(touche==ConsoleKey.Escape)break;
+                    if (touche == ConsoleKey.Escape) break;
                     //GererDeplacement(touche);
                 }
                 Thread.Sleep(50);
@@ -80,9 +79,26 @@ public class Jeux
         });
 
     }
-    public void GenererAffichageJeu()
+    public static Graphisme GenererAffichageJeu()
     {
-        
+        var test = new List<Module> { };
+
+        ModuleTeleportationDepart testModule2 = new ModuleTeleportationDepart();
+
+        test.Add(testModule2);
+        ModulePilotage testModule3 = new ModulePilotage(true);
+        ModuleMoteur testModule4 = new ModuleMoteur();
+        test.Add(testModule3);
+        test.Add(testModule4);
+        ModuleTeleportationArrivee testArrivee = new ModuleTeleportationArrivee();
+        ModuleCouchage testModule1 = new ModuleCouchage();
+        test.Add(testModule1);
+        test.Add(testArrivee);
+        var testEspace = new Espace();
+
+        Graphisme test0 = new Graphisme(test);
+        return test0;
+
     }
 
     //     public void VerifierVictoire()

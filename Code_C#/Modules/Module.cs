@@ -62,7 +62,7 @@ public  class Module
     if (chiffre == 9) return "☢️ ";
     if (chiffre == 10) return "⚙️ ";
     if (chiffre == 11) return "🛏️ "; 
-    if (chiffre == 12) return "🛌"; 
+    if (chiffre == 12) return "🛌 "; 
     if (chiffre == 13) return "💤";
     return "";
     }

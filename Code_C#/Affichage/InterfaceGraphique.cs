@@ -13,9 +13,10 @@ public static class InterfaceGraphique
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
+            new Layout("Interaction").Size(30),
             new Layout("EcranJeu")
-        ),
-        new Layout("Footer").Size(3)
+            
+        )
     );
     }
 
@@ -28,15 +29,15 @@ public static class InterfaceGraphique
         return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] | Temps: [yellow]{c.AffichageChrono()}[/]")))
                .RoundedBorder();
     }
-    //AIDE 
 
+    //AIDE 
     public static Panel Aide()
     {
         return new Panel(new Markup("\n\n[white]Z[/]: Haut\n[white]S[/]: Bas\n[white]Q[/]: Gauche\n[white]D[/]: Droite\n\n[green]A[/]: Action\n[red]ESC[/]: Quitter"))
                .Header("AIDE").BorderColor(Color.Grey)
                .Expand();
     }
-
+    //LEGENDE
     public static Panel Legende()
     {
         return new Panel(new Markup("AJOUT DES DESIGNS DE NOTRE JEU"))
@@ -50,4 +51,13 @@ public static class InterfaceGraphique
                .BorderColor(Color.Yellow).RoundedBorder()
                .Expand();
     }
+
+    //JEU 
+    public static Panel Jeu()
+{   
+    Jeux jeux = new Jeux();
+
+    Graphisme graphisme = Jeux.GenererAffichageJeu();
+    return new Panel(graphisme.ToString()).Expand();
+}
 }
