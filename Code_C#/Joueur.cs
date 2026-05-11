@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Spectre.Console;
 
 /// <summary>
@@ -47,7 +46,7 @@ public class Joueur
             while (!ctx.IsFinished)
             {
                 task.Increment(1);
-                Thread.Sleep(10);
+                Thread.Sleep(20);
             }
         });
         Thread.Sleep(600);

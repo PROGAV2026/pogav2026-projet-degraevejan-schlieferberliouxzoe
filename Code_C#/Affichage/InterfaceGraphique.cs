@@ -13,8 +13,8 @@ public static class InterfaceGraphique
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
-            new Layout("Interaction").Size(30),
-            new Layout("EcranJeu")
+            new Layout("Interaction"),
+            new Layout("EcranJeu").Size(70)
             
         )
     );

@@ -6,7 +6,10 @@
     <RootNamespace>Code_C_</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UseAppHost>false</UseAppHost>
+
   </PropertyGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.55.2" />
