@@ -14,7 +14,7 @@ public static class MenuPrincipal
         );
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
-        AnsiConsole.Write(new Rule("[red]CONTEXTE[/]").RuleStyle("grey").Centered());
+        AnsiConsole.Write(new Rule("[red][[CONTEXTE]][/]").RuleStyle("grey").Centered());
         AnsiConsole.WriteLine();
         AnsiConsole.MarkupLine("Après l'apocalypse nucléaire, à la suite d'une guerre déclenchée après un attentat sur Donald Trump. Vous décidez de fuir en vaisseau. Ainsi vous voici à la recherche de la clé du vaisseau.");
         AnsiConsole.WriteLine();
@@ -31,9 +31,10 @@ public static class MenuPrincipal
 
     public static string AffichageMenuSelection()
     {
+
         return AnsiConsole.Prompt(new SelectionPrompt<string>()
-         .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!")
-         .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
-         .HighlightStyle(new Style(Color.Green, Color.Black)));
+        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/]     [grey][[Esc]] Quitter[/]")         .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
+        .HighlightStyle(new Style(Color.Green, Color.Black)));
     }
 }
+ 

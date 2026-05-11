@@ -31,7 +31,6 @@ public class Jeux
     {
         MenuPrincipal.AffichageMenuJeu();
         var selection = MenuPrincipal.AffichageMenuSelection();
-
         switch (selection)
         {
             case "1. Lancer le jeu":
@@ -60,13 +59,14 @@ public class Jeux
         this.chrono.LancerChrono();
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
+        layout["Legende"].Update(InterfaceGraphique.Legende());
 
         AnsiConsole.Live(layout).Start(ctx =>
         {
             while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
             {
                 layout["Header"].Update(InterfaceGraphique.Header(joueur,chrono));
-                // layout["EcranJeu"].Update(GenererAffichageLabyrinthe());
+                // layout["EcranJeu"].Update(GenererAffichageJeu());
                 layout["Footer"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
                 ctx.Refresh();
                 if (Console.KeyAvailable)
@@ -79,6 +79,10 @@ public class Jeux
             }
         });
 
+    }
+    public void GenererAffichageJeu()
+    {
+        
     }
 
     //     public void VerifierVictoire()

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics; // Nécessaire pour Process
+using System.Diagnostics; // Nécessaire pour Process pour ouvrir une  nouvelle fenetre
 
 class Program
 {
@@ -26,7 +26,7 @@ class Program
         }
 
         // --- TON CODE DE JEU ICI ---
-        Console.Title = "Mon Jeu Isolé";
+        Console.Title = "ZINZIN";
         Jeux jeux = new Jeux();
         jeux.LancerJeu();
        

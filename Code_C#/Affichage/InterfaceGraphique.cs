@@ -9,7 +9,10 @@ public static class InterfaceGraphique
         .SplitRows(
         new Layout("Header").Size(3),
         new Layout("Principal").SplitColumns(
-            new Layout("Aide").Size(30),
+            new Layout("AideEtLegende").Size(20).SplitRows(
+                new Layout("Aide"),
+                new Layout("Legende")
+            ),
             new Layout("EcranJeu")
         ),
         new Layout("Footer").Size(3)
@@ -32,6 +35,13 @@ public static class InterfaceGraphique
         return new Panel(new Markup("\n\n[white]Z[/]: Haut\n[white]S[/]: Bas\n[white]Q[/]: Gauche\n[white]D[/]: Droite\n\n[green]A[/]: Action\n[red]ESC[/]: Quitter"))
                .Header("AIDE").BorderColor(Color.Grey)
                .Expand();
+    }
+
+    public static Panel Legende()
+    {
+        return new Panel(new Markup("AJOUT DES DESIGNS DE NOTRE JEU"))
+        .Header("LEGENDE")
+        .Expand();
     }
     //FOOTER
     public static Panel Footer(string message)
