@@ -1,8 +1,8 @@
 public  class Etage
 {
     //public int Numero{get;set;}
-    public string Nom{get;set;} = "Etage";
-    public (string,int) ID{get;set;} = ("Etage", 0);
+    public string Nom{get;set;} = "";
+    public (string,int) ID{get;set;} 
     public List<Module> ListeModulePotentiels{get;set;} = new List<Module>{};
     public List<Module> ListeModules{get;set;} =  new List<Module>{};
     public List<List<int>> MatriceEtage{get;set;} = new List<List<int>>{};
@@ -109,8 +109,8 @@ public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matri
     {
   if (chiffre == 0) return "  ";
 if (chiffre == -1) return "  ";
-if (chiffre == 1) return "[white]| [/]";
-if (chiffre == 2) return "[white]――[/]";
+if (chiffre == 1) return "[grey]██[/]";
+if (chiffre == 2) return "[grey]██[/]";
 if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
 if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle

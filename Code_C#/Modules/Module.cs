@@ -1,9 +1,9 @@
 public  class Module
 {
-    public string Nom { get; set; } = "Module";
+    public string Nom { get; set; } = "";
     public int Numero { get; set; }
     protected bool ClePresente { get; set; }
-    public (string, int) ID { get; set; } = ("Module", 0);
+    public (string, int) ID { get; set; }
     public List<List<int>> MatriceModule { get; set; }
     public List<List<string>> SpriteModule { get; set; } 
 

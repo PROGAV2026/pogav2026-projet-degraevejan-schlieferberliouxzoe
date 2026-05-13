@@ -12,21 +12,31 @@ public class Joueur
     public int Y { get; set; }
     public int PositionEtage { get; set; }
     public bool ALaCle { get; set; }
-    public Vaisseau vaisseau{get;set;} = new Vaisseau(true); //provisoire
-    public string NomEtageCourant{get;set;}
-    public Etage EtageCourant{get;set;}
+    public Vaisseau vaisseau { get; set; } //provisoire
     public Random random = new Random();
+    public string NomEtageCourant { get; set; } = "";
+    public Etage? EtageCourant { get; set; }
 
-
-    public Joueur()
+    public Joueur(bool modetest)
     {
+        vaisseau = new Vaisseau(modetest);
         ALaCle = false;
         X = 13;
         Y = 13;
-        
-        vaisseau.ListeEtages[PositionEtage].MatriceEtage[X][Y] = 14;
-        EtageCourant = vaisseau.ListeEtages[PositionEtage];
-        NomEtageCourant = EtageCourant.Nom;
+        InitialiserPosition();
+    }
+    
+    public void InitialiserPosition()
+    {
+        if (vaisseau.ListeEtages.Count > PositionEtage)
+        {
+            X = 14;
+            Y = 13;
+            vaisseau.ListeEtages[PositionEtage].MatriceEtage[X][Y] = 14;
+
+            EtageCourant = vaisseau.ListeEtages[PositionEtage];
+            NomEtageCourant = EtageCourant.Nom;
+        }
     }
     public void DefinirJoueur()
     {
@@ -48,11 +58,16 @@ public class Joueur
 
             }
         }
+        List<int>NombreEtage=new List<int>{};
+        for (int i = 0; i < vaisseau.ListeEtages.Count(); i++)
+        {
+            NombreEtage.Add(i+1);
+        }
         int PositionEtageChoisi = AnsiConsole.Prompt(
         new SelectionPrompt<int>()
             .Title("\nQuel étage voulait vous être ? \n")
             .PageSize(10)
-            .AddChoices(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
+            .AddChoices(NombreEtage)
             .HighlightStyle(new Style(Color.Green))
     );
         DeplacementEtage(PositionEtageChoisi);
@@ -70,37 +85,46 @@ public class Joueur
         });
         Thread.Sleep(600);
         AnsiConsole.Clear();
-        
+
     }
-    public void DeplacementDansModule(ConsoleKey key)
+   public void DeplacementDansModule(ConsoleKey key)
     {
 
         switch (key)
         {
-
-            case ConsoleKey.UpArrow:
-                if (EtageCourant.MatriceEtage[X][Y-1] == 0) { Y = Math.Max(0, Y - 1);
-                EtageCourant.MatriceEtage[X][Y-1] =14;
-                EtageCourant.MatriceEtage[X][Y] =0;
-                 }
-                break;//Permet de mettre une limite
-            case ConsoleKey.RightArrow:
-                if (EtageCourant.MatriceEtage[X+1][Y] == 0) { X = Math.Min(29, X + 1);
-                EtageCourant.MatriceEtage[X+1][Y] =14;
-                EtageCourant.MatriceEtage[X][Y] =0; }
-                break;
             case ConsoleKey.LeftArrow:
-                if (EtageCourant.MatriceEtage[X-1][Y]== 0) { X = Math.Max(0, X - 1); 
-                EtageCourant.MatriceEtage[X-1][Y] =14;
-                EtageCourant.MatriceEtage[X][Y] =0;}
+                if (Y - 1 >= 0 && EtageCourant.MatriceEtage[X][Y-1] == 0)
+                {
+                    EtageCourant.MatriceEtage[X][Y] = 0;
+                    Y = Y - 1;
+                    EtageCourant.MatriceEtage[X][Y] = 14;
+                }
                 break;
             case ConsoleKey.DownArrow:
-                if (EtageCourant.MatriceEtage[X][Y+1]  == 0) { Y = Math.Min(29, Y + 1); 
-                EtageCourant.MatriceEtage[X][Y+1] =14;
-                EtageCourant.MatriceEtage[X][Y] =0;}
+                if (X + 1 <= 29 && EtageCourant.MatriceEtage[X+1][Y] == 0)
+                {
+                    EtageCourant.MatriceEtage[X][Y] = 0;
+                    X = X + 1;
+                    EtageCourant.MatriceEtage[X][Y] = 14;
+                }
+                break;
+            case ConsoleKey.UpArrow:
+                if (X - 1 >= 0  && EtageCourant.MatriceEtage[X-1][Y] == 0)
+                {
+                    EtageCourant.MatriceEtage[X][Y] = 0;
+                    X = X - 1;
+                    EtageCourant.MatriceEtage[X][Y] = 14;
+                }
+                break;
+            case ConsoleKey.RightArrow:
+                if (Y + 1 <= 29 && EtageCourant.MatriceEtage[X][Y+1] == 0)
+                {
+                    EtageCourant.MatriceEtage[X][Y] = 0;
+                    Y = Y + 1;
+                    EtageCourant.MatriceEtage[X][Y] = 14;
+                }
                 break;
         }
-
     }
     public void DeplacementEtage(int NumeroEtage)
     {
@@ -122,7 +146,9 @@ public class Joueur
             EtageCourant = vaisseau.ListeEtages[PositionEtage];
             EtageCourant.MatriceEtage[X][Y] = 14;
         }
+         InitialiserPosition();
     }
+    
     // public void DeplacementEtage(int NumeroEtage)
     // {
     //     int ChanceBonneEtage = random.Next(0,100);
