@@ -18,7 +18,7 @@ public class GestionScore
         public int Temps { get; set; }
     }
 
-    public string CheminFichier = "resultat.csv";
+    public string CheminFichier = "GestionScore/resultat.csv";
 
     public GestionScore()
     {

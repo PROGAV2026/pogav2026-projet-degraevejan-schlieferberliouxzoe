@@ -9,12 +9,12 @@ public static class InterfaceGraphique
         .SplitRows(
         new Layout("Header").Size(3),
         new Layout("Principal").SplitColumns(
-            new Layout("AideEtLegende").Size(40).SplitRows(
+            new Layout("AideEtLegende").SplitRows(
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
             new Layout("Interaction"),
-            new Layout("EcranJeu")
+            new Layout("EcranJeu").Size(80)
             
         )
     );
@@ -40,25 +40,20 @@ public static class InterfaceGraphique
     public static Panel Legende()
     {
         return new Panel(new Markup("🔴: Arrivé du teleporteur \n🔵: Depart du téléporteur \n🖥️:Ecran de controle \n💺: Siege du vaisseau \n🕹️:Poste de pilotage \n📦:Coffre\n☢️: REACTEUR NUCLEAIRE\n⚙️:IDK\n🛏️:Tu veux faire un gros dodo\n🛌💤:LE DERANGE PAS\n👨‍🚀: VOUS"))
-        .Expand()
-        .Header("LEGENDE").BorderColor(Color.Grey)
+        .Header("LEGENDE").BorderColor(Color.Grey).Expand()
         ;
    
     }
-    //FOOTER
-    public static Panel Footer(string message)
+    //Interaction
+    public static Panel Intreaction(string message)
     {
         return new Panel(new Text(message, new Style(Color.Grey)).Centered())
-               .BorderColor(Color.Yellow).RoundedBorder()
-               .Expand();
-    }
+               .RoundedBorder().Expand()
+;    }
 
     //JEU 
-    public static Panel Jeu()
-{   
-    Jeux jeux = new Jeux();
-
-    Graphisme graphisme = Jeux.GenererAffichageJeu();
-    return new Panel(graphisme.ToString()).Expand().NoBorder();
-}
+    public static Panel Jeu(Graphisme graphisme)
+    {
+        return new Panel(graphisme.ToString()).NoBorder();
+    }
 }

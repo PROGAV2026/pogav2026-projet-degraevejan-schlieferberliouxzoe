@@ -25,10 +25,8 @@ class Program
         //     }
         //     return; 
 
-        // --- TON CODE DE JEU ICI ---
         Jeux jeux = new Jeux();
         jeux.LancerJeu();
-           // exemple
       
     }
 }
