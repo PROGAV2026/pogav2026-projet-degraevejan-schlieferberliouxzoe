@@ -25,10 +25,9 @@ class Program
         //     return; 
 
         // --- TON CODE DE JEU ICI ---
-        // Jeux jeux = new Jeux();
-        // jeux.LancerJeu();
+         Jeux jeux = new Jeux();
+         jeux.LancerJeu();
            // exemple
-    LieuDeVie testLieuDeVie = new LieuDeVie();
-    Console.WriteLine(testLieuDeVie);
+  
     }
 }

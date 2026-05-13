@@ -59,7 +59,7 @@ public class Jeux
     public void BoucleJeu()
     {
 
-        this.joueur.DefinirJoueur();
+        joueur.DefinirJoueur();
         this.chrono.LancerChrono();
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());

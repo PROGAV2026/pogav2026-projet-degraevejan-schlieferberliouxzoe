@@ -58,7 +58,8 @@ public static class InterfaceGraphique
 {   
     Jeux jeux = new Jeux();
 
-    Graphisme graphisme = Jeux.GenererAffichageJeu();
-    return new Panel(graphisme.ToString()).Expand().NoBorder();
+    Console.WriteLine(jeux.joueur.vaisseau.ListeEtages[jeux.joueur.PositionEtage].ToString());
+    Console.WriteLine("blabalabl");
+    return new Panel(jeux.joueur.vaisseau.ListeEtages[jeux.joueur.PositionEtage].ToString()).Expand().NoBorder();
 }
 }
