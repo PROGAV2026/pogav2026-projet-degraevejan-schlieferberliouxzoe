@@ -7,15 +7,18 @@ public class Jeux
     public Joueur joueur;
     public bool modeTest;
     public bool victoire;
+    public GestionScore gestion;
+
 
     public Jeux()
     {
         this.chrono = new Chrono();
-        // this.gestionScores = new GestionScore();
+        this.gestion = new GestionScore();
         // this.vaisseau = new Vaisseau();
         this.joueur = new Joueur();
         this.modeTest = false;
         this.victoire = false;
+        
     }
 
     public void Test()
@@ -44,12 +47,14 @@ public class Jeux
                 break;
         }
     }
-    //     public void FinJeu(bool victoire)
-    //     {
-    //         this.chrono.ArreterChrono();
-    //         // Metre truc qui correspond a la fin du jeu
-    //         console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
-    //     }
+        public void FinJeu(bool victoire)
+        {
+            victoire = true;
+            this.chrono.ArreterChrono();
+            this.gestion.EnregistrementScore(joueur.Nom, this.chrono);
+            // Metre truc qui correspond a la fin du jeu
+            Console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
+        }
 
     public void BoucleJeu()
     {
@@ -64,7 +69,7 @@ public class Jeux
         {
             while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
             {
-layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
+                layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
                 layout["EcranJeu"].Update(InterfaceGraphique.Jeu());
                 layout["Interaction"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
                 ctx.Refresh();
@@ -74,9 +79,14 @@ layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
                     if (touche == ConsoleKey.Escape) break;
                     //GererDeplacement(touche);
                 }
+                // FinJeu(true);
                 Thread.Sleep(50);
+
             }
-        });
+
+        }
+        
+        );
 
     }
     public static Graphisme GenererAffichageJeu()
@@ -108,8 +118,4 @@ layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
     //             FinJeu(true);
     //         }
     //     }
-    public void EnregistrerScore()
-    {
-        // Metre truc qui correspond a l'enregistrement du score
-    }
 }

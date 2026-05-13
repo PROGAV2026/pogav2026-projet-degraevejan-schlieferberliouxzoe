@@ -31,12 +31,7 @@ public class Chrono
         int secondes = tempsRestant % 60;
         return $"{minutes:D2}:{secondes:D2}"; //D2 permet d'avoir 2 chiffres donc quand des numeros de 0 à 10 affiche quand meme 01..
     }
-    public double RecupererPourcentageRestant()
-    {
-        if(TempsRestant<=0)return 0;
-        return (double)TempsRestant/ TempsTotal*100;
-    }
-    public void ArreterChrono()
+        public void ArreterChrono()
     {
         enCours = false;
         stopwatch.Stop();

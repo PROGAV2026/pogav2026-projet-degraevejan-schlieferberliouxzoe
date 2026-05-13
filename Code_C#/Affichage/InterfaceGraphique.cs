@@ -9,12 +9,12 @@ public static class InterfaceGraphique
         .SplitRows(
         new Layout("Header").Size(3),
         new Layout("Principal").SplitColumns(
-            new Layout("AideEtLegende").Size(20).SplitRows(
+            new Layout("AideEtLegende").Size(40).SplitRows(
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
             new Layout("Interaction"),
-            new Layout("EcranJeu").Size(70)
+            new Layout("EcranJeu")
             
         )
     );
@@ -24,7 +24,6 @@ public static class InterfaceGraphique
     public static Panel Header(Joueur j, Chrono c)
     {
         string cle = j.ALaCle ? "[green]OUI[/]" : "[red]NON[/]";
-        double pourcentage = c.RecupererPourcentageRestant();
 
         return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] | Temps: [yellow]{c.AffichageChrono()}[/]")))
                .RoundedBorder();
@@ -40,9 +39,11 @@ public static class InterfaceGraphique
     //LEGENDE
     public static Panel Legende()
     {
-        return new Panel(new Markup("AJOUT DES DESIGNS DE NOTRE JEU"))
-        .Header("LEGENDE")
-        .Expand();
+        return new Panel(new Markup("🔴: Arrivé du teleporteur \n🔵: Depart du téléporteur \n🖥️:Ecran de controle \n💺: Siege du vaisseau \n🕹️:Poste de pilotage \n📦:Coffre\n☢️: REACTEUR NUCLEAIRE\n⚙️:IDK\n🛏️:Tu veux faire un gros dodo\n🛌💤:LE DERANGE PAS\n👨‍🚀: VOUS"))
+        .Expand()
+        .Header("LEGENDE").BorderColor(Color.Grey)
+        ;
+   
     }
     //FOOTER
     public static Panel Footer(string message)
@@ -58,6 +59,6 @@ public static class InterfaceGraphique
     Jeux jeux = new Jeux();
 
     Graphisme graphisme = Jeux.GenererAffichageJeu();
-    return new Panel(graphisme.ToString()).Expand();
+    return new Panel(graphisme.ToString()).Expand().NoBorder();
 }
 }
