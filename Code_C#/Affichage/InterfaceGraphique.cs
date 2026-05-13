@@ -51,8 +51,12 @@ public static class InterfaceGraphique
 ;    }
 
     //JEU 
-    public static Panel Jeu(LieuDeVie lieuDeVie)
-    {
-        return new Panel(new Text(lieuDeVie.ToString())).NoBorder();
-    }
+    public static Panel Jeu()
+{   
+    Jeux jeux = new Jeux();
+
+    Console.WriteLine(jeux.joueur.vaisseau.ListeEtages[jeux.joueur.PositionEtage].ToString());
+    Console.WriteLine("blabalabl");
+    return new Panel(jeux.joueur.vaisseau.ListeEtages[jeux.joueur.PositionEtage].ToString()).Expand().NoBorder();
+}
 }
