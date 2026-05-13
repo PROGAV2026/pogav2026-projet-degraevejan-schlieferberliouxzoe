@@ -20,9 +20,11 @@ public class Joueur
     {
         ALaCle = false;
         X = 14;
-        Y = 14;
-        vaisseau.ListeEtages[PositionEtage].MatriceEtage[X][Y] =14; 
-
+        Y = 13;
+        if (vaisseau.ListeEtages.Count > 0)
+        {
+            vaisseau.ListeEtages[PositionEtage].MatriceEtage[X][Y] = 14;
+        }
     }
     public void DefinirJoueur()
     {
@@ -102,14 +104,15 @@ public class Joueur
     {
         
         int ChanceBonneEtage = random.Next(0, 100);
+        int maxIndex = Math.Max(0, vaisseau.ListeEtages.Count - 1);
 
         if (ChanceBonneEtage > 20)
         {
-            PositionEtage = NumeroEtage;
+            PositionEtage = Math.Clamp(NumeroEtage - 1, 0, maxIndex);
         }
         else
         {
-            PositionEtage = random.Next(1, 11);
+            PositionEtage = random.Next(0, vaisseau.ListeEtages.Count > 0 ? vaisseau.ListeEtages.Count : 1);
         }
     }
     // public void DeplacementEtage(int NumeroEtage)

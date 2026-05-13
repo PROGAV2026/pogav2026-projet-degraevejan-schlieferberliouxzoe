@@ -9,17 +9,19 @@ public class Jeux
     public bool victoire;
     public GestionScore gestion;
     private LieuDeVie lieuDeVie;
+    public Vaisseau vaisseau;
 
 
     public Jeux()
     {
         this.chrono = new Chrono();
         this.gestion = new GestionScore();
-        // this.vaisseau = new Vaisseau();
+        this.vaisseau = new Vaisseau(true);
         this.joueur = new Joueur();
+        this.joueur.vaisseau = this.vaisseau;
         this.modeTest = false;
         this.victoire = false;
-        this.lieuDeVie = new LieuDeVie();  // Initialiser ici
+        this.lieuDeVie = new LieuDeVie();
     }
 
     public void Test()
@@ -61,22 +63,34 @@ public class Jeux
     {
         this.joueur.DefinirJoueur();
         this.chrono.LancerChrono();
+        if (Console.WindowHeight < 35 || Console.WindowWidth < 80)
+    {
+        AnsiConsole.MarkupLine("[red]Agrandis la fenêtre du terminal avant de jouer ![/]");
+        Console.ReadKey();
+        return;
+    }
         
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
         layout["Legende"].Update(InterfaceGraphique.Legende());
         layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
+        // AnsiConsole.Write(layout);
         layout["Interaction"].Update(InterfaceGraphique.Intreaction("Vous explorez le vaisseau..."));
-        layout["EcranJeu"].Update(InterfaceGraphique.Jeu(lieuDeVie));
+        layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
+        // layout["Blanc"].Update(InterfaceGraphique.Blanc());
 
-        AnsiConsole.Live(layout).AutoClear(true).Start(ctx =>
+        AnsiConsole.Live(layout)
+    .AutoClear(false)       
+    .Start(ctx =>
         {
             while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
             {
                 layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(lieuDeVie));
+                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
+                
+
                 ctx.Refresh();
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
         });
     }

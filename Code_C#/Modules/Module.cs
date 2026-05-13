@@ -1,9 +1,9 @@
 public  class Module
 {
-    public string Nom { get; set; }
+    public string Nom { get; set; } = "Module";
     public int Numero { get; set; }
     protected bool ClePresente { get; set; }
-    public (string, int) ID { get; set; }
+    public (string, int) ID { get; set; } = ("Module", 0);
     public List<List<int>> MatriceModule { get; set; }
     public List<List<string>> SpriteModule { get; set; } 
 
@@ -47,25 +47,25 @@ public  class Module
         }
     }
 
-    public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
+ public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
     {
-    if (chiffre == 0) return "  ";
-    if (chiffre == -1) return "  ";
-    if (chiffre == 1) return "| ";
-    if (chiffre == 2) return "――";
-    if (chiffre == 3) return "🔴";
-    if (chiffre == 4) return "🔵";
-    if (chiffre == 5) return "🖥️ ";
-    if (chiffre == 6) return "💺";
-    if (chiffre == 7) return "🕹️ ";
-    if (chiffre == 8) return "📦";
-    if (chiffre == 9) return "☢️ ";
-    if (chiffre == 10) return "⚙️ ";
-    if (chiffre == 11) return "🛏️ "; 
-    if (chiffre == 12) return "🛌"; 
-    if (chiffre == 13) return "💤";
-    if (chiffre == 14) return "👨‍🚀";
-    return "";
+  if (chiffre == 0) return "  ";
+if (chiffre == -1) return "  ";
+if (chiffre == 1) return "[white]| [/]";
+if (chiffre == 2) return "[white]――[/]";
+if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
+if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
+if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
+if (chiffre == 6) return "[yellow]Ch[/]";    // siège
+if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
+if (chiffre == 8) return "[orange3]Co[/]";   // coffre
+if (chiffre == 9) return "[green]Nu[/]";     // réacteur nucléaire
+if (chiffre == 10) return "[grey]En[/]";     // IDK
+if (chiffre == 11) return "[blue]Li[/]";     // lit
+if (chiffre == 12) return "[blue]Do[/]";     // dort
+if (chiffre == 13) return "[grey]Zz[/]";     // zzz
+if (chiffre == 14) return "[yellow]@@[/]";   // joueur
+return "  ";
     }
     public List<List<string>> ConstructionSprite()
     {
