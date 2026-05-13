@@ -26,7 +26,7 @@ class Program
 
         // --- TON CODE DE JEU ICI ---
         Jeux jeux = new Jeux();
-        jeux.BoucleJeu();
+        jeux.LancerJeu();
            // exemple
     // LieuDeVie testLieuDeVie = new LieuDeVie();
     // Console.WriteLine(testLieuDeVie);

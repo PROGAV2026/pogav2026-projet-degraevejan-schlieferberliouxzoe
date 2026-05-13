@@ -6,7 +6,7 @@ public class LieuDeVie : Etage
     {
         
         Numero += 1;
-        Nom = "Lieu de Vie" + Numero.ToString();
+        Nom = "Lieu de Vie" ;
         ID = (Nom, Numero);
         ModuleCouchage couchage = new ModuleCouchage();
         

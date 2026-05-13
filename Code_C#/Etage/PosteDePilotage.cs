@@ -5,7 +5,7 @@ public class PosteDePilotage : Etage
     {
         
         Numero += 1;
-        Nom = "Poste de pilotage" + Numero.ToString();
+        Nom = "Poste de pilotage" ;
         ID = (Nom, Numero);
         ModulePilotage pilotage =  new ModulePilotage(true);
         ModuleMoteur moteur = new ModuleMoteur();

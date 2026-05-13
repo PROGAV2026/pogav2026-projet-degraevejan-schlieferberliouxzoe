@@ -31,8 +31,19 @@ public static class InterfaceGraphique
     public static Panel Header(Joueur j, Chrono c)
     {
         string cle = j.ALaCle ? "[green]OUI[/]" : "[red]NON[/]";
+        string etage=" ";
+         if(j.NomEtageCourant=="Lieu de Vie"){
+            etage = "[green]Lieu de Vie[/]";
+        }
+        else if (j.NomEtageCourant=="Poste de pilotage"){
+        etage = "[blue]Poste de pilotage[/]";
+        }
+        else if(j.NomEtageCourant=="Salle des machines"){
+        etage = "[yellow]Salle des machines[/]";
+        }
 
-        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] | Temps: [yellow]{c.AffichageChrono()}[/]")))
+
+        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
              .Expand();
     }
     public static Panel Blanc()
@@ -65,21 +76,17 @@ public static class InterfaceGraphique
 
     }
     //Interaction
-    public static Panel Intreaction(string message)
+    public static Panel Intreaction(Joueur j)
     {
-        return new Panel(new Text(message, new Style(Color.Grey)).Centered())
-               .RoundedBorder().Expand()
-;
+        
+        return new Panel(new Markup($""))
+               .RoundedBorder().Expand();
     }
+    
 
     //JEU 
     public static Panel Jeu(Jeux j)
     {
-        if (j?.joueur?.vaisseau?.ListeEtages == null || j.joueur.vaisseau.ListeEtages.Count == 0 || 
-            j.joueur.PositionEtage < 0 || j.joueur.PositionEtage >= j.joueur.vaisseau.ListeEtages.Count)
-        {
-            return new Panel("Étage indisponible").NoBorder().Expand();
-        }
         return new Panel(j.joueur.vaisseau.ListeEtages[j.joueur.PositionEtage].ToString()).NoBorder().Expand();
     }
 }

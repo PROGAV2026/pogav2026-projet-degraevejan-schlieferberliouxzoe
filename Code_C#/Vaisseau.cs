@@ -16,8 +16,7 @@ public class Vaisseau
         ListeEtagesPotentiels.Add("lieuDeVie");
         ListeEtagesPotentiels.Add("posteDePilotage");
         ListeEtagesPotentiels.Add("salleMachine");
-        if(modeTest)
-        RemplirListeEtage(10);
+        if(modeTest) RemplirListeEtage(3) ; else RemplirListeEtage(10);
     }
     public void CacherLaCle()
 

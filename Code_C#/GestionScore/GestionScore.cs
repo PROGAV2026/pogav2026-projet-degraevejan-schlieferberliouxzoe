@@ -50,10 +50,9 @@ public class GestionScore
         return liste.OrderBy(s => s.Temps).ToList();
     }
    
-    public void AfficherClassement(int tempsIndividuel)
+    public void AfficherClassement()
     {
         Console.Clear();
-        Console.WriteLine("$Vous avez fait un temps de {tempsIndividuel}!");
         var scores = LireScore();
         var table = new Table()
         .Border(TableBorder.Rounded)
