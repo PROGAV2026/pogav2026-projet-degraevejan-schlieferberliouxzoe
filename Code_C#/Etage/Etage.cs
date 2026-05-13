@@ -3,21 +3,47 @@ public  class Etage
     //public int Numero{get;set;}
     public string Nom{get;set;}
     public (string,int) ID{get;set;}
-    public List<Module> ListeModules{get;set;}
-    public List<List<int>> MatriceEtage{get;set;}
+    public List<Module> ListeModulePotentiels{get;set;} = new List<Module>{};
+    public List<Module> ListeModules{get;set;} =  new List<Module>{};
+    public List<List<int>> MatriceEtage{get;set;} = new List<List<int>>{};
+    public Random random = new Random();
     
 
-    public Etage(List<Module> ListeModules)
+    public Etage()
     {
-        
+        ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
+        ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
+        ListeModules.Add(TpArrivee);
+        ListeModules.Add(TpDepart);
         //this.Numero = Numero;
-        this.ListeModules = ListeModules;
-        CreationMatriceEtage();
+        
+
+        
     }
 
+    public void CompleterAvecModulesPotentiels(){
+        
+        while(ListeModules.Count()<5){
+        int indiceAleatoire = random.Next(0,ListeModulePotentiels.Count());
+        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);
+            
+        }
+    }
+    public void CompleterListeModuleEspace(){
+        Espace espace = new Espace();
+        while(ListeModules.Count() <5){
+            ListeModules.Add(espace);
+        }
+    }
     public List<Module> CompleterAvecEspaces()
     {
         List<Module> ListeComplete = new List<Module>{};
+        if (ListeModulePotentiels.Count() ==0){
+            CompleterListeModuleEspace();
+        }
+        else{
+            CompleterAvecModulesPotentiels();
+        }
         //Creation des coins
         Espace EspaceHautDroite = new Espace();
         EspaceHautDroite.CoinHautDroite();
@@ -32,8 +58,8 @@ public  class Etage
       ListeComplete.Add(EspaceHautGauche);
       ListeComplete.Add(ListeModules[0]);
       ListeComplete.Add(EspaceHautDroite);
-      ListeComplete.Add(ListeModules[1]);
       ListeComplete.Add(ListeModules[2]);
+      ListeComplete.Add(ListeModules[1]);
       ListeComplete.Add(ListeModules[3]);
       ListeComplete.Add(EspaceBasGauche);
       ListeComplete.Add(ListeModules[4]);
@@ -113,7 +139,7 @@ public void AfficherMatriceBrute()
     }
 }
 
-    public override string ToString()
+public override string ToString()
     {
         string SpriteFinal = "";
         for (int i = 0; i < 30; i++)

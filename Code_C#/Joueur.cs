@@ -48,7 +48,7 @@ public class Joueur
             .AddChoices(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })
             .HighlightStyle(new Style(Color.Green))
     );
-    DeplacementEtage(PositionEtageChoisi);
+        DeplacementEtage(PositionEtageChoisi);
         AnsiConsole.Clear();
         AnsiConsole.Progress()
         .Start(ctx =>
@@ -66,13 +66,24 @@ public class Joueur
     }
     public void DeplacementModule(ConsoleKey key)
     {
+
         switch (key)
         {
-            case ConsoleKey.UpArrow: Y = Math.Max(0, Y - 1); break;//Permet de mettre une limite
-            case ConsoleKey.RightArrow: X = Math.Min(29, X + 1); break;
-            case ConsoleKey.LeftArrow: X = Math.Max(0, X - 1); break;
-            case ConsoleKey.DownArrow: Y = Math.Min(29, Y + 1); break;
+
+            case ConsoleKey.UpArrow:
+                if (Y - 1 != 0) { Y = Math.Max(0, Y - 1); }
+                break;//Permet de mettre une limite
+            case ConsoleKey.RightArrow:
+                if (X + 1 != 0) { X = Math.Min(29, X + 1); }
+                break;
+            case ConsoleKey.LeftArrow:
+                if (X - 1 != 0) { X = Math.Max(0, X - 1); }
+                break;
+            case ConsoleKey.DownArrow:
+                if (X - 1 != 0) { Y = Math.Min(29, Y + 1); }
+                break;
         }
+
     }
     public void DeplacementEtage(int NumeroEtage)
     {

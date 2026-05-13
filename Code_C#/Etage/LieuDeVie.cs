@@ -1,16 +1,18 @@
 public class LieuDeVie : Etage
 {
     static int Numero{get;set;} 
-    public LieuDeVie(List<Module> ListeModule) : base(ListeModule)
+
+    public LieuDeVie() : base()
     {
         
         Numero += 1;
+        Nom = "Lieu de Vie" + Numero.ToString();
         ID = (Nom, Numero);
+        ModuleCouchage couchage = new ModuleCouchage();
         
+        ListeModulePotentiels.Add(couchage);
+        CreationMatriceEtage();
 
     }
-    public override string ToString()
-    {
-        return ID.Item1 + " " + ID.Item2;
-    }
+    
 }
