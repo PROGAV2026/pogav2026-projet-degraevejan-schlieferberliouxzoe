@@ -2,23 +2,24 @@ using Spectre.Console;
 public class Jeux
 {
     public Chrono chrono;
-    // private GestionScore gestionScores;
-    // public vaisseau vaisseau;
     public Joueur joueur;
     public bool modeTest;
     public bool victoire;
     public GestionScore gestion;
+    private LieuDeVie lieuDeVie;
+    public Vaisseau vaisseau;
 
 
     public Jeux()
     {
         this.chrono = new Chrono();
         this.gestion = new GestionScore();
-        // this.vaisseau = new Vaisseau();
-        this.joueur = new Joueur();
         this.modeTest = false;
+        this.joueur = new Joueur(modeTest);
+        this.vaisseau = this.joueur.vaisseau;
+        this.joueur.InitialiserPosition();
         this.victoire = false;
-        
+        this.lieuDeVie = new LieuDeVie();
     }
 
     public void Test()
@@ -36,10 +37,13 @@ public class Jeux
         switch (selection)
         {
             case "1. Lancer le jeu":
+            
                 BoucleJeu();
                 break;
             case "2. Mode test":
-                Test();
+                modeTest=true;
+                joueur.vaisseau = new Vaisseau(modeTest);
+                BoucleJeu();
                 break;
             case "3. Quitter":
                 Console.WriteLine("Et oui voici la clé du vaisseau pas besoin de faire 10 minutes de recherche :) !");
@@ -47,75 +51,67 @@ public class Jeux
                 break;
         }
     }
-        public void FinJeu(bool victoire)
+    public void FinJeu(bool victoire)
+    {
+        Console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
+        if(victoire)
+        this.chrono.ArreterChrono() ;
+        this.gestion.EnregistrementScore(joueur.Nom, this.chrono);
+        
+        this.gestion.AfficherClassement();
+
+       
+        
+    }
+    public void VerifierVictoire()
+    {
+        if (joueur.ALaCle) 
         {
-            victoire = true;
-            this.chrono.ArreterChrono();
-            this.gestion.EnregistrementScore(joueur.Nom, this.chrono);
-            // Metre truc qui correspond a la fin du jeu
-            Console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
+           victoire=true;
         }
+    }
 
     public void BoucleJeu()
     {
-
         this.joueur.DefinirJoueur();
         this.chrono.LancerChrono();
+        if (Console.WindowHeight < 35 || Console.WindowWidth < 80)
+        {
+            AnsiConsole.MarkupLine("[red]Agrandis la fenêtre du terminal avant de jouer ![/]");
+            Console.ReadKey();
+            return;
+        }
+
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
         layout["Legende"].Update(InterfaceGraphique.Legende());
+        // AnsiConsole.Write(layout);
+        // layout["Blanc"].Update(InterfaceGraphique.Blanc());
 
-        AnsiConsole.Live(layout).Start(ctx =>
+    AnsiConsole.Live(layout)
+    .AutoClear(false)
+    .Start(ctx =>
         {
-            while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
+            while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
             {
                 layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-                layout["EcranJeu"].Update(InterfaceGraphique.Jeu());
-                layout["Interaction"].Update(InterfaceGraphique.Footer("Vous explorez le vaisseau..."));
-                ctx.Refresh();
+                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
+                layout["Interaction"].Update(InterfaceGraphique.Intreaction(joueur));
+            
                 if (Console.KeyAvailable)
                 {
                     var touche = Console.ReadKey(true).Key;
-                    if (touche == ConsoleKey.Escape) break;
-                    //GererDeplacement(touche);
+                    joueur.DeplacementDansModule(touche);
                 }
-                // FinJeu(true);
-                Thread.Sleep(50);
-
+                VerifierVictoire();
+                ctx.Refresh();
+                Thread.Sleep(5);
             }
-
-        }
-        
-        );
-
+        });
+        AnsiConsole.Clear();
+    
+        FinJeu(victoire);
     }
-    public static Graphisme GenererAffichageJeu()
-    {
-        var test = new List<Module> { };
-
-        ModuleTeleportationDepart testModule2 = new ModuleTeleportationDepart();
-
-        test.Add(testModule2);
-        ModulePilotage testModule3 = new ModulePilotage(true);
-        ModuleMoteur testModule4 = new ModuleMoteur();
-        test.Add(testModule3);
-        test.Add(testModule4);
-        ModuleTeleportationArrivee testArrivee = new ModuleTeleportationArrivee();
-        ModuleCouchage testModule1 = new ModuleCouchage();
-        test.Add(testModule1);
-        test.Add(testArrivee);
-        var testEspace = new Espace();
-
-        Graphisme test0 = new Graphisme(test);
-        return test0;
-
-    }
-
-    //     public void VerifierVictoire()
-    //     {
-    //         if (victoire)//si le joueur a mis la clé aux bonnes endroits
-    //         {
-    //             FinJeu(true);
-    //         }
-    //     }
 }
+
+   

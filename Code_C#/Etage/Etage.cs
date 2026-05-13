@@ -1,23 +1,49 @@
 public  class Etage
 {
     //public int Numero{get;set;}
-    public string Nom{get;set;}
-    public (string,int) ID{get;set;}
-    public List<Module> ListeModules{get;set;}
-    public List<List<int>> MatriceEtage{get;set;}
+    public string Nom{get;set;} = "";
+    public (string,int) ID{get;set;} 
+    public List<Module> ListeModulePotentiels{get;set;} = new List<Module>{};
+    public List<Module> ListeModules{get;set;} =  new List<Module>{};
+    public List<List<int>> MatriceEtage{get;set;} = new List<List<int>>{};
+    public Random random = new Random();
     
 
-    public Etage(List<Module> ListeModules)
+    public Etage()
     {
-        
+        ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
+        ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
+        ListeModules.Add(TpArrivee);
+        ListeModules.Add(TpDepart);
         //this.Numero = Numero;
-        this.ListeModules = ListeModules;
-        CreationMatriceEtage();
+        
+
+        
     }
 
+    public void CompleterAvecModulesPotentiels(){
+        
+        while(ListeModules.Count()<5){
+        int indiceAleatoire = random.Next(0,ListeModulePotentiels.Count());
+        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);
+            
+        }
+    }
+    public void CompleterListeModuleEspace(){
+        Espace espace = new Espace();
+        while(ListeModules.Count() <5){
+            ListeModules.Add(espace);
+        }
+    }
     public List<Module> CompleterAvecEspaces()
     {
         List<Module> ListeComplete = new List<Module>{};
+        if (ListeModulePotentiels.Count() ==0){
+            CompleterListeModuleEspace();
+        }
+        else{
+            CompleterAvecModulesPotentiels();
+        }
         //Creation des coins
         Espace EspaceHautDroite = new Espace();
         EspaceHautDroite.CoinHautDroite();
@@ -32,8 +58,8 @@ public  class Etage
       ListeComplete.Add(EspaceHautGauche);
       ListeComplete.Add(ListeModules[0]);
       ListeComplete.Add(EspaceHautDroite);
-      ListeComplete.Add(ListeModules[1]);
       ListeComplete.Add(ListeModules[2]);
+      ListeComplete.Add(ListeModules[1]);
       ListeComplete.Add(ListeModules[3]);
       ListeComplete.Add(EspaceBasGauche);
       ListeComplete.Add(ListeModules[4]);
@@ -81,23 +107,23 @@ public  class Etage
 }
 public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
     {
-    if (chiffre == 0) return "  ";
-    if (chiffre == -1) return "  ";
-    if (chiffre == 1) return "| ";
-    if (chiffre == 2) return "――";
-    if (chiffre == 3) return "🔴";
-    if (chiffre == 4) return "🔵";
-    if (chiffre == 5) return "🖥️ ";
-    if (chiffre == 6) return "💺";
-    if (chiffre == 7) return "🕹️ ";
-    if (chiffre == 8) return "📦";
-    if (chiffre == 9) return "☢️ ";
-    if (chiffre == 10) return "⚙️ ";
-    if (chiffre == 11) return "🛏️ "; 
-    if (chiffre == 12) return "🛌"; 
-    if (chiffre == 13) return "💤";
-    if (chiffre == 14) return "👨‍🚀";
-    return "";
+  if (chiffre == 0) return "  ";
+if (chiffre == -1) return "  ";
+if (chiffre == 1) return "[grey]██[/]";
+if (chiffre == 2) return "[grey]██[/]";
+if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
+if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
+if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
+if (chiffre == 6) return "[yellow]Ch[/]";    // siège
+if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
+if (chiffre == 8) return "[orange3]Co[/]";   // coffre
+if (chiffre == 9) return "[green]Nu[/]";     // réacteur nucléaire
+if (chiffre == 10) return "[grey]En[/]";     // IDK
+if (chiffre == 11) return "[blue]Li[/]";     // lit
+if (chiffre == 12) return "[blue]Do[/]";     // dort
+if (chiffre == 13) return "[grey]Zz[/]";     // zzz
+if (chiffre == 14) return "[yellow]@@[/]";   // joueur
+return "  ";
     }
 public void AfficherMatriceBrute()
 {
@@ -113,7 +139,7 @@ public void AfficherMatriceBrute()
     }
 }
 
-    public override string ToString()
+public override string ToString()
     {
         string SpriteFinal = "";
         for (int i = 0; i < 30; i++)

@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics; // Nécessaire pour Process pour ouvrir une  nouvelle fenetre
 class Program
 {
-   
-    static void Main()
+    static void Main(string[] args)
     // static void Main(string[] args)
 
     {
@@ -29,6 +28,7 @@ class Program
         Jeux jeux = new Jeux();
         jeux.LancerJeu();
            // exemple
-      
+    // LieuDeVie testLieuDeVie = new LieuDeVie();
+    // Console.WriteLine(testLieuDeVie);
     }
 }
