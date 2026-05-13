@@ -1,7 +1,8 @@
 public class Graphisme
 {
     List<List<Module>> Grille { get; set; }
-
+    public int JoueurX { get; set; } = 15;
+    public int JoueurY { get; set; } = 15; 
     public Graphisme(List<Module> listeDesModules)
     {
         Grille = new List<List<Module>> { };
@@ -71,6 +72,11 @@ public class Graphisme
 
     public override string ToString()
     {
+        int moduleCol = JoueurX / 10; 
+    int moduleLigne = JoueurY / 10;
+    int localX = JoueurX % 10; 
+    int localY = JoueurY % 10;
+        Grille[moduleLigne][moduleCol].SpriteModule[localY][localX] = "👨‍🚀";
 
         string resultatFinal = "";
 
