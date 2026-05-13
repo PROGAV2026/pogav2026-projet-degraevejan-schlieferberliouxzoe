@@ -8,7 +8,7 @@ public class Jeux
     public bool modeTest;
     public bool victoire;
     public GestionScore gestion;
-    private LieuDeVie lieuDeVie;
+
     public Vaisseau vaisseau;
 
 
@@ -21,7 +21,7 @@ public class Jeux
         this.joueur.vaisseau = this.vaisseau;
         this.modeTest = false;
         this.victoire = false;
-        this.lieuDeVie = new LieuDeVie();
+    
     }
 
     public void Test()
@@ -85,6 +85,13 @@ public class Jeux
         {
             while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
             {
+                if (Console.KeyAvailable) 
+            {
+                var touche = Console.ReadKey(true).Key;
+                joueur.DeplacementDansModule(touche);
+            }
+
+
                 layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
                 layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
                 

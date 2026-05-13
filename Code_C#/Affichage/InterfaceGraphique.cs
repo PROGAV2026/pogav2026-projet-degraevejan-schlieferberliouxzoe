@@ -75,11 +75,7 @@ public static class InterfaceGraphique
     //JEU 
     public static Panel Jeu(Jeux j)
     {
-        if (j?.joueur?.vaisseau?.ListeEtages == null || j.joueur.vaisseau.ListeEtages.Count == 0 || 
-            j.joueur.PositionEtage < 0 || j.joueur.PositionEtage >= j.joueur.vaisseau.ListeEtages.Count)
-        {
-            return new Panel("Étage indisponible").NoBorder().Expand();
-        }
+ 
         return new Panel(j.joueur.vaisseau.ListeEtages[j.joueur.PositionEtage].ToString()).NoBorder().Expand();
     }
 }

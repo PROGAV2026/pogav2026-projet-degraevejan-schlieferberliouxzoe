@@ -122,7 +122,7 @@ if (chiffre == 10) return "[grey]En[/]";     // IDK
 if (chiffre == 11) return "[blue]Li[/]";     // lit
 if (chiffre == 12) return "[blue]Do[/]";     // dort
 if (chiffre == 13) return "[grey]Zz[/]";     // zzz
-if (chiffre == 14) return "[yellow]@@[/]";   // joueur
+if (chiffre == 14) return "[yellow]JJ[/]";   // joueur
 return "  ";
     }
 public void AfficherMatriceBrute()
