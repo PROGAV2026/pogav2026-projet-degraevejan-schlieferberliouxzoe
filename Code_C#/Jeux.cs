@@ -8,6 +8,7 @@ public class Jeux
     public bool modeTest;
     public bool victoire;
     public GestionScore gestion;
+    private LieuDeVie lieuDeVie;
 
 
     public Jeux()
@@ -18,7 +19,7 @@ public class Jeux
         this.joueur = new Joueur();
         this.modeTest = false;
         this.victoire = false;
-        
+        this.lieuDeVie = new LieuDeVie();  // Initialiser ici
     }
 
     public void Test()
@@ -39,7 +40,7 @@ public class Jeux
                 BoucleJeu();
                 break;
             case "2. Mode test":
-                Test();
+                BoucleJeu();
                 break;
             case "3. Quitter":
                 Console.WriteLine("Et oui voici la clé du vaisseau pas besoin de faire 10 minutes de recherche :) !");
@@ -58,45 +59,28 @@ public class Jeux
 
     public void BoucleJeu()
     {
-
         this.joueur.DefinirJoueur();
         this.chrono.LancerChrono();
+        
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
         layout["Legende"].Update(InterfaceGraphique.Legende());
         layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
         layout["Interaction"].Update(InterfaceGraphique.Intreaction("Vous explorez le vaisseau..."));
-        AnsiConsole.Write(layout);
-        //TESTTTTTTT
+        layout["EcranJeu"].Update(InterfaceGraphique.Jeu(lieuDeVie));
 
-        AnsiConsole.Live(layout).AutoClear(false).Start(ctx =>
+        AnsiConsole.Live(layout).AutoClear(true).Start(ctx =>
         {
-            while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal)
+            while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
             {
-                
                 layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-                // layout["EcranJeu"].Update(InterfaceGraphique.Jeu(graphisme));
-                layout["Interaction"].Update(InterfaceGraphique.Intreaction("Vous explorez le vaisseau..."));
+                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(lieuDeVie));
                 ctx.Refresh();
-                // if (Console.KeyAvailable)
-                // {
-                //     var touche = Console.ReadKey(true).Key;
-                //     if (touche == ConsoleKey.Escape) break;
-                //     //GererDeplacement(touche);
-                // }
-                // FinJeu(true);
-                Thread.Sleep(1000);
-
-
+                Thread.Sleep(100);
             }
-
-        }
-        
-        );
-
-
+        });
     }
-    
+}    
 
     //     public void VerifierVictoire()
     //     {
@@ -105,4 +89,3 @@ public class Jeux
     //             FinJeu(true);
     //         }
     //     }
-}

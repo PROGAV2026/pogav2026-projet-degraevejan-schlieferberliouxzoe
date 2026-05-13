@@ -2,20 +2,20 @@ using Spectre.Console;
 
 public static class InterfaceGraphique
 {
+    
     //SQUELETTE DE L INTERFACE
     public static Layout InitialiserLayout()
     {
         return new Layout("INTERFACE")
         .SplitRows(
-        new Layout("Header").Size(3),
+        new Layout("Header").Size(5),
         new Layout("Principal").SplitColumns(
             new Layout("AideEtLegende").SplitRows(
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
             new Layout("Interaction"),
-            new Layout("EcranJeu").Size(80)
-            
+            new Layout("EcranJeu")
         )
     );
     }
@@ -33,14 +33,13 @@ public static class InterfaceGraphique
     public static Panel Aide()
     {
         return new Panel(new Markup("\n\n[white]Z[/]: Haut\n[white]S[/]: Bas\n[white]Q[/]: Gauche\n[white]D[/]: Droite\n\n[green]A[/]: Action\n[red]ESC[/]: Quitter"))
-               .Header("AIDE").BorderColor(Color.Grey)
-               .Expand();
+               .Header("AIDE").BorderColor(Color.Grey);
     }
     //LEGENDE
     public static Panel Legende()
     {
-        return new Panel(new Markup("🔴: Arrivé du teleporteur \n🔵: Depart du téléporteur \n🖥️:Ecran de controle \n💺: Siege du vaisseau \n🕹️:Poste de pilotage \n📦:Coffre\n☢️: REACTEUR NUCLEAIRE\n⚙️:IDK\n🛏️:Tu veux faire un gros dodo\n🛌💤:LE DERANGE PAS\n👨‍🚀: VOUS"))
-        .Header("LEGENDE").BorderColor(Color.Grey).Expand()
+        return new Panel(new Markup("🔴: Arrivé du teleporteur \n🔵: Depart du téléporteur \n🖥️ :Ecran de controle \n💺:Siege du vaisseau \n🕹️:Poste de pilotage \n📦:Coffre\n☢️: REACTEUR NUCLEAIRE\n⚙️:IDK\n🛏️:Tu veux faire un gros dodo\n🛌💤:LE DERANGE PAS\n👨‍🚀: VOUS"))
+        .Header("LEGENDE").BorderColor(Color.Grey)
         ;
    
     }
@@ -48,12 +47,12 @@ public static class InterfaceGraphique
     public static Panel Intreaction(string message)
     {
         return new Panel(new Text(message, new Style(Color.Grey)).Centered())
-               .RoundedBorder().Expand()
+               .RoundedBorder()
 ;    }
 
     //JEU 
-    public static Panel Jeu(Graphisme graphisme)
+    public static Panel Jeu(LieuDeVie lieuDeVie)
     {
-        return new Panel(graphisme.ToString()).NoBorder();
+        return new Panel(new Text(lieuDeVie.ToString())).NoBorder();
     }
 }
