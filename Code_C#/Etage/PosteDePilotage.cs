@@ -1,15 +1,18 @@
 public class PosteDePilotage : Etage
 {
     static int Numero{get;set;} 
-    public PosteDePilotage() : base("Poste de pilotage")
+    public PosteDePilotage() : base()
     {
-        Numero += 1;
-        ID = (Nom, Numero);
         
+        Numero += 1;
+        Nom = "Poste de pilotage" + Numero.ToString();
+        ID = (Nom, Numero);
+        ModulePilotage pilotage =  new ModulePilotage(true);
+        ModuleMoteur moteur = new ModuleMoteur();
+        ListeModulePotentiels.Add(pilotage);
+        ListeModulePotentiels.Add(moteur);
+        CreationMatriceEtage();
 
     }
-    public override string ToString()
-    {
-        return ID.Item1 + " " + ID.Item2;
-    }
+
 }

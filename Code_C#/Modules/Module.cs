@@ -5,7 +5,7 @@ public  class Module
     protected bool ClePresente { get; set; }
     public (string, int) ID { get; set; }
     public List<List<int>> MatriceModule { get; set; }
-    public List<List<string>> SpriteModule { get; set; } //on fait une liste pour avoir les différentes versions d'un même sprite, qui contient une liste qui contient chaque ligne du sprite
+    public List<List<string>> SpriteModule { get; set; } 
 
 
     public Module()
@@ -62,8 +62,9 @@ public  class Module
     if (chiffre == 9) return "☢️ ";
     if (chiffre == 10) return "⚙️ ";
     if (chiffre == 11) return "🛏️ "; 
-    if (chiffre == 12) return "🛌"; 
+    if (chiffre == 12) return "🛌 "; 
     if (chiffre == 13) return "💤";
+    if (chiffre == 14) return "👨‍🚀";
     return "";
     }
     public List<List<string>> ConstructionSprite()
