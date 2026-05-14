@@ -2,7 +2,7 @@ using Spectre.Console;
 
 public static class InterfaceGraphique
 {
-
+    // public string NomInteraction = "";
 
     //SQUELETTE DE L INTERFACE
     public static Layout InitialiserLayout()
@@ -75,16 +75,20 @@ public static class InterfaceGraphique
 .Header("LEGENDE").BorderColor(Color.Grey).Expand();
 
     }
-    //Interaction
+
+    //INTERACTION - Affichage du panneau d'interaction
     public static Panel Intreaction(Joueur j)
     {
-        
-        return new Panel(new Markup($""))
-               .RoundedBorder().Expand();
+        return new Panel(new Markup("nd"))
+               .Header("INTERACTION")
+               .RoundedBorder()
+               .BorderColor(Color.Cyan)
+               .Expand();
     }
-    
 
-    //JEU 
+
+    
+    //JEU     
     public static Panel Jeu(Jeux j)
     {
         return new Panel(j.joueur.vaisseau.ListeEtages[j.joueur.PositionEtage].ToString()).NoBorder().Expand();

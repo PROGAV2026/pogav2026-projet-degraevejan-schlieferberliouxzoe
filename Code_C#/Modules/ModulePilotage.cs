@@ -1,9 +1,13 @@
 public class ModulePilotage : Module
 {
-    private bool EstValide{get;set;}
-    public ModulePilotage(bool EstValide)
+    public bool EstValide{get;set;}=true;
+    
+    public ModulePilotage() : this(true) { }
+    
+    // Constructeur avec paramètre de validité
+    public ModulePilotage(bool estValide)
     {
-        this.EstValide = EstValide;   
+        this.EstValide = estValide;
         Nom = "Module de Pilotage";
         MatriceModule = new List<List<int>>
         {

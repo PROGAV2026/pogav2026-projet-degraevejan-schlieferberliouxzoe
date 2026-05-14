@@ -1,6 +1,5 @@
 public  class Etage
 {
-    //public int Numero{get;set;}
     public string Nom{get;set;} = "";
     public (string,int) ID{get;set;} 
     public List<Module> ListeModulePotentiels{get;set;} = new List<Module>{};
@@ -14,9 +13,7 @@ public  class Etage
         ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
         ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
         ListeModules.Add(TpArrivee);
-        ListeModules.Add(TpDepart);
-        //this.Numero = Numero;
-        
+        ListeModules.Add(TpDepart);      
 
         
     }

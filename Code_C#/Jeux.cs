@@ -3,31 +3,26 @@ public class Jeux
 {
     public Chrono chrono;
     public Joueur joueur;
-    public bool modeTest;
+    public bool modeTest=false;
     public bool victoire;
     public GestionScore gestion;
-    private LieuDeVie lieuDeVie;
     public Vaisseau vaisseau;
+    public GestionInteraction Interaction;
+    public bool quitter=false;
 
 
     public Jeux()
     {
         this.chrono = new Chrono();
-        this.gestion = new GestionScore();
+        this.gestion = new GestionScore(this.modeTest);
         this.modeTest = false;
         this.joueur = new Joueur(modeTest);
+
+        this.Interaction = new GestionInteraction(joueur);
         this.vaisseau = this.joueur.vaisseau;
         this.joueur.InitialiserPosition();
         this.victoire = false;
-        this.lieuDeVie = new LieuDeVie();
     }
-
-    public void Test()
-    {
-        this.modeTest = true;
-        // Metre truc qui correspond au mode test
-    }
-
 
     public void LancerJeu() //Menu du lancement du jeu 
 
@@ -42,7 +37,6 @@ public class Jeux
                 break;
             case "2. Mode test":
                 modeTest=true;
-                joueur.vaisseau = new Vaisseau(modeTest);
                 BoucleJeu();
                 break;
             case "3. Quitter":
@@ -53,15 +47,17 @@ public class Jeux
     }
     public void FinJeu(bool victoire)
     {
+        if (quitter)
+        {
+            Console.WriteLine("N'hesite pas à revenir tu nous manques déjà ;)");
+            
+        }
+        else {
         Console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
-        if(victoire)
+        if(victoire){
         this.chrono.ArreterChrono() ;
-        this.gestion.EnregistrementScore(joueur.Nom, this.chrono);
-        
-        this.gestion.AfficherClassement();
-
-       
-        
+        this.gestion.EnregistrementScore(joueur.Nom, this.chrono);}
+        this.gestion.AfficherClassement();}
     }
     public void VerifierVictoire()
     {
@@ -73,7 +69,12 @@ public class Jeux
 
     public void BoucleJeu()
     {
-        this.joueur.DefinirJoueur();
+        this.gestion = new GestionScore(this.modeTest);
+        this.joueur.vaisseau = new Vaisseau(this.modeTest);
+        this.vaisseau = this.joueur.vaisseau;
+
+        this.joueur.DefinirJoueur(joueur);
+
         this.chrono.LancerChrono();
         if (Console.WindowHeight < 35 || Console.WindowWidth < 80)
         {
@@ -97,10 +98,22 @@ public class Jeux
                 layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
                 layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
                 layout["Interaction"].Update(InterfaceGraphique.Intreaction(joueur));
-            
+
+                Interaction.VerifierInteractionJeu(joueur);
                 if (Console.KeyAvailable)
                 {
                     var touche = Console.ReadKey(true).Key;
+                    if (touche == ConsoleKey.Escape)
+                    {
+                        victoire = false;
+                        chrono.enCours = false;
+                        quitter = true;
+                        break;
+                    }
+                    // else if (touche== ConsoleKey.A)
+                    // {
+                    //    joueur.; 
+                    // };
                     joueur.DeplacementDansModule(touche);
                 }
                 VerifierVictoire();
