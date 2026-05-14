@@ -2,14 +2,11 @@ using Spectre.Console;
 
 public static class InterfaceGraphique
 {
-    // public string NomInteraction = "";
-
     //SQUELETTE DE L INTERFACE
     public static Layout InitialiserLayout()
-    {
-
-        return new Layout("INTERFACE")
-        .SplitRows(
+{
+    return new Layout("INTERFACE")
+    .SplitRows(
         new Layout("Header").Size(3),
         new Layout("Principal").SplitColumns(
             new Layout("AideEtLegende").Size(40)
@@ -17,15 +14,20 @@ public static class InterfaceGraphique
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
-                        // new Layout("Jeu").SplitColumns(
-                            // new Layout("Blanc").Size(30),
-            new Layout("EcranJeu"),
-                        
+            new Layout("ZoneJeu").SplitColumns(
+                new Layout("MargeGauche").Size(30),
+                new Layout("ZoneJEU").SplitRows(
+                    new Layout("MargeHaut").Size(5),
+                    new Layout("EcranJeu"),
+                    new Layout("MargeBas").Size(2)
 
+                ),
+                new Layout("MargeDroite").Size(30)
+            ),
             new Layout("Interaction").Size(40)
-        
-    ));
-    }
+        )
+    );
+}
 
     //HEADER
     public static Panel Header(Joueur j, Chrono c)
@@ -76,18 +78,16 @@ public static class InterfaceGraphique
 
     }
 
-    //INTERACTION - Affichage du panneau d'interaction
-    public static Panel Intreaction(Joueur j)
+    //INTERACTION -
+    public static Panel Interaction()
     {
-        return new Panel(new Markup("nd"))
-               .Header("INTERACTION")
+        return new Panel(new Markup(AffichageInteraction.MessageInteraction))
+               .Header(AffichageInteraction.NomInteraction)
                .RoundedBorder()
                .BorderColor(Color.Cyan)
                .Expand();
     }
 
-
-    
     //JEU     
     public static Panel Jeu(Jeux j)
     {

@@ -53,8 +53,8 @@ public  class Module
 if (chiffre == -1) return "  ";
 if (chiffre == 1) return "[white]| [/]";
 if (chiffre == 2) return "[white]――[/]";
-if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
-if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
+if (chiffre == 3) return "[red]██[/]";       // téléporteur départ
+if (chiffre == 4) return "[blue]██[/]";      // téléporteur arrivée
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
 if (chiffre == 6) return "[yellow]Ch[/]";    // siège
 if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
@@ -95,10 +95,7 @@ return "  ";
         }
         this.SpriteModule = ConstructionSprite();
     }
-    public void Transpose()
-    {
-        
-    }
+   
     public void MurVertical(int colonne)
     {
         for (int i = 0; i < 10; i++)

@@ -1,8 +1,12 @@
 using System.Runtime.InteropServices;
-
+/// <summary>
+/// CLASS QUI GERE : 
+///                    Creation des etages + remplissage dans le vaisseau 
+///                    Cacher la clé
+/// </summary>
 public class Vaisseau
 {
-    public string NomVaisseau = "ZINZIN";
+    // public string NomVaisseau = "ZINZIN";
     public List<Etage> ListeEtages { get; set; } = new List<Etage> { };
     public List<string> ListeEtagesPotentiels { get; set; } = new List<string> { };
     public Random random = new Random();
@@ -13,8 +17,6 @@ public class Vaisseau
     public int YClé;
     public Vaisseau(bool modeTest)
     {
-
-
         ListeEtagesPotentiels.Add("lieuDeVie");
         ListeEtagesPotentiels.Add("posteDePilotage");
         ListeEtagesPotentiels.Add("salleMachine");
@@ -65,8 +67,6 @@ public class Vaisseau
     }
     public void RemplirListeEtage(int nombreEtages)
     {
-       
-        
             while (ListeEtages.Count() < nombreEtages - 3)
             {
                 int indiceAleatoire = random.Next(0, ListeEtagesPotentiels.Count());
@@ -78,34 +78,5 @@ public class Vaisseau
                 ListeEtages.Insert(indiceAleatoire2, CreationEtage(nometage));
             }
     }
-    // public void AfficherDetailVaisseau()
-    // {
-    //     Console.WriteLine($"\n======= CONFIGURATION DÉTAILLÉE DU VAISSEAU {NomVaisseau} =======");
-
-    //     for (int i = 0; i < ListeEtages.Count; i++)
-    //     {
-    //         Etage etageActuel = ListeEtages[i];
-
-    //         // Affichage de l'étage en gras/majuscule pour bien le voir
-    //         Console.WriteLine($"\n[ ÉTAGE {i + 1} : {etageActuel.Nom.ToUpper()} ]");
-
-    //         // Vérification si la liste de modules n'est pas vide
-    //         if (etageActuel.ListeModules != null && etageActuel.ListeModules.Count > 0)
-    //         {
-    //             foreach (var module in etageActuel.ListeModules)
-    //             {
-    //                 // On affiche le type du module (ex: ModuleCouchage, ModuleTeleportation, etc.)
-    //                 // .GetType().Name permet de récupérer le nom de la classe de l'objet
-    //                 Console.WriteLine($"   > Module : {module.GetType().Name}");
-    //             }
-    //         }
-    //         else
-    //         {
-    //             Console.WriteLine("   (Aucun module installé dans cet étage)");
-    //         }
-    //     }
-
-    //     Console.WriteLine("\n============================================================");
-    // }
-}
+}   
 

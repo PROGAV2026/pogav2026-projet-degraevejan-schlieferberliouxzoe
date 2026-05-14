@@ -25,30 +25,20 @@ public class Joueur
         Y = 13;
         InitialiserPosition();
     }
-    public int ChoisirEtage(string titre)
+    
+public void InitialiserPosition(int x, int y)
     {
-        var choix = new List<string>();
-        for (int i = 0; i < vaisseau.ListeEtages.Count; i++)
+         
+        if (vaisseau.ListeEtages.Count > PositionEtage)
         {
-            choix.Add($"{i + 1}. {vaisseau.ListeEtages[i].Nom}");
-        }
-        choix.Add($"{vaisseau.ListeEtages.Count + 1}. Annuler");
-
-        string selection = AnsiConsole.Prompt(new SelectionPrompt<string>()
-            .Title(titre)
-            .PageSize(10)
-            .AddChoices(choix)
-            .HighlightStyle(new Style(Color.Cyan))
-        );
-
-        int etageChoisi = int.Parse(selection.Split('.')[0]) - 1;
-
-        if (etageChoisi >= vaisseau.ListeEtages.Count)
-            return -1;
-
-        return etageChoisi;
+            X = 14;
+            Y = 13;
+            EtageCourant = vaisseau.ListeEtages[PositionEtage];
+            EtageCourant.MatriceEtage[X][Y] = 14;
+            NomEtageCourant = EtageCourant.Nom;
+    
     }
-
+    }
     public void InitialiserPosition()
     {
         if (vaisseau.ListeEtages.Count > PositionEtage)
@@ -60,52 +50,8 @@ public class Joueur
             NomEtageCourant = EtageCourant.Nom;
         }
     }
-    public void DefinirJoueur(Joueur j)
-    {
-        AnsiConsole.Clear();
-        var panel = new Panel("RENSEIGNEMENT POUR LA MISSION")
-        .BorderColor(Color.Green)
-        .RoundedBorder();
-        panel.Border = BoxBorder.Double;
-        AnsiConsole.Write(panel);
+    
 
-        while (Nom == "")
-        {
-            Console.WriteLine("Quel est votre nom?  \n");
-
-            Nom = Console.ReadLine() ?? "";
-            if (Nom == "")
-            {
-                Console.WriteLine("Veuillez entrer un nom ;) \n");
-
-            }
-        }
-
-        int etageNumero = ChoisirEtage("\nQuel étage voulez-vous être ?\n");
-        if (etageNumero == -1) return;    
-        DeplacementEtage(etageNumero);
-        AnsiConsole.Clear();
-        AnsiConsole.Progress()
-        .Start(ctx =>
-        {
-            var task = ctx.AddTask("LANCEMENT DE LA MISSION", maxValue: 125);
-
-            while (!ctx.IsFinished)
-            {
-                task.Increment(1);
-                Thread.Sleep(2);
-            }
-        });
-        Thread.Sleep(600);
-        AnsiConsole.Clear();
-
-    }
-    public void VerifierCle()
-    {
-
-
-
-    }
 
     public void DeplacementDansModule(ConsoleKey key)
     {
@@ -147,16 +93,25 @@ public class Joueur
                 break;
         }
     }
-    public void DeplacementEtage(int NumeroEtage)
+    public string DeplacementEtage(int NumeroEtage)
     {
-        if (EtageCourant == null) return;
+        if (EtageCourant == null) return "";
         EtageCourant.MatriceEtage[X][Y] = 0;
 
         int ChanceBonneEtage = random.Next(0, 100);
         PositionEtage = ChanceBonneEtage > 20 
         ? NumeroEtage : random.Next(0, vaisseau.ListeEtages.Count > 0 ? vaisseau.ListeEtages.Count : 1);
         InitialiserPosition();
+
+        if (NumeroEtage != PositionEtage)
+        {
+            return "[red]TELEPORTATION ECHOUE[/] : le portail quantique vous a téléportez dans un autre étage";
+        }
+        else{
+            return "[green]TELEPORTATION REUSSIT[/]";
+        }
     }
+   
 
 
     // public void RecupereCle()

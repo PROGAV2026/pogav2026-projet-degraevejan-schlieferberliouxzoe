@@ -36,5 +36,6 @@ public static class MenuPrincipal
         .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/]     [grey][[Esc]] Quitter[/]")         .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
         .HighlightStyle(new Style(Color.Green, Color.Black)));
     }
+    
 }
  

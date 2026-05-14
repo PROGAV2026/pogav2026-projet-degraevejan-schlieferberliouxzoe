@@ -13,17 +13,14 @@ public  class Etage
         ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
         ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
         ListeModules.Add(TpArrivee);
-        ListeModules.Add(TpDepart);      
-
-        
+        ListeModules.Add(TpDepart);        
     }
 
     public void CompleterAvecModulesPotentiels(){
         
         while(ListeModules.Count()<5){
         int indiceAleatoire = random.Next(0,ListeModulePotentiels.Count());
-        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);
-            
+        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);          
         }
     }
     public void CompleterListeModuleEspace(){
@@ -108,8 +105,8 @@ public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matri
 if (chiffre == -1) return "  ";
 if (chiffre == 1) return "[grey]██[/]";
 if (chiffre == 2) return "[grey]██[/]";
-if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
-if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
+if (chiffre == 3) return "[red]██[/]";       // téléporteur départ
+if (chiffre == 4) return "[blue]██[/]";      // téléporteur arrivé
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
 if (chiffre == 6) return "[yellow]Ch[/]";    // siège
 if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
@@ -135,6 +132,7 @@ public void AfficherMatriceBrute()
         Console.WriteLine();
     }
 }
+
 
 public override string ToString()
     {
