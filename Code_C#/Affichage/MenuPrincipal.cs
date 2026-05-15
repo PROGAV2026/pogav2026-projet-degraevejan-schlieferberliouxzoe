@@ -16,7 +16,7 @@ public static class MenuPrincipal
         AnsiConsole.WriteLine();
         AnsiConsole.Write(new Rule("[red][[CONTEXTE]][/]").RuleStyle("grey").Centered());
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine("Après l'apocalypse nucléaire, à la suite d'une guerre déclenchée après un attentat sur Donald Trump. Vous décidez de fuir en vaisseau. Ainsi vous voici à la recherche de la clé du vaisseau.");
+        AnsiConsole.MarkupLine("La moitié de la population a disparu en un [red]claquement de doigt[/], vous avez été téléporté dans un vaisseau. Mais aucun moyen de le démarrer. ");
         AnsiConsole.WriteLine();
 
         AnsiConsole.Write(
@@ -24,7 +24,7 @@ public static class MenuPrincipal
         );
         AnsiConsole.WriteLine();
 
-        AnsiConsole.Write(new Markup("[italic]Retrouver la clé et regagner le bon poste de pilotage en moins de 10 minutes.[/]").Centered());
+        AnsiConsole.Write(new Markup("[italic]Retrouver la [green]clé[/] et regagner le bon poste de pilotage en moins de 10 minutes.[/]").Centered());
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
     }
@@ -33,7 +33,7 @@ public static class MenuPrincipal
     {
 
         return AnsiConsole.Prompt(new SelectionPrompt<string>()
-        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/]     [grey][[Esc]] Quitter[/]")         .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
+        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/] ") .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
         .HighlightStyle(new Style(Color.Green, Color.Black)));
     }
     

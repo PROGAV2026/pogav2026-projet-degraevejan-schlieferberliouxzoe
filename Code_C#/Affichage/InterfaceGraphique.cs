@@ -45,7 +45,7 @@ public static class InterfaceGraphique
         }
 
 
-        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
+        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage+1}[/] - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
              .Expand();
     }
     public static Panel Blanc()
@@ -84,7 +84,6 @@ public static class InterfaceGraphique
         return new Panel(new Markup(AffichageInteraction.MessageInteraction))
                .Header(AffichageInteraction.NomInteraction)
                .RoundedBorder()
-               .BorderColor(Color.Cyan)
                .Expand();
     }
 

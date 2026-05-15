@@ -36,21 +36,31 @@ public class GestionInteraction
     {
 
     }
-    public string InteractionAvecElement(int NumeroElement, Joueur Joueur, Layout layout, LiveDisplayContext ctx)
+    public string InteractionAvecElement(int NumeroElement, Joueur joueur, Layout layout, LiveDisplayContext ctx, Jeux jeux, Chrono chrono)
     {
         switch (NumeroElement)
         {
             case 3:
-                int etageCible = MenuTeleportation(Joueur.vaisseau, layout, ctx);
-                return Joueur.DeplacementEtage(etageCible);
+                int etageCible = MenuTeleportation(joueur.vaisseau, layout, ctx, jeux,joueur,chrono);
+                if (etageCible == -1)
+                {
+                    return "";
+                }
+                return joueur.DeplacementEtage(etageCible);
             case 4:
-                return "Vous venez d'ici ! Allez Explorer les alentours";
+                return "Vous venez d'ici ! Allez explorer les alentours";
+            case 7: 
+            if (!joueur.ALaCle)
+                {
+                    return "Vous devez trouver la clé avant de venir ici";
+                }
+            return "";
             default:
 
                 return"";
         }
     }
-    public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx)
+    public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx, Jeux jeux, Joueur joueur, Chrono chrono)
     {
         var etages = vaisseau.ListeEtages;
         int selection = 0;
@@ -65,16 +75,20 @@ public class GestionInteraction
                 else
                     contenu += $" {i + 1}. {etages[i].Nom}\n";
             }
+            contenu += "Esc : Annuler";
+
 
             AffichageInteraction.MessageInteraction = contenu;
             AffichageInteraction.NomInteraction = "TELEPORTEUR";
             layout["Interaction"].Update(InterfaceGraphique.Interaction());
+            layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
+            layout["EcranJeu"].Update(InterfaceGraphique.Jeu(jeux));
             ctx.Refresh();
 
             var touche = Console.ReadKey(true).Key;
             if (touche == ConsoleKey.UpArrow && selection > 0) selection--;
             else if (touche == ConsoleKey.DownArrow && selection < etages.Count - 1) selection++;
-            else if (touche == ConsoleKey.Enter) return selection + 1;
+            else if (touche == ConsoleKey.Enter) return selection;
             else if (touche == ConsoleKey.Escape) return -1;
         }
     }

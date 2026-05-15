@@ -2,7 +2,7 @@ using Spectre.Console;
 
 public static class CreationJoueur
 {
-    public static void DefinirJoueur(Joueur j)
+    public static bool DefinirJoueur(Joueur j)
     {
         AnsiConsole.Clear();
         var panel = new Panel("RENSEIGNEMENT POUR LA MISSION")
@@ -22,7 +22,9 @@ public static class CreationJoueur
         }
 
         int etageNumero = ChoisirEtage(j, "\nQuel étage voulez-vous être ?\n");
-        if (etageNumero == -1) return;
+        if (etageNumero == -1)
+        {
+return false;        }
         string MessageTeleportation = j.DeplacementEtage(etageNumero);
 
         AnsiConsole.Clear();
@@ -40,6 +42,7 @@ public static class CreationJoueur
         AnsiConsole.Write(MessageTeleportation);
         Thread.Sleep(100);
         AnsiConsole.Clear();
+        return true;
     }
 
     public static int ChoisirEtage(Joueur j, string titre)
@@ -53,7 +56,7 @@ public static class CreationJoueur
 
         string selection = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title(titre)
-            .PageSize(10)
+            .PageSize(11)
             .AddChoices(choix)
             .HighlightStyle(new Style(Color.Cyan))
         );

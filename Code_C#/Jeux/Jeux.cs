@@ -31,6 +31,11 @@ public class Jeux
     public void LancerJeu() //Menu du lancement du jeu 
 
     {
+         while (Console.WindowHeight < 50 || Console.WindowWidth < 80)
+        {
+            AnsiConsole.MarkupLine("Mettez la fenetre en pleine écran en ouvrant un nouveau terminal avec : [green]Ctrl+ Shift + Alt + ù[/] puis [green]F11[/]!");
+            Console.ReadKey();
+        }
         MenuPrincipal.AffichageMenuJeu();
         var selection = MenuPrincipal.AffichageMenuSelection();
         switch (selection)
@@ -80,15 +85,14 @@ public class Jeux
         this.joueur.vaisseau = new Vaisseau(this.modeTest);
         this.vaisseau = this.joueur.vaisseau;
 
-        CreationJoueur.DefinirJoueur(joueur);
+       bool joueurPret= CreationJoueur.DefinirJoueur(joueur);
+       if (!joueurPret){
+            LancerJeu();
+            return;
+        };
 
         this.chrono.LancerChrono();
-        if (Console.WindowHeight < 35 || Console.WindowWidth < 80)
-        {
-            AnsiConsole.MarkupLine("[red]Agrandis la fenêtre du terminal avant de jouer ![/]");
-            Console.ReadKey();
-            return;
-        }
+       
 
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
@@ -124,11 +128,13 @@ public class Jeux
                         }
                         else if (touche == ConsoleKey.A)
                         {
-                            string message = Interaction.InteractionAvecElement(elementProche, joueur, layout, ctx);
+                            string message = Interaction.InteractionAvecElement(elementProche, joueur, layout, ctx, this,chrono);
                             if (message != "")
                             {
                                 AffichageInteraction.MessageInteraction = message;
                                 layout["Interaction"].Update(InterfaceGraphique.Interaction());
+                                layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
+                                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
                                 ctx.Refresh();
                                 Thread.Sleep(1000); 
                             }
