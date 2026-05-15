@@ -5,16 +5,18 @@ public class ModuleCouchage : Module
         Nom="Module Couchage";
         MatriceModule = new List<List<int>>
       {
-    new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new List<int> { 0, 11, 0, 0, 0, 0, 0, 0, 11, 0 }, // Lits vides en haut
-    new List<int> { 0, 0, 0, 0, 13, 0, 0, 0, 0, 0 }, // RONFLEMENTS (13)
-    new List<int> { 0, 0, 0, 0, 12, 0, 0, 0, 0, 0 }, // LIT OCCUPÉ (12)
-    new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new List<int> { 0, 11, 0, 0, 0, 0, 0, 0, 11, 0 }, // Lits vides au milieu
-    new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new List<int> { 0, 11, 0, 0, 0, 0, 0, 0, 11, 0 }, // Lits vides en bas
-    new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+   // Format 10x10 | Structure d'un lit : [Tête, Matelas, Matelas]// Rangée 1
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+        new List<int> { 6, 7, 7, 0, 0, 0, 0, 6, 7, 7 }, 
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+         // Rangée 2 (OCCUPÉ)
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+        new List<int> { 8, 7, 7, 0, 0, 0, 0, 6, 7, 7 },
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },  // Rangée 3
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+        new List<int> { 6, 7, 7, 0, 0, 0, 0, 6, 7, 7 },
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
     SpriteModule = this.ConstructionSprite();
     }

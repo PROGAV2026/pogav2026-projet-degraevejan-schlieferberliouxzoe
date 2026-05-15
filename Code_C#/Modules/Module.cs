@@ -56,9 +56,9 @@ if (chiffre == 2) return "[white]――[/]";
 if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
 if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
-if (chiffre == 6) return "[yellow]Ch[/]";    // siège
-if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
-if (chiffre == 8) return "[orange3]Co[/]";   // coffre
+if (chiffre == 6) return "[gray]▯[/][white]█[/][white]█[/]"; // Lit vide (Tête ▯ + Matelas ██)
+if (chiffre == 8) return "[green]○[/][white]█[/][white]█[/]";  // Lit occupé (Tête ○ + Matelas ██)
+if (chiffre == 7) return "[white]█[/]";  // coffre
 if (chiffre == 9) return "[green]Nu[/]";     // réacteur nucléaire
 if (chiffre == 10) return "[grey]En[/]";     // IDK
 if (chiffre == 11) return "[blue]Li[/]";     // lit

@@ -105,24 +105,25 @@ public  class Etage
         }
     }
 }
-public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
+ public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
     {
   if (chiffre == 0) return "  ";
 if (chiffre == -1) return "  ";
-if (chiffre == 1) return "[grey]██[/]";
-if (chiffre == 2) return "[grey]██[/]";
+if (chiffre == 1) return "[gray]██[/]";
+if (chiffre == 2) return "[gray]██[/]";
 if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
 if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
-if (chiffre == 6) return "[yellow]Ch[/]";    // siège
-if (chiffre == 7) return "[green]Pi[/]";     // poste de pilotage
-if (chiffre == 8) return "[orange3]Co[/]";   // coffre
+ // Deux espaces pour garder un ratio carré en console
+if (chiffre == 6) return "[white] ▯[/]";  // Tête de lit vide
+if (chiffre == 7) return "[white]██[/]";   // Corps du matelas
+if (chiffre == 8) return "[green] ○[/]";   // Tête de lit occupée
 if (chiffre == 9) return "[green]Nu[/]";     // réacteur nucléaire
 if (chiffre == 10) return "[grey]En[/]";     // IDK
 if (chiffre == 11) return "[blue]Li[/]";     // lit
 if (chiffre == 12) return "[blue]Do[/]";     // dort
 if (chiffre == 13) return "[grey]Zz[/]";     // zzz
-if (chiffre == 14) return "[yellow]JJ[/]";   // joueur
+if (chiffre == 14) return "[yellow]@@[/]";   // joueur
 return "  ";
     }
 public void AfficherMatriceBrute()
