@@ -17,7 +17,7 @@ public class ModuleTeleportationArrivee : Module
     new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
-    SpriteModule = this.ConstructionSprite();
+    
     }
 }
 
@@ -39,7 +39,7 @@ public class ModuleTeleportationDepart : Module
     new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
-    SpriteModule = this.ConstructionSprite();
+    
     }
     
 }

@@ -9,6 +9,8 @@ public class LieuDeVie : Etage
         Nom = "Lieu de Vie";
         ID = (Nom, Numero);
         ModuleCouchage couchage = new ModuleCouchage();
+        ModuleCoffre coffre = new ModuleCoffre();
+        ListeModulePotentiels.Add(coffre);
         
         ListeModulePotentiels.Add(couchage);
         CreationMatriceEtage();

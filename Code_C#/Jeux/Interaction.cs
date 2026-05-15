@@ -22,7 +22,7 @@ public class GestionInteraction
             if (newX >= 0 && newX <= 29 && newY >= 0 && newY < +29)
             {
                 int NumeroElement = joueur.EtageCourant.MatriceEtage[newX][newY];
-                if (NumeroElement != 0 && NumeroElement != -1 && NumeroElement != 2 && NumeroElement != 1 && NumeroElement != 14)
+                if (NumeroElement != 0 && NumeroElement != 2 && NumeroElement != 1 && NumeroElement != 14)
                 {
                     return NumeroElement;
                 }
@@ -55,6 +55,7 @@ public class GestionInteraction
                     return "Vous devez trouver la clé avant de venir ici";
                 }
             return "";
+            
             default:
 
                 return"";

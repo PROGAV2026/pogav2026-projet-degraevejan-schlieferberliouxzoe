@@ -30,7 +30,7 @@ public class Jeux
     public void LancerJeu() //Menu du lancement du jeu 
 
     {
-         while (Console.WindowHeight < 50 || Console.WindowWidth < 80)
+         while (Console.WindowHeight < 35 || Console.WindowWidth < 60)
         {
             AnsiConsole.MarkupLine("Mettez la fenetre en pleine écran en ouvrant un nouveau terminal avec : [green]Ctrl+ Shift + Alt + ù[/] puis [green]F11[/]!");
             Console.ReadKey();
@@ -142,7 +142,7 @@ public class Jeux
                     }
                     VerifierVictoire();
                     ctx.Refresh();
-                    Thread.Sleep(5);
+                    
                 }
             });
         AnsiConsole.Clear();

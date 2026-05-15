@@ -13,16 +13,25 @@ public static class AffichageInteraction
 
         string contenu = NumeroElement switch 
        {
-            3  => "[red]██[/] Téléporteur départ",
-            4  => "[blue]██[/] Téléporteur arrivé",
-            5  => "[cyan]PC[/] Écran de controle",
-            6  => "[yellow]Ch[/] Siège du vaisseau",
-            7  => "[green]Pi[/] Poste de pilotage",
-            8  => "[orange3]Co[/] Coffre",
-            9  => "[green]Nu[/] Réacteur nucléaire",
-            11 => "[blue]Li[/] Lit",
-            12 => "[blue]Do[/] Dort — LE DERANGE PAS",
-            _  => "[yellow]Élément inconnu[/]"
+        
+        3  => "[red]██[/] Téléporteur départ",
+        4  => "[blue]██[/] Téléporteur arrivé",
+        5  => "[green] ○[/][white]██[/] Lit occupé",
+        6  => "[white] ▯[/][white]██[/] Lit vide",
+        7 => "[white] ▯[/][white]██[/] Lit vide",
+        8  => "[green] ○[/][white]██[/] Lit occupé",
+        9  => "[blue] █[/][blue]██[/] Écran de pilotage", // Combiné 9 et 10
+        10 => "[blue] █[/][blue]██[/] Écran de pilotage",
+        12 => "[grey]▲ [/] Pied écran",
+        13 => "[red]¡ [/] Levier de contrôle",
+        14 => "[yellow]@@[/] Joueur (Vous)",
+        15 => "[bold red]()[/] Noyau réacteur",
+        16 => "[grey]██[/] Blindage réacteur",
+        17 => "[grey] ■[/] Débris / Petite caisse",
+        18 => "[yellow]██[/] Caisse de matériel",
+        19 => "[orange3][[[/][yellow]Ω[/][orange3]]][/] Coffre Ancien", // Combiné 19 et 20
+        20 => "[orange3][[[/][yellow]Ω[/][orange3]]][/] Coffre Ancien",
+        _  => "[yellow]Élément inconnu[/]"
         };
        
         MessageInteraction = "\n[grey]Appuyez sur A pour interagir[/]";

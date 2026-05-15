@@ -6,6 +6,7 @@ public  class Module
     public (string, int) ID { get; set; }
     public List<List<int>> MatriceModule { get; set; }
     public List<List<string>> SpriteModule { get; set; } 
+    public Random random = new Random();
 
 
     public Module()
@@ -22,7 +23,6 @@ public  class Module
                 nouvelleLigne.Add(0);
             }
         }
-        SpriteModule = ConstructionSprite();
     }
     public override string ToString()
     {
@@ -47,40 +47,8 @@ public  class Module
         }
     }
 
- public string ChiffreVersCaractere(int chiffre) //Change les chiffre de la matrice en caractère pour l'affichage
-    {
-  if (chiffre == 0) return "  ";
-if (chiffre == -1) return "  ";
-if (chiffre == 1) return "[white]| [/]";
-if (chiffre == 2) return "[white]――[/]";
-if (chiffre == 3) return "[red]██[/]";       // téléporteur départ
-if (chiffre == 4) return "[blue]██[/]";      // téléporteur arrivée
-if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
-if (chiffre == 6) return "[gray]▯[/][white]█[/][white]█[/]"; // Lit vide (Tête ▯ + Matelas ██)
-if (chiffre == 8) return "[green]○[/][white]█[/][white]█[/]";  // Lit occupé (Tête ○ + Matelas ██)
-if (chiffre == 7) return "[white]█[/]";  // coffre
-if (chiffre == 9) return "[green]Nu[/]";     // réacteur nucléaire
-if (chiffre == 10) return "[grey]En[/]";     // IDK
-if (chiffre == 11) return "[blue]Li[/]";     // lit
-if (chiffre == 12) return "[blue]Do[/]";     // dort
-if (chiffre == 13) return "[grey]Zz[/]";     // zzz
-if (chiffre == 14) return "[yellow]@@[/]";   // joueur
-return "  ";
-    }
-    public List<List<string>> ConstructionSprite()
-    {
-        List<List<string>> sprite = new List<List<string>> { };
-        for (int i = 0; i < 10; i++)
-        {
-            List<string> ligne = new List<string> { };
-            for (int j = 0; j < 10; j++)
-            {
-                ligne.Add(ChiffreVersCaractere(MatriceModule[i][j]));
-            }
-            sprite.Add(ligne);
-        }
-        return sprite;
-    }
+ 
+    
 
     public void RemplirTotalement(int chiffre)
     {
@@ -93,7 +61,7 @@ return "  ";
             }
            
         }
-        this.SpriteModule = ConstructionSprite();
+        
     }
    
     public void MurVertical(int colonne)

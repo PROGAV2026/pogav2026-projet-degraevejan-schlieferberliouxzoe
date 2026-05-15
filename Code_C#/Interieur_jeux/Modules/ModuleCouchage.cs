@@ -11,13 +11,12 @@ public class ModuleCouchage : Module
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
          // Rangée 2 (OCCUPÉ)
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-        new List<int> { 8, 7, 7, 0, 0, 0, 0, 6, 7, 7 },
+        new List<int> { 8, 5, 5, 0, 0, 0, 0, 6, 7, 7 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },  // Rangée 3
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
         new List<int> { 6, 7, 7, 0, 0, 0, 0, 6, 7, 7 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
-    SpriteModule = this.ConstructionSprite();
-    }
+        }
 }

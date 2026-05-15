@@ -15,12 +15,14 @@ public class Vaisseau
     public int nombreMachine = 0;
     public int XClé;
     public int YClé;
+    public List<int> Cachettes;
     public Vaisseau(bool modeTest)
     {
         ListeEtagesPotentiels.Add("lieuDeVie");
         ListeEtagesPotentiels.Add("posteDePilotage");
         ListeEtagesPotentiels.Add("salleMachine");
         if (modeTest) RemplirListeEtage(3); else RemplirListeEtage(10);
+        Cachettes = new List<int>{6,7,17,20};
         CacherLaCle();
     }
     public void CacherLaCle()
@@ -32,13 +34,16 @@ public class Vaisseau
         {           
                 XClé = random.Next(0, 30);
                 YClé = random.Next(0, 30);
-
-                if (ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 12 || ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 11 || ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 10 || ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 8 || ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 9 || ListeEtages[EtageCaché].MatriceEtage[XClé][YClé] == 12)
+                int tentative = ListeEtages[EtageCaché].MatriceEtage[XClé][YClé];
+                foreach (int element in Cachettes)
+                {
+                    if(tentative == element)
                 {
                     CleCaché = true;
                     break;
-                }         
-
+                }
+                }
+            
         }
     }
 

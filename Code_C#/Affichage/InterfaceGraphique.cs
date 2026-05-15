@@ -16,14 +16,14 @@ public static class InterfaceGraphique
                 new Layout("Legende")
             ),
             new Layout("ZoneJeu").SplitColumns(
-                new Layout("MargeGauche").Size(30),
+                new Layout("MargeGauche").Size(15),
                 new Layout("ZoneJEU").SplitRows(
                     new Layout("MargeHaut").Size(5),
                     new Layout("EcranJeu"),
                     new Layout("MargeBas").Size(2)
 
                 ),
-                new Layout("MargeDroite").Size(30)
+                new Layout("MargeDroite").Size(15)
             ),
             new Layout("InteractionEtCarte").Size(40).SplitRows(
                 new Layout("Interaction"),
