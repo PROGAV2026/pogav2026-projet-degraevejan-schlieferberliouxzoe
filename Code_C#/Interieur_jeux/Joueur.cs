@@ -11,7 +11,9 @@ public class Joueur
     public int X { get; set; }
     public int Y { get; set; }
     public int PositionEtage { get; set; }
+    public List<int> EtageVisite{get;set;}= new List<int>();
     public bool ALaCle { get; set; }
+    public bool ALaCarte {get;set;}
     public Vaisseau vaisseau { get; set; } //provisoire
     public Random random = new Random();
     public string NomEtageCourant { get; set; } = "";
@@ -102,6 +104,10 @@ public void InitialiserPosition(int x, int y)
         PositionEtage = ChanceBonneEtage > 20 
         ? NumeroEtage : random.Next(0, vaisseau.ListeEtages.Count > 0 ? vaisseau.ListeEtages.Count : 1);
         InitialiserPosition();
+       if (!EtageVisite.Contains(PositionEtage))
+       {
+            EtageVisite.Add(PositionEtage);
+       }
 
         if (NumeroEtage != PositionEtage)
         {

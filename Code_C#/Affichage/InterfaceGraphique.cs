@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using Spectre.Console;
 
 public static class InterfaceGraphique
@@ -24,7 +25,10 @@ public static class InterfaceGraphique
                 ),
                 new Layout("MargeDroite").Size(30)
             ),
-            new Layout("Interaction").Size(40)
+            new Layout("InteractionEtCarte").Size(40).SplitRows(
+                new Layout("Interaction"),
+                new Layout("Carte")
+            )
         )
     );
 }
@@ -34,24 +38,46 @@ public static class InterfaceGraphique
     {
         string cle = j.ALaCle ? "[green]OUI[/]" : "[red]NON[/]";
         string etage=" ";
-         if(j.NomEtageCourant=="Lieu de Vie"){
+        string EtageActuel="";
+        if(j.NomEtageCourant=="Lieu de Vie"){
             etage = "[green]Lieu de Vie[/]";
+            EtageActuel= $"[green]{j.PositionEtage+1}[/]";
         }
         else if (j.NomEtageCourant=="Poste de pilotage"){
         etage = "[blue]Poste de pilotage[/]";
+            EtageActuel= $"[blue]{j.PositionEtage+1}[/]";
         }
         else if(j.NomEtageCourant=="Salle des machines"){
         etage = "[yellow]Salle des machines[/]";
+            EtageActuel= $"[yellow]{j.PositionEtage+1}[/]";
         }
 
 
-        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage+1}[/] - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
+        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: {EtageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
              .Expand();
     }
-    public static Panel Blanc()
+    public static Panel Carte(Joueur joueur)
     {
-        return new Panel(new Text(" ")).NoBorder();
-    }
+        if (joueur.ALaCarte)
+        {
+            return new Panel(new Text("Carte non disponible")).Expand();
+
+        }
+        else
+        {
+            string contenu = "\n\n";
+            for (int i = 0; i < joueur.vaisseau.ListeEtages.Count;i++)
+            {
+                 bool visite = joueur.EtageVisite.Contains(i);
+
+                if (visite)
+                    contenu += $"{i + 1}.[green] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
+                else
+                    contenu += $"{i + 1}.[red] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
+            }
+  
+        return new Panel(new Markup(contenu)).Expand().Header("Liste des étages");
+    }}
     //AIDE 
     public static Panel Aide()
     {

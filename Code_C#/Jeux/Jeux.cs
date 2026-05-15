@@ -21,7 +21,6 @@ public class Jeux
         this.gestion = new GestionScore(this.modeTest);
         this.modeTest = false;
         this.joueur = new Joueur(modeTest);
-
         this.Interaction = new GestionInteraction(joueur);
         this.vaisseau = this.joueur.vaisseau;
         this.joueur.InitialiserPosition();
@@ -90,10 +89,7 @@ public class Jeux
             LancerJeu();
             return;
         };
-
         this.chrono.LancerChrono();
-       
-
         var layout = InterfaceGraphique.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphique.Aide());
         layout["Legende"].Update(InterfaceGraphique.Legende());
@@ -110,6 +106,8 @@ public class Jeux
                 {
                     layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
                     layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
+                    layout["Carte"].Update(InterfaceGraphique.Carte(joueur));
+
 
                     int elementProche = Interaction.VerifierInteractionJeu(joueur);
 
