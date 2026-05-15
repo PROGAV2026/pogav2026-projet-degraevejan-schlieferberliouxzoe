@@ -1,15 +1,13 @@
+using System.IO.Compression;
 using Spectre.Console;
 
 public static class InterfaceGraphique
 {
-
-
     //SQUELETTE DE L INTERFACE
     public static Layout InitialiserLayout()
-    {
-
-        return new Layout("INTERFACE")
-        .SplitRows(
+{
+    return new Layout("INTERFACE")
+    .SplitRows(
         new Layout("Header").Size(3),
         new Layout("Principal").SplitColumns(
             new Layout("AideEtLegende").Size(40)
@@ -17,39 +15,69 @@ public static class InterfaceGraphique
                 new Layout("Aide"),
                 new Layout("Legende")
             ),
-                        // new Layout("Jeu").SplitColumns(
-                            // new Layout("Blanc").Size(30),
-            new Layout("EcranJeu"),
-                        
+            new Layout("ZoneJeu").SplitColumns(
+                new Layout("MargeGauche").Size(30),
+                new Layout("ZoneJEU").SplitRows(
+                    new Layout("MargeHaut").Size(5),
+                    new Layout("EcranJeu"),
+                    new Layout("MargeBas").Size(2)
 
-            new Layout("Interaction").Size(40)
-        
-    ));
-    }
+                ),
+                new Layout("MargeDroite").Size(30)
+            ),
+            new Layout("InteractionEtCarte").Size(40).SplitRows(
+                new Layout("Interaction"),
+                new Layout("Carte")
+            )
+        )
+    );
+}
 
     //HEADER
     public static Panel Header(Joueur j, Chrono c)
     {
         string cle = j.ALaCle ? "[green]OUI[/]" : "[red]NON[/]";
         string etage=" ";
-         if(j.NomEtageCourant=="Lieu de Vie"){
+        string EtageActuel="";
+        if(j.NomEtageCourant=="Lieu de Vie"){
             etage = "[green]Lieu de Vie[/]";
+            EtageActuel= $"[green]{j.PositionEtage+1}[/]";
         }
         else if (j.NomEtageCourant=="Poste de pilotage"){
         etage = "[blue]Poste de pilotage[/]";
+            EtageActuel= $"[blue]{j.PositionEtage+1}[/]";
         }
         else if(j.NomEtageCourant=="Salle des machines"){
         etage = "[yellow]Salle des machines[/]";
+            EtageActuel= $"[yellow]{j.PositionEtage+1}[/]";
         }
 
 
-        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: [cyan]{j.PositionEtage}[/] - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
+        return new Panel(Align.Center(new Markup($"Clé: {cle} | Étage: {EtageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]")))
              .Expand();
     }
-    public static Panel Blanc()
+    public static Panel Carte(Joueur joueur)
     {
-        return new Panel(new Text(" ")).NoBorder();
-    }
+        if (joueur.ALaCarte)
+        {
+            return new Panel(new Text("Carte non disponible")).Expand();
+
+        }
+        else
+        {
+            string contenu = "\n\n";
+            for (int i = 0; i < joueur.vaisseau.ListeEtages.Count;i++)
+            {
+                 bool visite = joueur.EtageVisite.Contains(i);
+
+                if (visite)
+                    contenu += $"{i + 1}.[green] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
+                else
+                    contenu += $"{i + 1}.[red] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
+            }
+  
+        return new Panel(new Markup(contenu)).Expand().Header("Liste des étages");
+    }}
     //AIDE 
     public static Panel Aide()
     {
@@ -75,16 +103,17 @@ public static class InterfaceGraphique
 .Header("LEGENDE").BorderColor(Color.Grey).Expand();
 
     }
-    //Interaction
-    public static Panel Intreaction(Joueur j)
-    {
-        
-        return new Panel(new Markup($""))
-               .RoundedBorder().Expand();
-    }
-    
 
-    //JEU 
+    //INTERACTION -
+    public static Panel Interaction()
+    {
+        return new Panel(new Markup(AffichageInteraction.MessageInteraction))
+               .Header(AffichageInteraction.NomInteraction)
+               .RoundedBorder()
+               .Expand();
+    }
+
+    //JEU     
     public static Panel Jeu(Jeux j)
     {
         return new Panel(j.joueur.vaisseau.ListeEtages[j.joueur.PositionEtage].ToString()).NoBorder().Expand();

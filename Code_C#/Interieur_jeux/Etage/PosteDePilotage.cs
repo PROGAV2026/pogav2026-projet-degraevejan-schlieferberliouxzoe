@@ -7,9 +7,9 @@ public class PosteDePilotage : Etage
         Numero += 1;
         Nom = "Poste de pilotage";
         ID = (Nom, Numero);
-        ModulePilotage pilotage =  new ModulePilotage(true);
+        ModulePilotage pilotage = new ModulePilotage(true);
         ModuleMoteur moteur = new ModuleMoteur();
-        ListeModulePotentiels.Add(pilotage);
+        ListeModules.Add(pilotage);
         ListeModulePotentiels.Add(moteur);
         CreationMatriceEtage();
 

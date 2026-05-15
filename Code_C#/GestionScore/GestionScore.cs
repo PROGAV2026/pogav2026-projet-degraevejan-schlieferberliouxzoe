@@ -12,16 +12,27 @@ using Spectre.Console;
 /// </summary>
 public class GestionScore
 {
+    
+    public string CheminFichier = "";
+
     public class EntreeScore
     {
         public string Nom { get; set; } = "";
         public int Temps { get; set; }
     }
 
-    public string CheminFichier = "GestionScore/resultat.csv";
 
-    public GestionScore()
+    public GestionScore(bool modeTest)
     {
+        if (modeTest)
+        {
+            CheminFichier = "GestionScore/resultatTest.csv";
+        }
+        else
+        {
+            CheminFichier = "GestionScore/resultatVrai.csv";
+        }
+        
 
     }
 
@@ -42,7 +53,6 @@ public class GestionScore
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
             var parts = line.Split(';');
-            // if (parts.Length < 2) continue;
             if (!int.TryParse(parts[1], out int t)) continue;
             liste.Add(new EntreeScore { Nom = parts[0], Temps = t });
         }
@@ -52,7 +62,6 @@ public class GestionScore
    
     public void AfficherClassement()
     {
-        Console.Clear();
         var scores = LireScore();
         var table = new Table()
         .Border(TableBorder.Rounded)

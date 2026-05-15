@@ -1,6 +1,5 @@
 public  class Etage
 {
-    //public int Numero{get;set;}
     public string Nom{get;set;} = "";
     public (string,int) ID{get;set;} 
     public List<Module> ListeModulePotentiels{get;set;} = new List<Module>{};
@@ -14,19 +13,14 @@ public  class Etage
         ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
         ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
         ListeModules.Add(TpArrivee);
-        ListeModules.Add(TpDepart);
-        //this.Numero = Numero;
-        
-
-        
+        ListeModules.Add(TpDepart);        
     }
 
     public void CompleterAvecModulesPotentiels(){
         
         while(ListeModules.Count()<5){
         int indiceAleatoire = random.Next(0,ListeModulePotentiels.Count());
-        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);
-            
+        ListeModules.Add(ListeModulePotentiels[indiceAleatoire]);          
         }
     }
     public void CompleterListeModuleEspace(){
@@ -109,10 +103,10 @@ public  class Etage
     {
   if (chiffre == 0) return "  ";
 if (chiffre == -1) return "  ";
-if (chiffre == 1) return "[gray]██[/]";
-if (chiffre == 2) return "[gray]██[/]";
-if (chiffre == 3) return "[red]██[/]";       // téléporteur arrivée
-if (chiffre == 4) return "[blue]██[/]";      // téléporteur départ
+if (chiffre == 1) return "[grey]██[/]";
+if (chiffre == 2) return "[grey]██[/]";
+if (chiffre == 3) return "[red]██[/]";       // téléporteur départ
+if (chiffre == 4) return "[blue]██[/]";      // téléporteur arrivé
 if (chiffre == 5) return "[cyan]PC[/]";      // écran de controle
  // Deux espaces pour garder un ratio carré en console
 if (chiffre == 6) return "[white] ▯[/]";  // Tête de lit vide
@@ -139,6 +133,7 @@ public void AfficherMatriceBrute()
         Console.WriteLine();
     }
 }
+
 
 public override string ToString()
     {
