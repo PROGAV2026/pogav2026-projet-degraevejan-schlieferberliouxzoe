@@ -12,7 +12,8 @@ public  class Etage
         ModuleTeleportationDepart TpDepart = new ModuleTeleportationDepart();
         ModuleTeleportationArrivee TpArrivee = new ModuleTeleportationArrivee();
         ListeModules.Add(TpArrivee);
-        ListeModules.Add(TpDepart);        
+        ListeModules.Add(TpDepart);      
+          
     }
 
     public void CompleterAvecModulesPotentiels(){
@@ -116,11 +117,11 @@ public  class Etage
     if (chiffre == 14) return "[green]¬⚇[/]";   // joueur
     if (chiffre == 15) return "[bold Red3]()[/]";      //noyaux reacteur
     if (chiffre == 16) return "[Gray15]██[/]";     // mur du reacteur
-    if (chiffre == 17) return "[Tan] ■[/]"; 
-    if (chiffre == 18) return "[Yellow4]██[/]";    // caisse de materiel
-    if (chiffre == 19) return "[LightSalmon3][[[/][Gold3_1]Ω[/]";    // caisse de materiel
-    if (chiffre == 20) return "[LightSalmon3]]] [/]";    // caisse de materiel
-
+    if (chiffre == 17) return "[Tan] ■[/]";        // caisse de materiel
+    if (chiffre == 18) return "[Yellow4]██[/]";    //mur de reacteur jaune
+    if (chiffre == 19) return "[LightSalmon3][[[/][Gold3_1]Ω[/]";    // coffre
+    if (chiffre == 20) return "[LightSalmon3]]] [/]";    // coffre
+    if (chiffre == 21) return "[red]¡ [/]";   
     return "  ";
         }
 public void AfficherMatriceBrute()

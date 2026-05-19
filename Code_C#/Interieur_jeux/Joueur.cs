@@ -17,6 +17,7 @@ public class Joueur
     public Random random = new Random();
     public string NomEtageCourant { get; set; } = "";
     public Etage? EtageCourant { get; set; }
+    public bool ABienMisLaCle {get;set;}
 
     public Joueur(bool modetest)
     {
@@ -26,6 +27,7 @@ public class Joueur
         Y = 13;
         InitialiserPosition();
     }
+    
 
     public void InitialiserPosition()
     {
