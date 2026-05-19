@@ -15,6 +15,7 @@ public class Jeux
     public bool quitter = false;
 
 
+
     public Jeux()
     {
         this.chrono = new Chrono();
@@ -72,7 +73,7 @@ public class Jeux
     }
     public void VerifierVictoire()
     {
-        if (joueur.ALaCle)
+        if (joueur.ALaCle && joueur.ABienMisLaCle)
         {
             victoire = true;
         }

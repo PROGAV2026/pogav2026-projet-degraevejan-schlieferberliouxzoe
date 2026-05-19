@@ -4,6 +4,9 @@ public class GestionInteraction
 {
     public int X { get; set; }
     public int Y { get; set; }
+    public int XInteraction{get;set;}
+    public int YInteraction {get;set;}
+
 
     public GestionInteraction(Joueur joueur)
     {
@@ -24,6 +27,8 @@ public class GestionInteraction
                 int NumeroElement = joueur.EtageCourant.MatriceEtage[newX][newY];
                 if (NumeroElement != 0 && NumeroElement != 2 && NumeroElement != 1 && NumeroElement != 14)
                 {
+                    XInteraction = newX;
+                    YInteraction = newY;
                     return NumeroElement;
                 }
             }
@@ -38,6 +43,15 @@ public class GestionInteraction
     }
     public string InteractionAvecElement(int NumeroElement, Joueur joueur, Layout layout, LiveDisplayContext ctx, Jeux jeux, Chrono chrono)
     {
+        int Xcle = joueur.vaisseau.XCle;
+        int Ycle = joueur.vaisseau.YCle;
+        bool conditionRecuperationCLe = (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && (YInteraction == Ycle);
+        if (conditionRecuperationCLe)
+        {
+            joueur.ALaCle = true;
+            return "Bravo ! La clé était cachée ici, maintenant ramenez la au bon poste de pilotage";
+        }
+        else {
         switch (NumeroElement)
         {
             case 3:
@@ -49,16 +63,30 @@ public class GestionInteraction
                 return joueur.DeplacementEtage(etageCible);
             case 4:
                 return "Vous venez d'ici ! Allez explorer les alentours";
-            case 7: 
+            case 13: 
             if (!joueur.ALaCle)
                 {
                     return "Vous devez trouver la clé avant de venir ici";
                 }
-            return "";
+            else return "La clé ne va pas dans ce levier, dommage !";
+            case 21:
+            if (!joueur.ALaCle)
+                {
+                    return "Vous devez trouver la clé avant de venir ici";
+                }
+            else
+                    {
+                        joueur.ABienMisLaCle = true;
+                        return "BRAVOOOOOOOOOOO!!!!";
+                    }
+            
+
+            
             
             default:
 
                 return"";
+        }
         }
     }
     public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx, Jeux jeux, Joueur joueur, Chrono chrono)

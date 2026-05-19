@@ -18,6 +18,7 @@ public class Joueur
     public Random random = new Random();
     public string NomEtageCourant { get; set; } = "";
     public Etage? EtageCourant { get; set; }
+    public bool ABienMisLaCle {get;set;}
 
     public Joueur(bool modetest)
     {
@@ -28,19 +29,7 @@ public class Joueur
         InitialiserPosition();
     }
     
-public void InitialiserPosition(int x, int y)
-    {
-         
-        if (vaisseau.ListeEtages.Count > PositionEtage)
-        {
-            X = 14;
-            Y = 13;
-            EtageCourant = vaisseau.ListeEtages[PositionEtage];
-            EtageCourant.MatriceEtage[X][Y] = 14;
-            NomEtageCourant = EtageCourant.Nom;
-    
-    }
-    }
+
     public void InitialiserPosition()
     {
         if (vaisseau.ListeEtages.Count > PositionEtage)

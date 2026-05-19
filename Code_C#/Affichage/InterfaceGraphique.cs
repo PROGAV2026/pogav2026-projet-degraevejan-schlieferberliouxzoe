@@ -74,7 +74,12 @@ public static class InterfaceGraphique
                     contenu += $"{i + 1}.[green] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
                 else
                     contenu += $"{i + 1}.[red] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
+                
+                contenu += joueur.vaisseau.EtageCleCache.Nom;
             }
+    
+            
+
   
         return new Panel(new Markup(contenu)).Expand().Header("Liste des étages");
     }}
