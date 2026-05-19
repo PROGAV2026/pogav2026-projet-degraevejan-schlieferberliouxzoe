@@ -11,9 +11,8 @@ public class Joueur
     public int X { get; set; }
     public int Y { get; set; }
     public int PositionEtage { get; set; }
-    public List<int> EtageVisite{get;set;}= new List<int>();
+    public List<int> EtageVisite { get; set; } = new List<int>();
     public bool ALaCle { get; set; }
-    public bool ALaCarte {get;set;}
     public Vaisseau vaisseau { get; set; } //provisoire
     public Random random = new Random();
     public string NomEtageCourant { get; set; } = "";
@@ -27,20 +26,7 @@ public class Joueur
         Y = 13;
         InitialiserPosition();
     }
-    
-public void InitialiserPosition(int x, int y)
-    {
-         
-        if (vaisseau.ListeEtages.Count > PositionEtage)
-        {
-            X = 14;
-            Y = 13;
-            EtageCourant = vaisseau.ListeEtages[PositionEtage];
-            EtageCourant.MatriceEtage[X][Y] = 14;
-            NomEtageCourant = EtageCourant.Nom;
-    
-    }
-    }
+
     public void InitialiserPosition()
     {
         if (vaisseau.ListeEtages.Count > PositionEtage)
@@ -52,9 +38,6 @@ public void InitialiserPosition(int x, int y)
             NomEtageCourant = EtageCourant.Nom;
         }
     }
-    
-
-
     public void DeplacementDansModule(ConsoleKey key)
     {
         if (EtageCourant == null) return;
@@ -95,37 +78,25 @@ public void InitialiserPosition(int x, int y)
                 break;
         }
     }
-    public string DeplacementEtage(int NumeroEtage)
+    public bool DeplacementEtage(int NumeroEtage)
     {
-        if (EtageCourant == null) return "";
+        if (EtageCourant == null) return false;
+
         EtageCourant.MatriceEtage[X][Y] = 0;
 
         int ChanceBonneEtage = random.Next(0, 100);
-        PositionEtage = ChanceBonneEtage > 20 
+        PositionEtage = ChanceBonneEtage > 40
         ? NumeroEtage : random.Next(0, vaisseau.ListeEtages.Count > 0 ? vaisseau.ListeEtages.Count : 1);
         InitialiserPosition();
-       if (!EtageVisite.Contains(PositionEtage))
-       {
+        if (!EtageVisite.Contains(PositionEtage))
+        {
             EtageVisite.Add(PositionEtage);
-       }
-
+        }
         if (NumeroEtage != PositionEtage)
         {
-            return "[red]TELEPORTATION ECHOUE[/] : le portail quantique vous a téléportez dans un autre étage";
+            return false;
         }
-        else{
-            return "[green]TELEPORTATION REUSSIT[/]";
-        }
+        return true;
     }
-   
-
-
-    // public void RecupereCle()
-    // {
-    //     if( && ALaCle)
-    //     {
-
-    //     }
-    // }
 
 }

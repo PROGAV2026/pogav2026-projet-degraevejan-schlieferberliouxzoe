@@ -5,7 +5,7 @@ public  class Module
     protected bool ClePresente { get; set; }
     public (string, int) ID { get; set; }
     public List<List<int>> MatriceModule { get; set; }
-    public List<List<string>> SpriteModule { get; set; } 
+    public List<List<string>> SpriteModule { get; set; }
     public Random random = new Random();
 
 
@@ -13,6 +13,7 @@ public  class Module
     {
 
         MatriceModule = new List<List<int>> { };
+        SpriteModule = new List<List<string>> { };
 
         for (int i = 0; i < 10; i++)
         {

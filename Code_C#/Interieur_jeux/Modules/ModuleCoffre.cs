@@ -1,6 +1,5 @@
 public class ModuleCoffre : Module
 {
-    public bool ContientCarte;
   public ModuleCoffre()
     {
         Nom="Module Coffre";

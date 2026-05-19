@@ -1,5 +1,9 @@
 using Spectre.Console;
-
+/// <summary>
+/// CLASS QUI GERE : 
+///                   Affichage du menu principal
+/// </summary>
+/// 
 public static class MenuPrincipal
 {
     public static void AffichageMenuJeu()
@@ -23,7 +27,6 @@ public static class MenuPrincipal
             new Text("[BUT DU JEU]", new Style(Color.Green)).Centered()
         );
         AnsiConsole.WriteLine();
-
         AnsiConsole.Write(new Markup("[italic]Retrouver la [green]clé[/] et regagner le bon poste de pilotage en moins de 10 minutes.[/]").Centered());
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
@@ -31,11 +34,11 @@ public static class MenuPrincipal
 
     public static string AffichageMenuSelection()
     {
-
         return AnsiConsole.Prompt(new SelectionPrompt<string>()
-        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/] ") .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
+        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/] ")
+        .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
         .HighlightStyle(new Style(Color.Green, Color.Black)));
     }
-    
+
 }
- 
+

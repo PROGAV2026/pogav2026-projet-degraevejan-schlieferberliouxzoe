@@ -1,5 +1,8 @@
 using Spectre.Console;
-
+/// <summary>
+/// CLASS QUI GERE : 
+///                   Interface pour la création du joueur
+/// </summary>
 public static class CreationJoueur
 {
     public static bool DefinirJoueur(Joueur j)
@@ -22,10 +25,6 @@ public static class CreationJoueur
         }
 
         int etageNumero = ChoisirEtage(j, "\nQuel étage voulez-vous être ?\n");
-        if (etageNumero == -1)
-        {
-return false;        }
-        string MessageTeleportation = j.DeplacementEtage(etageNumero);
 
         AnsiConsole.Clear();
         AnsiConsole.Progress()
@@ -39,11 +38,16 @@ return false;        }
                 }
             });
         Thread.Sleep(600);
-        AnsiConsole.Write(MessageTeleportation);
-        Thread.Sleep(100);
+        bool TeleportationReussite = j.DeplacementEtage(etageNumero);
+        if (!TeleportationReussite)
+        {
+            AffichageInteraction.AfficherTeleportationEchouee();
+        }
         AnsiConsole.Clear();
         return true;
     }
+
+    //Methode dans l'optique de l'utiliser plusieurs fois mais qu'une utilisation au final.
 
     public static int ChoisirEtage(Joueur j, string titre)
     {

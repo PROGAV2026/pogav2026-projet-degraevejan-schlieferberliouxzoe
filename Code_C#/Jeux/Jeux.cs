@@ -30,11 +30,11 @@ public class Jeux
     public void LancerJeu() //Menu du lancement du jeu 
 
     {
-         while (Console.WindowHeight < 35 || Console.WindowWidth < 60)
-        {
-            AnsiConsole.MarkupLine("Mettez la fenetre en pleine écran en ouvrant un nouveau terminal avec : [green]Ctrl+ Shift + Alt + ù[/] puis [green]F11[/]!");
-            Console.ReadKey();
-        }
+        //  while (Console.WindowHeight < 35 || Console.WindowWidth < 60)
+        // {
+        //     AnsiConsole.MarkupLine("Mettez la fenetre en pleine écran en ouvrant un nouveau terminal avec : [green]Ctrl+ Shift + Alt + ù[/] puis [green]F11[/]!");
+        //     Console.ReadKey();
+        // }
         MenuPrincipal.AffichageMenuJeu();
         var selection = MenuPrincipal.AffichageMenuSelection();
         switch (selection)
@@ -84,35 +84,41 @@ public class Jeux
         this.joueur.vaisseau = new Vaisseau(this.modeTest);
         this.vaisseau = this.joueur.vaisseau;
 
-       bool joueurPret= CreationJoueur.DefinirJoueur(joueur);
-       if (!joueurPret){
+        bool joueurPret = CreationJoueur.DefinirJoueur(joueur);
+        if (!joueurPret)
+        {
             LancerJeu();
             return;
-        };
+        }
+        ;
         this.chrono.LancerChrono();
-        var layout = InterfaceGraphique.InitialiserLayout();
-        layout["Aide"].Update(InterfaceGraphique.Aide());
-        layout["Legende"].Update(InterfaceGraphique.Legende());
+        var layout = InterfaceGraphiqueJeu.InitialiserLayout();
+        layout["Aide"].Update(InterfaceGraphiqueJeu.Aide());
+        layout["Legende"].Update(InterfaceGraphiqueJeu.Legende());
         layout["MargeGauche"].Update(new Panel("").NoBorder());
         layout["MargeDroite"].Update(new Panel("").NoBorder());
         layout["MargeHaut"].Update(new Panel("").NoBorder());
         layout["MargeBas"].Update(new Panel("").NoBorder());
 
-        AnsiConsole.Live(layout)
-        .AutoClear(false)
-        .Start(ctx =>
+
+        while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
+        {
+            Interaction.teleportationEchouee = false;
+
+            AnsiConsole.Live(layout)
+            .AutoClear(false)
+            .Start(ctx =>
             {
                 while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
                 {
-                    layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-                    layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
-                    layout["Carte"].Update(InterfaceGraphique.Carte(joueur));
-
+                    layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
+                    layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(this));
+                    layout["Carte"].Update(InterfaceGraphiqueJeu.Carte(joueur));
 
                     int elementProche = Interaction.VerifierInteractionJeu(joueur);
 
                     AffichageInteraction.AfficherElementsInteractifs(elementProche);
-                    layout["Interaction"].Update(InterfaceGraphique.Interaction());
+                    layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
 
                     if (Console.KeyAvailable)
                     {
@@ -126,15 +132,19 @@ public class Jeux
                         }
                         else if (touche == ConsoleKey.A)
                         {
-                            string message = Interaction.InteractionAvecElement(elementProche, joueur, layout, ctx, this,chrono);
+                            string message = Interaction.InteractionAvecElement(elementProche, joueur, layout, ctx, this, chrono);
+                            if (Interaction.teleportationEchouee)// Permet d 'afficher l'erreur de téléportation
+                            {
+                                break;
+                            }
                             if (message != "")
                             {
                                 AffichageInteraction.MessageInteraction = message;
-                                layout["Interaction"].Update(InterfaceGraphique.Interaction());
-                                layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-                                layout["EcranJeu"].Update(InterfaceGraphique.Jeu(this));
+                                layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
+                                layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
+                                layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(this));
                                 ctx.Refresh();
-                                Thread.Sleep(1000); 
+                                Thread.Sleep(1000);
                             }
                         }
                         ;
@@ -142,9 +152,21 @@ public class Jeux
                     }
                     VerifierVictoire();
                     ctx.Refresh();
-                    
+
                 }
             });
+            if (Interaction.teleportationEchouee) // Affichage du message d'erreur 
+            {
+                AffichageInteraction.AfficherTeleportationEchouee();
+            }
+            else
+            {
+                break;
+
+            }
+
+
+        }
         AnsiConsole.Clear();
 
         FinJeu(victoire);

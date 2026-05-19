@@ -4,6 +4,7 @@ public class GestionInteraction
 {
     public int X { get; set; }
     public int Y { get; set; }
+    public bool teleportationEchouee = false;
 
     public GestionInteraction(Joueur joueur)
     {
@@ -17,6 +18,8 @@ public class GestionInteraction
         int[] dy = { 0, 0, -1, 1 };
         for (int i = 0; i < 4; i++)
         {
+            if (joueur.EtageCourant == null) return 0;
+
             int newX = joueur.X + dx[i];
             int newY = joueur.Y + dy[i];
             if (newX >= 0 && newX <= 29 && newY >= 0 && newY < +29)
@@ -32,7 +35,7 @@ public class GestionInteraction
         return 0;
 
     }
-     public void VerifierCle()
+    public void VerifierCle()
     {
 
     }
@@ -41,24 +44,26 @@ public class GestionInteraction
         switch (NumeroElement)
         {
             case 3:
-                int etageCible = MenuTeleportation(joueur.vaisseau, layout, ctx, jeux,joueur,chrono);
-                if (etageCible == -1)
+                int etageCible = MenuTeleportation(joueur.vaisseau, layout, ctx, jeux, joueur, chrono);
+                bool resultat = joueur.DeplacementEtage(etageCible);
+                if (!resultat)
                 {
-                    return "";
+                    teleportationEchouee = true;
                 }
-                return joueur.DeplacementEtage(etageCible);
+                return "";
+
             case 4:
                 return "Vous venez d'ici ! Allez explorer les alentours";
-            case 7: 
-            if (!joueur.ALaCle)
+            case 7:
+                if (!joueur.ALaCle)
                 {
                     return "Vous devez trouver la clé avant de venir ici";
                 }
-            return "";
-            
+                return "";
+
             default:
 
-                return"";
+                return "";
         }
     }
     public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx, Jeux jeux, Joueur joueur, Chrono chrono)
@@ -68,22 +73,27 @@ public class GestionInteraction
 
         while (true)
         {
+
+
             string contenu = "[cyan]Choisir destination :[/]\n\n";
             for (int i = 0; i < etages.Count; i++)
             {
+                bool visite = joueur.EtageVisite.Contains(i);
+                string texte = (visite) ? etages[i].Nom : "";
+
                 if (i == selection)
-                    contenu += $"[yellow]▶ {i + 1}. {etages[i].Nom}[/]\n";
+                    contenu += $"[yellow]▶ {i + 1}. {texte}[/]\n";
                 else
-                    contenu += $" {i + 1}. {etages[i].Nom}\n";
+                    contenu += $"{i + 1}. {texte}\n";
             }
             contenu += "Esc : Annuler";
 
 
             AffichageInteraction.MessageInteraction = contenu;
             AffichageInteraction.NomInteraction = "TELEPORTEUR";
-            layout["Interaction"].Update(InterfaceGraphique.Interaction());
-            layout["Header"].Update(InterfaceGraphique.Header(joueur, chrono));
-            layout["EcranJeu"].Update(InterfaceGraphique.Jeu(jeux));
+            layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
+            layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
+            layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(jeux));
             ctx.Refresh();
 
             var touche = Console.ReadKey(true).Key;

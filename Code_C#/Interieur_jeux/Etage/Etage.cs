@@ -6,7 +6,6 @@ public  class Etage
     public List<Module> ListeModules{get;set;} =  new List<Module>{};
     public List<List<int>> MatriceEtage{get;set;} = new List<List<int>>{};
     public Random random = new Random();
-    
 
     public Etage()
     {
@@ -114,7 +113,7 @@ public  class Etage
     if (chiffre == 10) return "[blue]██[/]";     // reste ecran
     if (chiffre == 12) return "[grey]▲ [/]";     // pied ecran
     if (chiffre == 13) return "[red]¡ [/]";     // levier de controle
-    if (chiffre == 14) return "[yellow]@@[/]";   // joueur
+    if (chiffre == 14) return "[green]¬⚇[/]";   // joueur
     if (chiffre == 15) return "[bold Red3]()[/]";      //noyaux reacteur
     if (chiffre == 16) return "[Gray15]██[/]";     // mur du reacteur
     if (chiffre == 17) return "[Tan] ■[/]"; 
