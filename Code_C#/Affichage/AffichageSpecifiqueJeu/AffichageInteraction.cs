@@ -20,12 +20,12 @@ public static class AffichageInteraction
         {
             3 => "[red]██[/] Téléporteur départ",
             4 => "[blue]██[/] Téléporteur arrivé",
-            5 => "[green] ○[/][white]██[/] Lit occupé",
-            6 => "[white] ▯[/][white]██[/] Lit vide",
-            7 => "[white] ▯[/][white]██[/] Lit vide",
-            8 => "[green] ○[/][white]██[/] Lit occupé",
-            9 => "[blue] █[/][blue]██[/] Écran de pilotage", // Combiné 9 et 10
-            10 => "[blue] █[/][blue]██[/] Écran de pilotage",
+            5 => "[green] ○[/][white]████[/] Lit occupé",
+            6 => "[white]▯████[/] Lit vide",
+            7 => "[white]▯████[/] Lit vide",
+            8 => "[green]○[/][white]████[/] Lit occupé",
+            9 => "[Aqua]███[/] Écran de pilotage", // Combiné 9 et 10
+            10 => "[Aqua]███[/] Écran de pilotage",
             12 => "[grey]▲ [/] Pied écran",
             13 => "[red]¡ [/] Levier de contrôle",
             14 => "[yellow]@@[/] Joueur (Vous)",

@@ -25,6 +25,8 @@ public static class AffichageHeader
             etage = "[yellow]Salle des machines[/]";
             etageActuel = $"[yellow]{j.PositionEtage + 1}[/]";
         }
+        if(j.modeTest) return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.vaisseau.EtageCleCache.Nom}, dans {j.vaisseau.EtageCleCache.ChiffreVersCaractere(j.vaisseau.EtageCleCache.MatriceEtage[j.vaisseau.XCle][j.vaisseau.YCle])}";
+    
         return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/]";
     }
 

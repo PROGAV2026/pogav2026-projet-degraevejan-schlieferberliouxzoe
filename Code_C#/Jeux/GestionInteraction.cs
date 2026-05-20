@@ -48,7 +48,18 @@ public class GestionInteraction
     {
         int Xcle = joueur.vaisseau.XCle;
         int Ycle = joueur.vaisseau.YCle;
-        bool conditionRecuperationCLe = (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && (YInteraction == Ycle);
+        bool conditionRecuperationCLe =!joueur.ALaCle && (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && (YInteraction == Ycle);
+
+        if (NumeroElement == 19)
+        {
+            conditionRecuperationCLe =!joueur.ALaCle &&  (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle -1));
+
+        }
+        if (NumeroElement == 20)
+        {
+            conditionRecuperationCLe =!joueur.ALaCle &&  (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle +1));
+
+        }
         if (conditionRecuperationCLe)
         {
             joueur.ALaCle = true;
@@ -68,12 +79,33 @@ public class GestionInteraction
 
             case 4:
                 return "Vous venez d'ici ! Allez explorer les alentours";
+
+            case 6:
+            case 7:
+                return "Il n'y as rien sous la couette";
+            case 5:
+            case 8:
+                return "Ce zinzin dort à point fermé, ne le dérangez pas !";
+            case 9:
+            case 10:
+                return "Un écran de contrôle du vaisseau, rien ne peux être caché ici";
+            case 12:
+                return "Ce qui soutient l'écran, pas de cachette possible";
             case 13: 
             if (!joueur.ALaCle)
                 {
                     return "Vous devez trouver la clé avant de venir ici";
                 }
             else return "La clé ne va pas dans ce levier, dommage !";
+            case 16:
+            case 18:
+                return "Le mur du réacteur, attention c'est dangereux !";
+            case 17 : 
+                return "Cette caisse est vide";
+
+            case 19:
+            case 20:
+                return "Ce coffre est vide";
             case 21:
             if (!joueur.ALaCle)
                 {

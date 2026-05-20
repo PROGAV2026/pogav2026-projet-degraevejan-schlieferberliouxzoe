@@ -31,10 +31,10 @@ public class Vaisseau
     }
     public void CacherLaCle()
     {
-        bool CleCaché = false;
+        bool CleCache = false;
         int EtageCaché = random.Next(0, ListeEtages.Count());
         EtageCleCache = ListeEtages[EtageCaché];
-        while (!CleCaché)
+        while (!CleCache)
         {
             XCle = random.Next(0, 30);
             YCle = random.Next(0, 30);
@@ -43,7 +43,7 @@ public class Vaisseau
             {
                 if (tentative == element)
                 {
-                    CleCaché = true;
+                    CleCache = true;
                     break;
                 }
             }

@@ -13,14 +13,17 @@ public class Joueur
     public int PositionEtage { get; set; }
     public List<int> EtageVisite { get; set; } = new List<int>();
     public bool ALaCle { get; set; }
+    public bool ALaCarte{get;set;}
     public Vaisseau vaisseau { get; set; } //provisoire
     public Random random = new Random();
     public string NomEtageCourant { get; set; } = "";
     public Etage? EtageCourant { get; set; }
     public bool ABienMisLaCle {get;set;}
+    public bool modeTest;
 
     public Joueur(bool modetest)
     {
+        modeTest = modetest;
         vaisseau = new Vaisseau(modetest);
         ALaCle = false;
         X = 13;

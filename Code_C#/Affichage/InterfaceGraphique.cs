@@ -75,8 +75,9 @@ public static class InterfaceGraphique
                 else
                     contenu += $"{i + 1}.[red] {joueur.vaisseau.ListeEtages[i].Nom}[/]\n";
                 
-                contenu += joueur.vaisseau.EtageCleCache.Nom;
             }
+
+            contenu += joueur.vaisseau.EtageCleCache.Nom +' ' + joueur.vaisseau.XCle + ' ' + joueur.vaisseau.YCle;
     
             
 

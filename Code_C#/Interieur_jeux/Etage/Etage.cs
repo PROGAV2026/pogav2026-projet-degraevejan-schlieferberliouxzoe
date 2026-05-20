@@ -110,8 +110,8 @@ public  class Etage
     if (chiffre == 6) return "[white] ▯[/]";  // Tête de lit vide
     if (chiffre == 7) return "[white]██[/]";   // Corps du matelas
     if (chiffre == 8) return "[green] ○[/]";   // Tête de lit occupée
-    if (chiffre == 9) return "[blue] █[/]";     // gauche ecran
-    if (chiffre == 10) return "[blue]██[/]";     // reste ecran
+    if (chiffre == 9) return "[Aqua] █[/]";     // gauche ecran
+    if (chiffre == 10) return "[Aqua]██[/]";     // reste ecran
     if (chiffre == 12) return "[grey]▲ [/]";     // pied ecran
     if (chiffre == 13) return "[red]¡ [/]";     // levier de controle
     if (chiffre == 14) return "[green]¬⚇[/]";   // joueur

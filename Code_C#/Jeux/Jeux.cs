@@ -46,6 +46,7 @@ public class Jeux
                 break;
             case "2. Mode test":
                 modeTest = true;
+                joueur.modeTest = true;
                 BoucleJeu();
                 break;
             case "3. Quitter":
