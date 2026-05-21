@@ -2,7 +2,7 @@
 
 # 🚀 PROJET ZINZIN — Clé du Vaisseau
 
-*À la recherche de la clé perdue à bord du vaisseau*
+_À la recherche de la clé perdue à bord du vaisseau_
 
 </div>
 
@@ -12,10 +12,9 @@
 
 Dans le cadre de notre projet en programmation avancée, on a eu l'opportunité de concevoir un jeu en C#, dans le terminal.
 
-Voici, le rendu ci-dessous du visuel : 
+Voici, le rendu ci-dessous du visuel :
 
-><img width="1000" height="800" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_ensembleJeu.png" />
-
+> <img width="1000" height="800" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_ensembleJeu.png" />
 
 ---
 
@@ -24,12 +23,11 @@ Voici, le rendu ci-dessous du visuel :
 > Un **ZINZIN** est perdu dans un vaisseau de **10 étages** et doit, en trouvant la clé, sortir du vaisseau en **10 minutes** 😉
 > 
 
-
-| # | Objectif |
-|---|----------|
-| 1️⃣ | Explorer les étages du vaisseau |
-| 2️⃣ | Trouver la clé cachée dans un module |
-| 3️⃣ | Revenir au bon module de pilotage |
+| #   | Objectif                             |
+| --- | ------------------------------------ |
+| 1️⃣  | Explorer les étages du vaisseau      |
+| 2️⃣  | Trouver la clé cachée dans un module |
+| 3️⃣  | Revenir au bon module de pilotage    |
 
 ---
 
@@ -39,24 +37,24 @@ Voici, le rendu ci-dessous du visuel :
 
 Le vaisseau est composé de **trois** types d'étages :
 
-| Étage | Type |
-|-------|------|
-| 🖥️ | Poste de pilotage |
-| ⚙️ | Salle machine |
-| 🛏️ | Lieu de vie |
+| Étage | Type              |
+| ----- | ----------------- |
+| 🖥️    | Poste de pilotage |
+| ⚙️    | Salle machine     |
+| 🛏️    | Lieu de vie       |
 
 ### Les modules
 
 Chaque étage contient 4 **modules** parmi lesquels le **ZINZIN** peut avoir des interactions avec des objects présents dans les modules:
 
-| Module | Description |
-|--------|-------------|
-| 🔵 | Téléportation Départ |
-| 🔴 | Téléportation Arrivée |
-| 📦 | Coffre |
-| 🛌 | Couchette |
-| ☢️ | Moteur |
-| 🕹️ | Pilotage |
+| Module | Description           |
+| ------ | --------------------- |
+| 🔵     | Téléportation Départ  |
+| 🔴     | Téléportation Arrivée |
+| 📦     | Coffre                |
+| 🛌     | Couchette             |
+| ☢️     | Moteur                |
+| 🕹️     | Pilotage              |
 
 ---
 ## Deplacement du joueur
@@ -66,6 +64,13 @@ Il peut aussi à tout moment quitter le jeu avec la touche échap.
 <img width="300" height="200" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_Deplacement.png" />
 
 
+
+## 🕹️ Deplacement du joueur
+
+> Le joueur peut se déplacer dans le vaisseau grâce aux flèches du clavier. Le personnage a la capacité d'interagir avec A, avec les élèments qui l'entoure.
+> Il peut aussi à tout moment quitter le jeu avec la touche échap.
+>
+> <img width="300" height="200" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_Deplacement.png" />
 
 ## ⚙️ Installation
 
@@ -80,7 +85,7 @@ Nous avons utilisé l'ensemble du terminal pour une meilleure expérience utilis
 **2. Cloner et lancer le projet**
 
 ```bash
-git clonehttps://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe.git
+git clone https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe.git
 cd Code_C#
 dotnet run
 ```
@@ -116,7 +121,6 @@ Pour le rendu terminal nous avons cherché longtemps comment faire au mieux l'af
 
 <div align="center">
 
-
 | 👤 **Jan de Greave** | 👤 **Zoé Schliefer Berlioux** |
 
 </div>
@@ -125,6 +129,6 @@ Pour le rendu terminal nous avons cherché longtemps comment faire au mieux l'af
 
 <div align="center">
 
-*Bonne découverte du jeu ! Amusez-vous bien 🚀*
+_Bonne découverte du jeu ! Amusez-vous bien 🚀_
 
 </div>
