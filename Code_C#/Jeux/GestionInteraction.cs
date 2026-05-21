@@ -1,4 +1,4 @@
-using Spectre.Console;
+ using Spectre.Console;
 
 public class GestionInteraction
 {
@@ -7,7 +7,6 @@ public class GestionInteraction
     public bool teleportationEchouee = false;
     public int XInteraction{get;set;}
     public int YInteraction {get;set;}
-
 
     public GestionInteraction(Joueur joueur)
     {
