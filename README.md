@@ -21,6 +21,7 @@ Voici, le rendu ci-dessous du visuel :
 ## 🌌 Concept
 
 > Un **ZINZIN** est perdu dans un vaisseau de **10 étages** et doit, en trouvant la clé, sortir du vaisseau en **10 minutes** 😉
+> 
 
 | #   | Objectif                             |
 | --- | ------------------------------------ |
@@ -56,6 +57,13 @@ Chaque étage contient 4 **modules** parmi lesquels le **ZINZIN** peut avoir des
 | 🕹️     | Pilotage              |
 
 ---
+## Deplacement du joueur
+>Le joueur peut se déplacer dans le vaisseau grâce aux flèches du clavier. Le personnage a la capacité d'interagir avec A, avec les élèments qui l'entoure. 
+Il peut aussi à tout moment quitter le jeu avec la touche échap.
+>
+<img width="300" height="200" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_Deplacement.png" />
+
+
 
 ## 🕹️ Deplacement du joueur
 
