@@ -12,15 +12,18 @@
 
 Dans le cadre de notre projet en programmation avancée, on a eu l'opportunité de concevoir un jeu en C#, dans le terminal.
 
-> **METTRE UN VISUEL JEU FINAL ICI**
+Voici, le rendu ci-dessous du visuel : 
+
+><img width="1000" height="800" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_ensembleJeu.png" />
+
 
 ---
 
-## 🌌 Histoire
+## 🌌 Concept
 
 > Un **ZINZIN** est perdu dans un vaisseau de **10 étages** et doit, en trouvant la clé, sortir du vaisseau en **10 minutes** 😉
+> 
 
-### Objectifs
 
 | # | Objectif |
 |---|----------|
@@ -56,6 +59,13 @@ Chaque étage contient 4 **modules** parmi lesquels le **ZINZIN** peut avoir des
 | 🕹️ | Pilotage |
 
 ---
+## Deplacement du joueur
+>Le joueur peut se déplacer dans le vaisseau grâce aux flèches du clavier. Le personnage a la capacité d'interagir avec A, avec les élèments qui l'entoure. 
+Il peut aussi à tout moment quitter le jeu avec la touche échap.
+>
+<img width="300" height="200" alt="Terminal" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_Deplacement.png" />
+
+
 
 ## ⚙️ Installation
 
@@ -63,15 +73,15 @@ Nous avons utilisé l'ensemble du terminal pour une meilleure expérience utilis
 
 **1. Ouvrir un terminal dans une nouvelle fenêtre**
 
-<img width="300" height="250" alt="Terminal" src="https://github.com/user-attachments/assets/89d80034-58a6-47f3-a2a9-59e1b3b3d163" />
+<img width="500" height="350" alt="Terminal" src="https://github.com/user-attachments/assets/89d80034-58a6-47f3-a2a9-59e1b3b3d163" />
 
 > 💡 Mettez en plein écran avec **F11** pour une meilleure expérience.
 
 **2. Cloner et lancer le projet**
 
 ```bash
-git clone <URL DU PROJET>
-cd Code
+git clonehttps://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe.git
+cd Code_C#
 dotnet run
 ```
 
@@ -81,7 +91,7 @@ dotnet run
 
 Un mode test est disponible pour tester rapidement les fonctionnalités, vous pourrez faire le choix lors du lancement du jeu.
 
-<img width="400" height="250" alt="Mode Test" src="https://github.com/user-attachments/assets/3b6df3b8-a0ba-4066-bc42-6d4d9668f226" />
+<img width="600" height="350" alt="Mode Test" src="https://github.com/user-attachments/assets/3b6df3b8-a0ba-4066-bc42-6d4d9668f226" />
 
 ---
 
@@ -90,6 +100,7 @@ Un mode test est disponible pour tester rapidement les fonctionnalités, vous po
 Le jeu enregistre le nom et le temps des **10 meilleurs joueurs** dans un fichier 😉
 
 À la fin du jeu, vous pourrez voir apparaître le classement — **soyez les premiers à terminer le jeu !**
+<img width="400" height="600" alt="Mode Test" src="https://github.com/PROGAV2026/pogav2026-projet-degraevejan-schlieferberliouxzoe/blob/main/Photo_readme/Capture_classement.png" />
 
 ---
 
