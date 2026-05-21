@@ -83,7 +83,7 @@ public static class InterfaceGraphiqueJeu
     //PANEL JEU     
     public static Panel Jeu(Jeux j)
     {
-        return new Panel(j.joueur.vaisseau.ListeEtages[j.joueur.PositionEtage]
+        return new Panel(j.Joueur.Vaisseau.ListeEtages[j.Joueur.PositionEtage]
         .ToString())
         .NoBorder()
         .Expand();

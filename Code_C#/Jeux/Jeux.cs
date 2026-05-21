@@ -5,27 +5,23 @@ using Spectre.Console;
 /// </summary>
 public class Jeux
 {
-    public Chrono chrono;
-    public Joueur joueur;
-    public bool modeTest = false;
-    public bool victoire;
-    public GestionScore gestion;
-    public Vaisseau vaisseau;
+    public Chrono Chrono;
+    public Joueur Joueur;
+    public bool ModeTest = false;
+    public bool Victoire;
+    public GestionScore Gestion;
     public GestionInteraction Interaction;
-    public bool quitter = false;
-
+    public bool Quitter = false;//TODO VERIFIER SI C EST UTILE
 
 
     public Jeux()
     {
-        this.chrono = new Chrono();
-        this.gestion = new GestionScore(this.modeTest);
-        this.modeTest = false;
-        this.joueur = new Joueur(modeTest);
-        this.Interaction = new GestionInteraction(joueur);
-        this.vaisseau = this.joueur.vaisseau;
-        this.joueur.InitialiserPosition();
-        this.victoire = false;
+        this.Chrono = new Chrono();
+        this.Gestion = new GestionScore(this.ModeTest);
+        this.Joueur = new Joueur(ModeTest);
+        this.Interaction = new GestionInteraction(Joueur);
+        this.Joueur.InitialiserPosition();
+        this.Victoire = false;
     }
 
     public void LancerJeu() //Menu du lancement du jeu 
@@ -45,8 +41,7 @@ public class Jeux
                 BoucleJeu();
                 break;
             case "2. Mode test":
-                modeTest = true;
-                joueur.modeTest = true;
+                Joueur.ModeTest = true;
                 BoucleJeu();
                 break;
             case "3. Quitter":
@@ -57,7 +52,7 @@ public class Jeux
     }
     public void FinJeu(bool victoire)
     {
-        if (quitter)
+        if (Quitter)
         {
             Console.WriteLine("N'hesite pas à revenir tu nous manques déjà ;)");
         }
@@ -66,34 +61,33 @@ public class Jeux
             Console.WriteLine(victoire ? "Félicitations, vous avez gagné !" : "Dommage, vous avez perdu !");
             if (victoire)
             {
-                this.chrono.ArreterChrono();
-                this.gestion.EnregistrementScore(joueur.Nom, this.chrono);
+                this.Chrono.ArreterChrono();
+                this.Gestion.EnregistrementScore(Joueur.Nom, this.Chrono);
             }
-            this.gestion.AfficherClassement();
+            this.Gestion.AfficherClassement();
         }
     }
     public void VerifierVictoire()
     {
-        if (joueur.ALaCle && joueur.ABienMisLaCle)
+        if (Joueur.ALaCle && Joueur.ABienMisLaCle)
         {
-            victoire = true;
+            Victoire = true;
         }
     }
 
     public void BoucleJeu()
     {
-        this.gestion = new GestionScore(this.modeTest);
-        this.joueur.vaisseau = new Vaisseau(this.modeTest);
-        this.vaisseau = this.joueur.vaisseau;
+        this.Gestion = new GestionScore(this.ModeTest);
+        this.Joueur.Vaisseau = new Vaisseau(this.ModeTest);
 
-        bool joueurPret = CreationJoueur.DefinirJoueur(joueur);
+        bool joueurPret = CreationJoueur.DefinirJoueur(Joueur);
         if (!joueurPret)
         {
             LancerJeu();
             return;
         }
         ;
-        this.chrono.LancerChrono();
+        this.Chrono.LancerChrono();
         var layout = InterfaceGraphiqueJeu.InitialiserLayout();
         layout["Aide"].Update(InterfaceGraphiqueJeu.Aide());
         layout["Legende"].Update(InterfaceGraphiqueJeu.Legende());
@@ -103,61 +97,54 @@ public class Jeux
         layout["MargeBas"].Update(new Panel("").NoBorder());
 
 
-        while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
+        while (Chrono.EnCours && Chrono.Stopwatch.Elapsed.TotalSeconds < Chrono.TempsTotal && !Victoire)
         {
-            Interaction.teleportationEchouee = false;
+            Interaction.TeleportationEchouee = false;
 
             AnsiConsole.Live(layout)
             .AutoClear(false)
             .Start(ctx =>
             {
-                while (chrono.enCours && chrono.stopwatch.Elapsed.TotalSeconds < chrono.TempsTotal && !victoire)
+                while (Chrono.EnCours && Chrono.Stopwatch.Elapsed.TotalSeconds < Chrono.TempsTotal && !Victoire)
                 {
-                    layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
-                    layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(this));
-                    layout["Carte"].Update(InterfaceGraphiqueJeu.Carte(joueur));
-
-                    int elementProche = Interaction.VerifierInteractionJeu(joueur);
+                    int elementProche = Interaction.VerifierInteractionJeu(Joueur);
 
                     AffichageInteraction.AfficherElementsInteractifs(elementProche);
-                    layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
+                    MiseAJourLayout(layout, ctx, Joueur, Chrono, this);
 
                     if (Console.KeyAvailable)
                     {
                         var touche = Console.ReadKey(true).Key;
                         if (touche == ConsoleKey.Escape)
                         {
-                            victoire = false;
-                            chrono.enCours = false;
-                            quitter = true;
+                            Victoire = false;
+                            Chrono.EnCours = false;
+                            Quitter = true;
                             break;
                         }
                         else if (touche == ConsoleKey.A)
                         {
-                            string message = Interaction.InteractionAvecElement(elementProche, joueur, layout, ctx, this, chrono);
-                            if (Interaction.teleportationEchouee)// Permet d 'afficher l'erreur de téléportation
+                            string message = Interaction.InteractionAvecElement(elementProche, Joueur, layout, ctx, this, Chrono);
+                            if (Interaction.TeleportationEchouee)// Permet d 'afficher l'erreur de téléportation
                             {
                                 break;
                             }
                             if (message != "")
                             {
                                 AffichageInteraction.MessageInteraction = message;
-                                layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
-                                layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
-                                layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(this));
-                                ctx.Refresh();
+                                MiseAJourLayout(layout, ctx, Joueur, Chrono, this);
                                 Thread.Sleep(1000);
                             }
                         }
                         ;
-                        joueur.DeplacementDansModule(touche);
+                        Joueur.DeplacementDansModule(touche);
                     }
                     VerifierVictoire();
                     ctx.Refresh();
 
                 }
             });
-            if (Interaction.teleportationEchouee) // Affichage du message d'erreur 
+            if (Interaction.TeleportationEchouee) // Affichage du message d'erreur 
             {
                 AffichageInteraction.AfficherTeleportationEchouee();
             }
@@ -171,7 +158,20 @@ public class Jeux
         }
         AnsiConsole.Clear();
 
-        FinJeu(victoire);
+        FinJeu(Victoire);
+    }
+    public static void MiseAJourLayout(Layout layout, LiveDisplayContext ctx, Joueur joueur, Chrono chrono, Jeux jeux)
+    {
+        layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
+        layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
+        layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(jeux));
+        layout["Carte"].Update(InterfaceGraphiqueJeu.Carte(joueur));
+        ctx.Refresh();
+
+    }
+    public static void IntialisationInterface()
+    {
+
     }
 }
 

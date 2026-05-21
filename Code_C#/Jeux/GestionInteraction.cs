@@ -1,17 +1,13 @@
- using Spectre.Console;
+using Spectre.Console;
 
 public class GestionInteraction
 {
-    public int X { get; set; }
-    public int Y { get; set; }
-    public bool teleportationEchouee = false;
-    public int XInteraction{get;set;}
-    public int YInteraction {get;set;}
+    public bool TeleportationEchouee = false;
+    public int XInteraction { get; set; }
+    public int YInteraction { get; set; }
 
     public GestionInteraction(Joueur joueur)
     {
-        X = joueur.X;
-        Y = joueur.Y;
     }
 
     public int VerifierInteractionJeu(Joueur joueur)
@@ -45,18 +41,18 @@ public class GestionInteraction
     }
     public string InteractionAvecElement(int NumeroElement, Joueur joueur, Layout layout, LiveDisplayContext ctx, Jeux jeux, Chrono chrono)
     {
-        int Xcle = joueur.vaisseau.XCle;
-        int Ycle = joueur.vaisseau.YCle;
-        bool conditionRecuperationCLe =!joueur.ALaCle && (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && (YInteraction == Ycle);
+        int Xcle = joueur.Vaisseau.XCle;
+        int Ycle = joueur.Vaisseau.YCle;
+        bool conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && (YInteraction == Ycle);
 
         if (NumeroElement == 19)
         {
-            conditionRecuperationCLe =!joueur.ALaCle &&  (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle -1));
+            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle - 1));
 
         }
         if (NumeroElement == 20)
         {
-            conditionRecuperationCLe =!joueur.ALaCle &&  (joueur.EtageCourant == joueur.vaisseau.EtageCleCache) &&(XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle +1));
+            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle + 1));
 
         }
         if (conditionRecuperationCLe)
@@ -64,65 +60,65 @@ public class GestionInteraction
             joueur.ALaCle = true;
             return "Bravo ! La clé était cachée ici, maintenant ramenez la au bon poste de pilotage";
         }
-        else {
-        switch (NumeroElement)
+        else
         {
-            case 3:
-                int etageCible = MenuTeleportation(joueur.vaisseau, layout, ctx, jeux, joueur, chrono);
-                bool resultat = joueur.DeplacementEtage(etageCible);
-                if (!resultat)
-                {
-                    teleportationEchouee = true;
-                }
-                return "";
+            switch (NumeroElement)
+            {
+                case 3:
+                    int etageCible = MenuTeleportation(joueur.Vaisseau, layout, ctx, jeux, joueur, chrono);
+                    bool resultat = joueur.DeplacementEtage(etageCible);
+                    if (!resultat)
+                    {
+                        TeleportationEchouee = true;
+                    }
+                    return "";
 
-            case 4:
-                return "Vous venez d'ici ! Allez explorer les alentours";
+                case 4:
+                    return "Vous venez d'ici ! Allez explorer les alentours";
 
-            case 6:
-            case 7:
-                return "Il n'y as rien sous la couette";
-            case 5:
-            case 8:
-                return "Ce zinzin dort à point fermé, ne le dérangez pas !";
-            case 9:
-            case 10:
-                return "Un écran de contrôle du vaisseau, rien ne peux être caché ici";
-            case 12:
-                return "Ce qui soutient l'écran, pas de cachette possible";
-            case 13: 
-            if (!joueur.ALaCle)
-                {
-                    return "Vous devez trouver la clé avant de venir ici";
-                }
-            else return "La clé ne va pas dans ce levier, dommage !";
-            case 16:
-            case 18:
-                return "Le mur du réacteur, attention c'est dangereux !";
-            case 17 : 
-                return "Cette caisse est vide";
+                case 6:
+                case 7:
+                    return "Il n'y as rien sous la couette";
+                case 5:
+                case 8:
+                    return "Ce zinzin dort à point fermé, ne le dérangez pas !";
+                case 9:
+                case 10:
+                    return "Un écran de contrôle du vaisseau, rien ne peux être caché ici";
+                case 12:
+                    return "Ce qui soutient l'écran, pas de cachette possible";
+                case 13:
+                    if (!joueur.ALaCle)
+                    {
+                        return "Vous devez trouver la clé avant de venir ici";
+                    }
+                    else return "La clé ne va pas dans ce levier, dommage !";
+                case 16:
+                case 18:
+                    return "Le mur du réacteur, attention c'est dangereux !";
+                case 17:
+                    return "Cette caisse est vide";
 
-            case 19:
-            case 20:
-                return "Ce coffre est vide";
-            case 21:
-            if (!joueur.ALaCle)
-                {
-                    return "Vous devez trouver la clé avant de venir ici";
-                }
-            else
+                case 19:
+                case 20:
+                    return "Ce coffre est vide";
+                case 21:
+                    if (!joueur.ALaCle)
+                    {
+                        return "Vous devez trouver la clé avant de venir ici";
+                    }
+                    else
                     {
                         joueur.ABienMisLaCle = true;
                         return "BRAVOOOOOOOOOOO!!!!";
                     }
-            
 
-            
-            
-            default:
 
-                return "";
-        }
+
+                default:
+
+                    return "";
+            }
         }
     }
     public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx, Jeux jeux, Joueur joueur, Chrono chrono)
@@ -132,7 +128,6 @@ public class GestionInteraction
 
         while (true)
         {
-
 
             string contenu = "[cyan]Choisir destination :[/]\n\n";
             for (int i = 0; i < etages.Count; i++)
@@ -147,14 +142,8 @@ public class GestionInteraction
             }
             contenu += "Esc : Annuler";
 
-
             AffichageInteraction.MessageInteraction = contenu;
-            AffichageInteraction.NomInteraction = "TELEPORTEUR";
-            layout["Interaction"].Update(InterfaceGraphiqueJeu.Interaction());
-            layout["Header"].Update(InterfaceGraphiqueJeu.Header(joueur, chrono));
-            layout["EcranJeu"].Update(InterfaceGraphiqueJeu.Jeu(jeux));
-            ctx.Refresh();
-
+            Jeux.MiseAJourLayout(layout, ctx, joueur, chrono, jeux);
             var touche = Console.ReadKey(true).Key;
             if (touche == ConsoleKey.UpArrow && selection > 0) selection--;
             else if (touche == ConsoleKey.DownArrow && selection < etages.Count - 1) selection++;

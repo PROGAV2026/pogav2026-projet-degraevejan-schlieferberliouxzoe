@@ -52,11 +52,11 @@ public static class CreationJoueur
     public static int ChoisirEtage(Joueur j, string titre)
     {
         var choix = new List<string>();
-        for (int i = 0; i < j.vaisseau.ListeEtages.Count; i++)
+        for (int i = 0; i < j.Vaisseau.ListeEtages.Count; i++)
         {
-            choix.Add($"{i + 1}. {j.vaisseau.ListeEtages[i].Nom}");
+            choix.Add($"{i + 1}. {j.Vaisseau.ListeEtages[i].Nom}");
         }
-        choix.Add($"{j.vaisseau.ListeEtages.Count + 1}. Annuler");
+        choix.Add($"{j.Vaisseau.ListeEtages.Count + 1}. Annuler");
 
         string selection = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title(titre)
@@ -66,7 +66,7 @@ public static class CreationJoueur
         );
 
         int etageChoisi = int.Parse(selection.Split('.')[0]) - 1;
-        if (etageChoisi >= j.vaisseau.ListeEtages.Count)
+        if (etageChoisi >= j.Vaisseau.ListeEtages.Count)
             return -1;
         return etageChoisi;
     }

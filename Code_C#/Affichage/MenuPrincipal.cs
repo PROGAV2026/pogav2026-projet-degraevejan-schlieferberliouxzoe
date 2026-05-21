@@ -3,7 +3,7 @@ using Spectre.Console;
 /// CLASS QUI GERE : 
 ///                   Affichage du menu principal
 /// </summary>
-/// 
+
 public static class MenuPrincipal
 {
     public static void AffichageMenuJeu()

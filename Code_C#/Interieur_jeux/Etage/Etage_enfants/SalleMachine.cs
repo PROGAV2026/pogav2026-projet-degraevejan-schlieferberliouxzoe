@@ -1,11 +1,12 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La salle des machines avec les listes de modules potentiels et la matrice d'étage
+/// </summary>
 public class SalleMachine : Etage
 {
-    static int Numero{get;set;} 
     public SalleMachine()
     {
-        Numero += 1;
-        Nom = "Salle des machines" ;
-        ID = (Nom, Numero);
+        Nom = "Salle des machines";
         ModuleMoteur moteur = new ModuleMoteur();
         ListeModulePotentiels.Add(moteur);
         CreationMatriceEtage();

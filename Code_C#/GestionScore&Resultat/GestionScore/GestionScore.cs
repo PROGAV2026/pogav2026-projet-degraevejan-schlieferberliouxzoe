@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Spectre.Console;
 
 /// <summary>
@@ -12,7 +8,7 @@ using Spectre.Console;
 /// </summary>
 public class GestionScore
 {
-    
+
     public string CheminFichier = "";
 
     public class EntreeScore
@@ -32,19 +28,16 @@ public class GestionScore
         {
             CheminFichier = "GestionScore/resultatVrai.csv";
         }
-        
-
     }
 
     public void EnregistrementScore(string nom, Chrono temps)
     {
-      
-            using (StreamWriter writer = new StreamWriter(CheminFichier, append: true))
-            {
-                writer.WriteLine($"\n{nom};{temps.TempsTotal - temps.TempsRestant}");
-            }
-        }    
-    
+        using (StreamWriter writer = new StreamWriter(CheminFichier, append: true))
+        {
+            writer.WriteLine($"\n{nom};{temps.TempsTotal - temps.TempsRestant}");
+        }
+    }
+
     public List<EntreeScore> LireScore()
     {
         var liste = new List<EntreeScore>();
@@ -59,7 +52,7 @@ public class GestionScore
 
         return liste.OrderBy(s => s.Temps).ToList();
     }
-   
+
     public void AfficherClassement()
     {
         var scores = LireScore();
@@ -70,14 +63,14 @@ public class GestionScore
         .AddColumn(new TableColumn("[bold]Joueur[/]"))
         .AddColumn(new TableColumn("[bold]Temps[/]").RightAligned());
 
-    var medals = new[] { "[gold1]1st[/]", "[silver]2nd[/]", "[red]3rd[/]" };
+        var medals = new[] { "[gold1]1st[/]", "[silver]2nd[/]", "[red]3rd[/]" };
 
         for (int i = 0; i < Math.Min(10, scores.Count); i++)
         {
-            var rang = i<3 ? medals[i]:$"[grey]{i + 1}[/]";
-            var nom = i<3? $"[bold]{scores[i].Nom}[/]": $"[white]{scores[i].Nom}[/]";
+            var rang = i < 3 ? medals[i] : $"[grey]{i + 1}[/]";
+            var nom = i < 3 ? $"[bold]{scores[i].Nom}[/]" : $"[white]{scores[i].Nom}[/]";
             var temps = $"[dim]{scores[i].Temps}[/]";
-            table.AddRow(rang,nom,temps);
+            table.AddRow(rang, nom, temps);
         }
         AnsiConsole.Write(new Rule("[bold yellow] Meilleurs temps [/]").RuleStyle("grey"));
         AnsiConsole.Write(table);

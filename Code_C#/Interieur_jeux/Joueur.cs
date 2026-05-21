@@ -13,32 +13,28 @@ public class Joueur
     public int PositionEtage { get; set; }
     public List<int> EtageVisite { get; set; } = new List<int>();
     public bool ALaCle { get; set; }
-    public bool ALaCarte{get;set;}
-    public Vaisseau vaisseau { get; set; } //provisoire
-    public Random random = new Random();
+    public Vaisseau Vaisseau { get; set; }
+    public Random Random = new Random();
     public string NomEtageCourant { get; set; } = "";
     public Etage? EtageCourant { get; set; }
-    public bool ABienMisLaCle {get;set;}
-    public bool modeTest;
+    public bool ABienMisLaCle { get; set; }
+    public bool ModeTest;
 
-    public Joueur(bool modetest)
+    public Joueur(bool modeTest)
     {
-        modeTest = modetest;
-        vaisseau = new Vaisseau(modetest);
+        ModeTest = modeTest;
+        Vaisseau = new Vaisseau(modeTest);
         ALaCle = false;
-        X = 13;
-        Y = 13;
         InitialiserPosition();
     }
-    
 
     public void InitialiserPosition()
     {
-        if (vaisseau.ListeEtages.Count > PositionEtage)
+        if (Vaisseau.ListeEtages.Count > PositionEtage)
         {
             X = 14;
             Y = 13;
-            EtageCourant = vaisseau.ListeEtages[PositionEtage];
+            EtageCourant = Vaisseau.ListeEtages[PositionEtage];
             EtageCourant.MatriceEtage[X][Y] = 14;
             NomEtageCourant = EtageCourant.Nom;
         }
@@ -89,9 +85,9 @@ public class Joueur
 
         EtageCourant.MatriceEtage[X][Y] = 0;
 
-        int ChanceBonneEtage = random.Next(0, 100);
+        int ChanceBonneEtage = Random.Next(0, 100);
         PositionEtage = ChanceBonneEtage > 40
-        ? NumeroEtage : random.Next(0, vaisseau.ListeEtages.Count > 0 ? vaisseau.ListeEtages.Count : 1);
+        ? NumeroEtage : Random.Next(0, Vaisseau.ListeEtages.Count > 0 ? Vaisseau.ListeEtages.Count : 1);
         InitialiserPosition();
         if (!EtageVisite.Contains(PositionEtage))
         {

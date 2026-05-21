@@ -2,7 +2,6 @@ public class ModuleMoteur : Module
 {
     public ModuleMoteur()
     {
-        Nom = "Module Moteur";
         MatriceModule = new List<List<int>>
         {
     new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },

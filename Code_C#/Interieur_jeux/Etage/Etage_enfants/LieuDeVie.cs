@@ -1,20 +1,18 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   Les lieux de vie avec les listes de modules potentiels et la matrice d'étage
+/// </summary>
 public class LieuDeVie : Etage
 {
-    static int Numero{get;set;} 
-
     public LieuDeVie() : base()
     {
-        
-        Numero += 1;
         Nom = "Lieu de Vie";
-        ID = (Nom, Numero);
         ModuleCouchage couchage = new ModuleCouchage();
         ModuleCoffre coffre = new ModuleCoffre();
         ListeModulePotentiels.Add(coffre);
-        
         ListeModulePotentiels.Add(couchage);
         CreationMatriceEtage();
 
     }
-    
+
 }

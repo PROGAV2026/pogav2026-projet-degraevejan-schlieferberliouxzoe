@@ -1,46 +1,50 @@
 using Spectre.Console;
 /// <summary>
 /// CLASS QUI GERE : 
-///                 Affichage de la partie interaction du jeu               
+///                 Affichage de la partie interaction du jeu                
 /// </summary>
+//TODO : Afficher les éléments interactifs possibles en fonction de la position du joueur
 public static class AffichageInteraction
 {
-    public static string NomInteraction = "";
-    public static string MessageInteraction = "";
+    public static string NomInteraction = "INTERACTION";
+    public static string MessageInteraction = "Aucune interaction possible";
 
-    public static void AfficherElementsInteractifs(int NumeroElement)
+    public static void AfficherElementsInteractifs(int numeroElement)
     {
-        if (NumeroElement == 0)
+        if (numeroElement == 0)
         {
             NomInteraction = "❌ INTERACTION";
             return;
         }
-
-        string contenu = NumeroElement switch
+        else
         {
-            3 => "[red]██[/] Téléporteur départ",
-            4 => "[blue]██[/] Téléporteur arrivé",
-            5 => "[green] ○[/][white]████[/] Lit occupé",
-            6 => "[white]▯████[/] Lit vide",
-            7 => "[white]▯████[/] Lit vide",
-            8 => "[green]○[/][white]████[/] Lit occupé",
-            9 => "[Aqua]███[/] Écran de pilotage", // Combiné 9 et 10
-            10 => "[Aqua]███[/] Écran de pilotage",
-            12 => "[grey]▲ [/] Pied écran",
-            13 => "[red]¡ [/] Levier de contrôle",
-            14 => "[yellow]@@[/] Joueur (Vous)",
-            15 => "[bold red]()[/] Noyau réacteur",
-            16 => "[grey]██[/] Blindage réacteur",
-            17 => "[yellow] ■[/] Débris / Petite caisse",
-            18 => "[yellow]██[/] Caisse de matériel",
-            19 => "[orange3][[[/][yellow]Ω[/][orange3]]][/] Coffre Ancien", // Combiné 19 et 20
-            20 => "[orange3][[[/][yellow]Ω[/][orange3]]][/] Coffre Ancien",
-            _ => "[yellow]Élément inconnu[/]"
-        };
+            switch (numeroElement)
+            {
+                case 1:
+                    NomInteraction = "PORTE";
+                    MessageInteraction = "Appuyez sur [green]A[/] pour ouvrir la porte.";
+                    break;
+                case 2:
+                    NomInteraction = "CLE";
+                    MessageInteraction = "Appuyez sur [green]A[/] pour ramasser la clé.";
+                    break;
+                case 3:
+                    NomInteraction = "TELEPORTEUR";
+                    MessageInteraction = "Appuyez sur [green]A[/] pour utiliser le téléporteur.";
+                    break;
+                case 4:
+                    NomInteraction = "ASCENSEUR";
+                    MessageInteraction = "Appuyez sur [green]A[/] pour utiliser l'ascenseur.";
+                    break;
+                default:
+                    NomInteraction = "INTERACTION";
+                    MessageInteraction = "Aucune interaction possible";
+                    break;
+            }
+        }
 
-        MessageInteraction = "\n[grey]Appuyez sur A pour interagir[/]";
-        NomInteraction = contenu;
     }
+
     public static void AfficherTeleportationEchouee()
     {
         AnsiConsole.Clear();

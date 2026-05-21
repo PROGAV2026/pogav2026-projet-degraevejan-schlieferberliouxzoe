@@ -1,12 +1,12 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   Le poste de pilotage avec les listes de modules potentiels et la matrice d'étage
+/// </summary>
 public class PosteDePilotage : Etage
 {
-    static int Numero{get;set;} 
     public PosteDePilotage() : base()
     {
-        
-        Numero += 1;
         Nom = "Poste de pilotage";
-        ID = (Nom, Numero);
         ModulePilotage pilotage = new ModulePilotage();
         ModuleMoteur moteur = new ModuleMoteur();
         ListeModules.Add(pilotage);
