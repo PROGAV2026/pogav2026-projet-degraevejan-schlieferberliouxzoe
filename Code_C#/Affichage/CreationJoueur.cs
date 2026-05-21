@@ -25,7 +25,13 @@ public static class CreationJoueur
         }
 
         int etageNumero = ChoisirEtage(j, "\nQuel étage voulez-vous être ?\n");
+        if (etageNumero == -1)
+        {
+            Console.WriteLine("Mission annulée. Appuyez sur une touche pour revenir au menu principal.");
+            Console.ReadKey();
 
+            return false;
+        }
         AnsiConsole.Clear();
         AnsiConsole.Progress()
             .Start(ctx =>

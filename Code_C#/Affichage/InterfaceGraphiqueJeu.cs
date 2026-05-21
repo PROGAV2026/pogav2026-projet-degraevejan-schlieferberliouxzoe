@@ -4,7 +4,6 @@ using Spectre.Console;
 /// CLASS QUI GERE : 
 ///                   Appel des affichages 
 /// </summary>
-//TODO : METTRE LES BONNES DIMENSIONS POUR CENTRER LE JEU
 public static class InterfaceGraphiqueJeu
 {
     //SQUELETTE DE L INTERFACE
@@ -14,21 +13,19 @@ public static class InterfaceGraphiqueJeu
         .SplitRows(
             new Layout("Header").Size(3),
             new Layout("Principal").SplitColumns(
-                new Layout("AideEtLegende").Size(40)
+                new Layout("AideEtLegende").Size(35)
                 .SplitRows(
                     new Layout("Aide"),
                     new Layout("Legende")
                 ),
-                new Layout("ZoneJeu").SplitColumns(
-                    new Layout("MargeGauche").Size(15),
-                    new Layout("ZoneJEU").SplitRows(
-                        new Layout("MargeHaut").Size(5),
-                        new Layout("EcranJeu"),
-                        new Layout("MargeBas").Size(2)
-                    ),
-                    new Layout("MargeDroite").Size(15)
+                new Layout("MargeGauche"),
+                new Layout("ZoneJeu").Size(70).SplitRows(
+                    new Layout("MargeHaut"),
+                    new Layout("EcranJeu").Size(30),
+                    new Layout("MargeBas")
                 ),
-                new Layout("InteractionEtCarte").Size(40).SplitRows(
+                new Layout("MargeDroite"),
+                new Layout("InteractionEtCarte").Size(35).SplitRows(
                     new Layout("Interaction"),
                     new Layout("Carte")
                 )

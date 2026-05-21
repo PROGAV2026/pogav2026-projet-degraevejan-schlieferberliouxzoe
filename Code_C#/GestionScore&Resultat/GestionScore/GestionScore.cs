@@ -22,11 +22,11 @@ public class GestionScore
     {
         if (modeTest)
         {
-            CheminFichier = "GestionScore/resultatTest.csv";
+            CheminFichier = "GestionScore&Resultat/GestionScore/resultatTest.csv";
         }
         else
         {
-            CheminFichier = "GestionScore/resultatVrai.csv";
+            CheminFichier = "GestionScore&Resultat/GestionScore/resultatVrai.csv";
         }
     }
 
@@ -53,7 +53,7 @@ public class GestionScore
         return liste.OrderBy(s => s.Temps).ToList();
     }
 
-    public void AfficherClassement()
+    public void AfficherClassement(bool modeTest)
     {
         var scores = LireScore();
         var table = new Table()
@@ -61,18 +61,20 @@ public class GestionScore
         .BorderColor(Color.Grey)
         .AddColumn(new TableColumn("[grey][/]").Centered())
         .AddColumn(new TableColumn("[bold]Joueur[/]"))
-        .AddColumn(new TableColumn("[bold]Temps[/]").RightAligned());
+        .AddColumn(new TableColumn("[bold]Temps ( s )[/]").RightAligned());
 
-        var medals = new[] { "[gold1]1st[/]", "[silver]2nd[/]", "[red]3rd[/]" };
+        var medals = new[] { "[gold1]1er[/]", "[silver]2nd[/]", "[red]3eme[/]" };
 
         for (int i = 0; i < Math.Min(10, scores.Count); i++)
         {
-            var rang = i < 3 ? medals[i] : $"[grey]{i + 1}[/]";
+            var rang = i < 3 ? medals[i] : $"[grey]{i + 1}eme[/]";
             var nom = i < 3 ? $"[bold]{scores[i].Nom}[/]" : $"[white]{scores[i].Nom}[/]";
             var temps = $"[dim]{scores[i].Temps}[/]";
             table.AddRow(rang, nom, temps);
         }
-        AnsiConsole.Write(new Rule("[bold yellow] Meilleurs temps [/]").RuleStyle("grey"));
+        AnsiConsole.Write(new Rule($"[bold yellow] Meilleurs temps du mode {(modeTest ? "Test" : "Normal")}  [/]").RuleStyle("grey"));
         AnsiConsole.Write(table);
     }
+
+
 }

@@ -1,4 +1,9 @@
-public class Module
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La classe abstraite module qui contient la matrice de chaque module enfant et qui est utilisée pour la création de la matrice d'étage
+///                   Chaque module enfant hérite de cette classe et remplit sa matrice dans son constructeur
+/// </summary>
+public abstract class Module
 {
     public List<List<int>> MatriceModule { get; set; }
     public Module()

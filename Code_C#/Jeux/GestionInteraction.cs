@@ -1,3 +1,7 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La gestion des interactions du joueur : que fait le jeu lorsque le joueur appuie sur la touche d'action. 
+/// </summary>
 using Spectre.Console;
 
 public class GestionInteraction
@@ -84,7 +88,7 @@ public class GestionInteraction
                     return "Ce zinzin dort à point fermé, ne le dérangez pas !";
                 case 9:
                 case 10:
-                    return "Un écran de contrôle du vaisseau, rien ne peux être caché ici";
+                    return "Rha, c est juste un écran de contrôle du vaisseau, rien ne peux être caché ici";
                 case 12:
                     return "Ce qui soutient l'écran, pas de cachette possible";
                 case 13:
@@ -98,7 +102,6 @@ public class GestionInteraction
                     return "Le mur du réacteur, attention c'est dangereux !";
                 case 17:
                     return "Cette caisse est vide";
-
                 case 19:
                 case 20:
                     return "Ce coffre est vide";
@@ -112,8 +115,6 @@ public class GestionInteraction
                         joueur.ABienMisLaCle = true;
                         return "BRAVOOOOOOOOOOO!!!!";
                     }
-
-
 
                 default:
 
@@ -129,7 +130,7 @@ public class GestionInteraction
         while (true)
         {
 
-            string contenu = "[cyan]Choisir destination :[/]\n\n";
+            string contenu = "[red]Choisir destination :[/]\n\n";
             for (int i = 0; i < etages.Count; i++)
             {
                 bool visite = joueur.EtageVisite.Contains(i);

@@ -35,8 +35,8 @@ public static class MenuPrincipal
     public static string AffichageMenuSelection()
     {
         return AnsiConsole.Prompt(new SelectionPrompt<string>()
-        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/] ")
-        .AddChoices("1. Lancer le jeu", "2. Mode test", "3. Quitter")
+        .Title("Veuillez choisir un mode !! Vite [bold red]VITTEE[/] votre vie est en jeu !!\n\n[grey]^ v Naviguer[/]     [grey][[ENTER]] Sélectionner[/]  ")
+        .AddChoices("1. Mode normal", "2. Mode test", "3. Afficher classement", "4. Quitter")
         .HighlightStyle(new Style(Color.Green, Color.Black)));
     }
 

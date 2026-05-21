@@ -38,7 +38,7 @@ public class Chrono
         int tempsRestant = TempsRestant;
         int minutes = tempsRestant / 60;
         int secondes = tempsRestant % 60;
-        Console.WriteLine($"Chrono arrêté. Vous avez mis : {10 - minutes} minutes et {60 - secondes} secondes.");
+        Console.WriteLine($"Chrono arrêté. Vous avez mis : {9 - minutes} minutes et {60 - secondes} secondes.");
 
     }
     //Creation d opérations de comparaison pour pouvoir les utiliser dans le reste du code

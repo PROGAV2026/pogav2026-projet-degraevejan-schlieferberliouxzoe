@@ -7,7 +7,7 @@ public static class AffichageLegende
 {
     public static string AfficherLegende()
     {
-        return "[red]██[/]: Téléporteur départ\n" +
+        return "\n\n[red]██[/]: Téléporteur départ\n" +
     "[blue]██[/]: Téléporteur arrivé\n" +
     "[green]○[/][white]████[/]: Lit occupé \n" +
     "[white]▯████[/]: Lit vide \n" +
@@ -18,7 +18,7 @@ public static class AffichageLegende
     "[grey]██[/] et [yellow]██[/] : Blindage réacteur\n" +
     "[yellow]■[/]: Petite caisse\n" +
     "[orange3][[[/][yellow]Ω[/][orange3]]][/]: Coffre Ancien\n" +
-    "[green]¬⚇[/]: Joueur (VOUS)\n";
+    "[green]¬⚇[/]: ZINZINN \n";
     }
 }
 

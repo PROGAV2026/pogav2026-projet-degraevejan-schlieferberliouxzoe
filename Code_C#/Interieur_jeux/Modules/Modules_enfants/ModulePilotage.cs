@@ -1,3 +1,7 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La matrice du module pilotage
+/// </summary>
 public class ModulePilotage : Module
 {
     public bool EstValide { get; set; }

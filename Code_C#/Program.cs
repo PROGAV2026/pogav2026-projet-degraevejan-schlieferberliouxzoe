@@ -1,4 +1,7 @@
-﻿using System.Diagnostics; // Nécessaire pour Process pour ouvrir une  nouvelle fenetre
+﻿/// <summary>
+/// CLASS QUI GERE : 
+///                   Demarrage du jeu, c est ici que le jeu est lancé 
+/// </summary>
 class Program
 {
     static void Main(string[] args)

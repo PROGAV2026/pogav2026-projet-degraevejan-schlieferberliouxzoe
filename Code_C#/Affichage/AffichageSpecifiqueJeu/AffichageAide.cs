@@ -7,6 +7,6 @@ public static class AffichageAide
 {
     public static string AfficherAide()
     {
-        return "\n\n[bold]FLECHE[/] :\n\n    +[white]↑ [/]: Haut\n    [white]↓[/]: Bas\n    [white]←[/]: Gauche\n    [white]→[/]: Droite\n\n[green]A[/]: Action\n[red]ESC[/]: Quitter";
+        return "\n\n[bold]FLECHE[/] :\n\n    [white]↑ [/]: Haut\n    [white]↓[/]: Bas\n    [white]←[/]: Gauche\n    [white]→[/]: Droite\n\n[green]A[/]: Action\n[red]ESC[/]: Quitter";
     }
 }

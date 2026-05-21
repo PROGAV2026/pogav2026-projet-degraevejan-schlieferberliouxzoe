@@ -1,3 +1,7 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La matrice du module coffre
+/// </summary>
 public class ModuleCoffre : Module
 {
   public ModuleCoffre()

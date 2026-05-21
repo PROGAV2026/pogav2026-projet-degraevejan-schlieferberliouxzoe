@@ -1,3 +1,7 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La matrice du module couchage
+/// </summary>
 public class ModuleCouchage : Module
 {
         public ModuleCouchage()

@@ -1,6 +1,5 @@
-public class Etage
+public abstract class Etage
 {
-    //TODO FAIRE CLASSE ABSTRAITE
     public string Nom { get; set; } = "";
     public List<Module> ListeModulePotentiels { get; set; } = new List<Module> { };
     public List<Module> ListeModules { get; set; } = new List<Module> { };

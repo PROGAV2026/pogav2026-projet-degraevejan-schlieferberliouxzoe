@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using Spectre.Console.Rendering;
 /// <summary>
 /// CLASS QUI GERE : 
 ///                    Creation des etages + remplissage dans le vaisseau 
@@ -12,7 +10,10 @@ public class Vaisseau
     public Random Random = new Random();
     public int XCle;
     public int YCle;
-    public Etage EtageCleCache { get; set; }
+    public Etage EtageCleCache
+    {
+        get; set;
+    }
     public List<int> Cachettes;
     public Vaisseau(bool modeTest)
     {

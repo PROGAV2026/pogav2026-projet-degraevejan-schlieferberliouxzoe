@@ -1,3 +1,7 @@
+/// <summary>
+/// CLASS QUI GERE : 
+///                   La matrice du module moteur
+/// </summary>
 public class ModuleMoteur : Module
 {
     public ModuleMoteur()
