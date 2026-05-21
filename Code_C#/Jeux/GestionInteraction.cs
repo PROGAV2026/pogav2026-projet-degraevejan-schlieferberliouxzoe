@@ -70,6 +70,7 @@ public class GestionInteraction
             {
                 case 3:
                     int etageCible = MenuTeleportation(joueur.Vaisseau, layout, ctx, jeux, joueur, chrono);
+                    if (etageCible == -1) return "Téléportation annulée.";
                     bool resultat = joueur.DeplacementEtage(etageCible);
                     if (!resultat)
                     {
