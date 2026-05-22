@@ -26,10 +26,10 @@ public class ModulePilotage : Module
         new List<int> { 0, 12, 0, 0, 12, 0, 0, 12 ,0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, chiffreLevier, 0, 0, 0, 0, 0 },
+        new List<int> { 17, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new List<int> { 0, 17, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
     };
     }

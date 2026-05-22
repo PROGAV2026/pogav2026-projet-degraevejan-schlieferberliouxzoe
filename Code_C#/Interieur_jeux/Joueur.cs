@@ -93,7 +93,8 @@ public class Joueur
         {
             EtageVisite.Add(PositionEtage);
         }
-        else{
+        else if(ChanceBonneEtage < 40)
+        {
             return false;
         }
 
