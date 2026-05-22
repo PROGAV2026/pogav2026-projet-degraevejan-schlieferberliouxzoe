@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Spectre.Console;
 
 /// <summary>
@@ -10,16 +11,23 @@ public class GestionScore
 {
 
     public string CheminFichier = "";
-
+    public int cleCesar;
+    public string alphabetMaj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public string alphabetMin;
+     public Random r = new Random();
     public class EntreeScore
-    {
+    {   
+        
         public string Nom { get; set; } = "";
         public int Temps { get; set; }
+        
     }
 
 
     public GestionScore(bool modeTest)
     {
+        cleCesar = 23;
+        alphabetMin = alphabetMaj.ToLower();
         if (modeTest)
         {
             CheminFichier = "GestionScore&Resultat/GestionScore/resultatTest.csv";
@@ -32,9 +40,10 @@ public class GestionScore
 
     public void EnregistrementScore(string nom, Chrono temps)
     {
+        string nomCrypte = CryptageCesar(cleCesar,nom);
         using (StreamWriter writer = new StreamWriter(CheminFichier, append: true))
         {
-            writer.WriteLine($"\n{nom};{temps.TempsTotal - temps.TempsRestant}");
+            writer.WriteLine($"\n{nomCrypte};{temps.TempsTotal - temps.TempsRestant}");
         }
     }
 
@@ -68,7 +77,8 @@ public class GestionScore
         for (int i = 0; i < Math.Min(10, scores.Count); i++)
         {
             var rang = i < 3 ? medals[i] : $"[grey]{i + 1}eme[/]";
-            var nom = i < 3 ? $"[bold]{scores[i].Nom}[/]" : $"[white]{scores[i].Nom}[/]";
+            string nomDecrypte = DecryptageCesar(cleCesar,scores[i].Nom);
+            var nom = i < 3 ? $"[bold]{nomDecrypte}[/]" : $"[white]{nomDecrypte}[/]";
             var temps = $"[dim]{scores[i].Temps}[/]";
             table.AddRow(rang, nom, temps);
         }
@@ -77,4 +87,23 @@ public class GestionScore
     }
 
 
+    public string CryptageCesar(int cle,string nom)
+    {
+        cle = ((cle % 26) + 26) % 26;
+        string cryptee = "";
+        foreach (char lettre in nom)
+        {
+            if(alphabetMaj.Contains(lettre)) cryptee+= alphabetMaj[(alphabetMaj.IndexOf(lettre) + cle)%26]; 
+            else if(alphabetMin.Contains(lettre)) cryptee+= alphabetMin[(alphabetMin.IndexOf(lettre) + cle)%26];
+            else cryptee += lettre;
+        } 
+        return cryptee;
+    }
+
+    public string DecryptageCesar(int cle, string nom)
+    {
+        return CryptageCesar(-cle, nom );
+    }
+
 }
+

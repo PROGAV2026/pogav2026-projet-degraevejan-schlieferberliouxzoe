@@ -45,16 +45,18 @@ public class GestionInteraction
         int Ycle = joueur.Vaisseau.YCle;
         bool conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && (YInteraction == Ycle);
 
-        if (NumeroElement == 19)
+        //Si la clé est dans une partie du coffre, il faut considerer que le joueur fouille les deux a la fois
+        if (NumeroElement == 19 ||NumeroElement ==20)
         {
-            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle - 1));
+            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || Math.Abs(YInteraction - Ycle) <= 1);
 
         }
-        if (NumeroElement == 20)
+        //pareil pour les lits
+        else if (NumeroElement == 5 || NumeroElement == 6 || NumeroElement == 7 || NumeroElement == 8)
         {
-            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || (YInteraction == Ycle + 1));
-
+            conditionRecuperationCLe = !joueur.ALaCle && (joueur.EtageCourant == joueur.Vaisseau.EtageCleCache) && (XInteraction == Xcle) && ((YInteraction == Ycle) || (Math.Abs(YInteraction - Ycle) <= 2));
         }
+        
         if (conditionRecuperationCLe)
         {
             joueur.ALaCle = true;
@@ -119,6 +121,7 @@ public class GestionInteraction
             }
         }
     }
+
     public int MenuTeleportation(Vaisseau vaisseau, Layout layout, LiveDisplayContext ctx, Jeux jeux, Joueur joueur, Chrono chrono)
     {
         var etages = vaisseau.ListeEtages;

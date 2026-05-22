@@ -22,9 +22,9 @@ public class Vaisseau
         ListeEtagesPotentiels.Add("salleMachine");
         if (modeTest) RemplirListeEtage(3); else RemplirListeEtage(10);
         Cachettes = new List<int> { 5, 6, 7, 8, 17, 19, 20 };
-        CacherLaCle();
         AjoutModuleDePilotagessuffisants();
         MetUnModulePilotageValideAleatoire();
+        CacherLaCle();
     }
     public void CacherLaCle()
     {

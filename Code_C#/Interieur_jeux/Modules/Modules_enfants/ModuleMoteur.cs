@@ -16,8 +16,8 @@ public class ModuleMoteur : Module
         new List<int> { 0, 0, 0, 16, 18, 16, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 17, 0 },
-        new List<int> { 0, 0, 0, 0, 17, 0, 0, 0, 0, 0 }
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
     }
