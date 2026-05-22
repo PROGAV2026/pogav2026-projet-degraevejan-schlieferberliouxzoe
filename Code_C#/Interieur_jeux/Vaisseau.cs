@@ -10,7 +10,7 @@ public class Vaisseau
     public Random Random = new Random();
     public int XCle;
     public int YCle;
-    public Etage EtageCleCache
+    public Etage? EtageCleCache
     {
         get; set;
     }
