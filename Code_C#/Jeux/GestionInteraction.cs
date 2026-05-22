@@ -39,10 +39,6 @@ public class GestionInteraction
         return 0;
 
     }
-    public void VerifierCle()
-    {
-
-    }
     public string InteractionAvecElement(int NumeroElement, Joueur joueur, Layout layout, LiveDisplayContext ctx, Jeux jeux, Chrono chrono)
     {
         int Xcle = joueur.Vaisseau.XCle;
