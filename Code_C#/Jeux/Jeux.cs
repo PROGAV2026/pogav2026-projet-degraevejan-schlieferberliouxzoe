@@ -72,7 +72,7 @@ public class Jeux
             .AutoClear(false)
             .Start(ctx =>
             {
-                while (Chrono.EnCours && Chrono.Stopwatch.Elapsed.TotalSeconds < Chrono.TempsTotal && !Victoire)
+                while (Chrono.EnCours && Chrono.Stopwatch.Elapsed.TotalSeconds < Chrono.TempsTotal && !Victoire && !Interaction.TeleportationEchouee)
                 {
                     int elementProche = Interaction.VerifierInteractionJeu(Joueur);
                     AffichageInteraction.AfficherElementsInteractifs(elementProche);

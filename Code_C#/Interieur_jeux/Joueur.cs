@@ -93,6 +93,9 @@ public class Joueur
         {
             EtageVisite.Add(PositionEtage);
         }
+        else{
+            return false;
+        }
 
         return true;
     }
