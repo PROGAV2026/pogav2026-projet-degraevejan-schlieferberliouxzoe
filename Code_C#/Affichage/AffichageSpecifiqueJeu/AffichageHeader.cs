@@ -28,7 +28,9 @@ public static class AffichageHeader
         if (j.ModeTest && j.Vaisseau.EtageCleCache != null)
         {
             int cleCellule = j.Vaisseau.EtageCleCache.MatriceEtage[j.Vaisseau.XCle][j.Vaisseau.YCle];
-            if (cleCellule == 19 || cleCellule == 20) return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.Vaisseau.EtageCleCache.Nom}, dans [LightSalmon3][[[/][Gold3_1]Ω[/][LightSalmon3]]] [/]";
+            if (cleCellule == 19 || cleCellule == 20) return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.Vaisseau.EtageCleCache.Nom}, dans [LightSalmon3][[[/][Gold3_1]Ω[/][LightSalmon3]]][/]";
+            else if (cleCellule == 8 || cleCellule == 5) return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.Vaisseau.EtageCleCache.Nom}, dans [green] ○[/][white]████[/]";
+            else if (cleCellule == 6 || cleCellule == 7) return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.Vaisseau.EtageCleCache.Nom}, dans [white] ▯[/][white]████[/]";
             else return $"Clé: {cle} | Étage: {etageActuel} - [[{etage}]] | Temps: [yellow]{c.AffichageChrono()}[/] | La clé est dans : {j.Vaisseau.EtageCleCache.Nom}, dans {AffichageJeu.ChiffreVersCaractere(cleCellule)}";
         }
 

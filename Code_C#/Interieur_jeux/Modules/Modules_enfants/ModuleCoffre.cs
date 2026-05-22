@@ -11,12 +11,12 @@ public class ModuleCoffre : Module
       {
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-      new List<int> { 0, 0, 19, 20, 0, 0, 19, 20, 0, 0 },
+      new List<int> { 0, 19,20 , 0, 0, 0, 0, 19, 20, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-      new List<int> { 0, 0, 19, 20, 0, 0, 19, 20, 0, 0 },
+      new List<int> { 0, 19, 20, 0, 0, 0, 0, 19, 20, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 };
